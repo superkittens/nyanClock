@@ -19,6 +19,7 @@ Go to the nyanClock.X directory.  Run the make utility by typing:
     $make -f nbproject/Makefile-default.mk SUBPROJECTS=.build-conf
 
 To build the source for debugging, run the make utility again but type the following:
+
     $make -f nbproject/Makefile-default.mk dist/default/debug/nyanClock.X.debug.cof
 
 MPLABX automatically generates the "Makefile-default.mk" file and uses this when builing the code.  ".cof" files are the executable used for debugging and when using MPLABX, they are always stored in /dist/default/debug/.  
