@@ -33,5 +33,33 @@ There are two ways to run the project in Debug.  The easiest (and perhaps the be
 Open the nyanClock.X project in MPLABX.  Click on "Debug Project"
 
 ###Command Line
-Ensure that you have set your PATH to include "mdb.sh"
-If you are powering the target through your debugger, ensure that you set the voltage to 3V3
+Ensure that you have set your PATH to include "mdb.sh"  Once you have done that, launch mdb from a terminal window:
+
+    $mdb.sh
+
+Set the device to the PIC18F27J13:
+
+    >Device PIC18F27J13
+
+If you are powering the microcontroller with the debug kit, make sure that you power it with 3V3:
+
+    >set poweroptions.powerenable true
+    >set voltagevalue 3.3
+
+Set the debugger to the type that you are using (for example, I use the PICKit 3):
+
+    >Hwtool PICKit3
+
+Program the microcontroller with the debug .cof file, nyanClock.X.debug.cof found in nyanClock.X/dist/default/debug/
+
+    >Program nyanClock.X/dist/default/debug/nyanClock.X.debug.cof
+
+Note: the path will depend on where you start MDB from
+
+Finally, run the firmware:
+
+    >run
+
+To set a breakpoint, type the following before running,
+
+    >Break filename: linenumber
