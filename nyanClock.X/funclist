@@ -1,0 +1,24 @@
+_bcdtod: CODE, 6096 0 220
+_readEnc: CODE, 7048 0 88
+_SEGDIGARRAY: SMALLCONST, 3850 0 4
+_delay: CODE, 7416 0 46
+_displayOFF: CODE, 7566 0 10
+_displayDigit: CODE, 7216 0 76
+_sevenSegInit: CODE, 7526 0 20
+_dtobcd: CODE, 6316 0 206
+_main: CODE, 6522 0 200
+__initialization: CODE, 7136 0 74
+___lwdiv: CODE, 6848 0 108
+_dispTime: CODE, 5154 0 590
+_DELAYTIME: SMALLCONST, 3854 0 2
+_SEGSINKARRAY: SMALLCONST, 3840 0 10
+_setTime: CODE, 3858 0 680
+___lwmod: CODE, 6956 0 92
+_RtccWrOn: CODE, 7546 0 20
+_RtccWriteTime: CODE, 5744 0 352
+_rotEncInit: CODE, 7576 0 8
+_clickEvent: CODE, 7356 0 60
+_dispSetTime: CODE, 4538 0 616
+_RtccReadTime: CODE, 6722 0 126
+_RtccInitClock: CODE, 7292 0 64
+Total: 3672

@@ -1,0 +1,1 @@
+ build/default/production/libmWS_sevenSeg.d  build/default/production/libmWS_sevenSeg.p1:  libmWS_sevenSeg.c libmWS_sevenSeg.h
