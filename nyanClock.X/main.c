@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     
     unsigned int tmp = 0;
     unsigned int counter = 0;
-    rtccTime RTCCTimeDate;
+    rtccTime RTCCTime;
     rtccTime RTCCRead;
 
     sevenSegInit();
@@ -39,20 +39,20 @@ int main(int argc, char** argv) {
     RtccInitClock();
     RtccWrOn();
     mRtccSetClockOe(0);
-    RTCCTimeDate.f.hour = 0x00;
-    RTCCTimeDate.f.min = 0x10;
-    RTCCTimeDate.f.sec = 0;
+    RTCCTime.f.hour = dtobcd(22);
+    RTCCTime.f.min = dtobcd(47);
+    RTCCTime.f.sec = 0;
 
     unsigned int RTCHour;
     unsigned int RTCMin;
 
-    RtccWriteTime(&RTCCTimeDate, 1);
+    RtccWriteTime(&RTCCTime, 1);
     mRtccOn();
     mRtccWrOff();
 
     while(1){
 
-
+        
         RtccReadTime(&RTCCRead);
         RTCHour = bcdtod(RTCCRead.f.hour);
         RTCMin = bcdtod(RTCCRead.f.min);
@@ -64,27 +64,13 @@ int main(int argc, char** argv) {
             setTime();
         }
 
- 
 
-        /*
-        if(!clickEvent()){ counter = 0; }
-        tmp = readEnc();
-
-        if(tmp == -99){}
-        
-        else if(tmp){
-            counter += tmp;
-            if(counter < 0){ counter = 9999; }
-            else if(counter > 9999){ counter = 0; }
-        }
-        
-        displayNum(counter, 0);
-        */
     }
 
 
     return (EXIT_SUCCESS);
 }
+
 
 int setTime(){
     int del = 0;

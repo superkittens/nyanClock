@@ -10323,7 +10323,7 @@ if(!isColonON){
 (PORTBbits.RB7 = 1);
 }
 
-int dig0, dig1;
+unsigned int dig0, dig1;
 
 if((hour >= 0) && (hour < 10)){
 displayDigit(hour, 2);

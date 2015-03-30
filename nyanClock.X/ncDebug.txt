@@ -1,0 +1,8 @@
+#  Debugging script for nyanClock Firmware using PICKit3
+
+device PIC18F27J13
+set poweroptions.powerenable true
+set voltagevalue 3.3
+Hwtool PICKit3
+program /Users/superkittens/Documents/Projects/nyanClock/nyanClock.X/dist/default/debug/nyanClock.X.debug.cof
+run

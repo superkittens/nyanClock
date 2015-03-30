@@ -10351,6 +10351,7 @@ extern void _delay3(unsigned char);
 # 22 "sevenSeg.h"
 const int DELAYTIME = 50;
 const unsigned char SEGSINKARRAY[10] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x18};
+const unsigned char SEGSINKARRAYCOL[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x82, 0x82, 0xF8, 0x80, 0x98};
 const unsigned char SEGDIGARRAY[4] = {0x01, 0x02, 0x04, 0x08};
 
 int isColonON = 0;
@@ -10389,7 +10390,7 @@ OSCCONbits.IRCF = 0b111;
 
 unsigned int tmp = 0;
 unsigned int counter = 0;
-rtccTime RTCCTimeDate;
+rtccTime RTCCTime;
 rtccTime RTCCRead;
 
 sevenSegInit();
@@ -10399,14 +10400,14 @@ rotEncInit();
 RtccInitClock();
 RtccWrOn();
 (RTCCFGbits.RTCOE=0);
-RTCCTimeDate.f.hour = 0x00;
-RTCCTimeDate.f.min = 0x10;
-RTCCTimeDate.f.sec = 0;
+RTCCTime.f.hour = dtobcd(22);
+RTCCTime.f.min = dtobcd(47);
+RTCCTime.f.sec = 0;
 
 unsigned int RTCHour;
 unsigned int RTCMin;
 
-RtccWriteTime(&RTCCTimeDate, 1);
+RtccWriteTime(&RTCCTime, 1);
 (RTCCFGbits.RTCEN=1);
 (RTCCFGbits.RTCWREN = 0);
 
@@ -10424,12 +10425,13 @@ displayOFF();
 setTime();
 }
 
-# 83
+
 }
 
 
 return (0);
 }
+
 
 int setTime(){
 int del = 0;
@@ -10538,7 +10540,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 199
+# 185
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){

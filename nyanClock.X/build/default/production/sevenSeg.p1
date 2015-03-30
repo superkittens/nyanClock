@@ -8069,10 +8069,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 1079 ]
 "28
-[v _dig0 `i ~T0 @X0 1 a ]
-[v _dig1 `i ~T0 @X0 1 a ]
+[v _dig0 `ui ~T0 @X0 1 a ]
+[v _dig1 `ui ~T0 @X0 1 a ]
 [; ;sevenSeg.c: 26: }
-[; ;sevenSeg.c: 28: int dig0, dig1;
+[; ;sevenSeg.c: 28: unsigned int dig0, dig1;
 [; ;sevenSeg.c: 30: if((hour >= 0) && (hour < 10)){
 "30
 [e $ ! && >= _hour -> -> 0 `i `ui < _hour -> -> 10 `i `ui 1080  ]
@@ -8100,19 +8100,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;sevenSeg.c: 38: dig0 = hour % 10;
 "38
-[e = _dig0 -> % _hour -> -> 10 `i `ui `i ]
+[e = _dig0 % _hour -> -> 10 `i `ui ]
 [; ;sevenSeg.c: 39: dig1 = hour / 10;
 "39
-[e = _dig1 -> / _hour -> -> 10 `i `ui `i ]
+[e = _dig1 / _hour -> -> 10 `i `ui ]
 [; ;sevenSeg.c: 41: displayDigit(dig0, 2);
 "41
-[e ( _displayDigit (2 , -> _dig0 `ui -> 2 `i ]
+[e ( _displayDigit (2 , _dig0 -> 2 `i ]
 [; ;sevenSeg.c: 42: delay(DELAYTIME);
 "42
 [e ( _delay (1 -> _DELAYTIME `ui ]
 [; ;sevenSeg.c: 43: displayDigit(dig1, 3);
 "43
-[e ( _displayDigit (2 , -> _dig1 `ui -> 3 `i ]
+[e ( _displayDigit (2 , _dig1 -> 3 `i ]
 [; ;sevenSeg.c: 44: delay(DELAYTIME);
 "44
 [e ( _delay (1 -> _DELAYTIME `ui ]
@@ -8148,19 +8148,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;sevenSeg.c: 55: dig0 = min % 10;
 "55
-[e = _dig0 -> % _min -> -> 10 `i `ui `i ]
+[e = _dig0 % _min -> -> 10 `i `ui ]
 [; ;sevenSeg.c: 56: dig1 = min / 10;
 "56
-[e = _dig1 -> / _min -> -> 10 `i `ui `i ]
+[e = _dig1 / _min -> -> 10 `i `ui ]
 [; ;sevenSeg.c: 58: displayDigit(dig0, 0);
 "58
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
+[e ( _displayDigit (2 , _dig0 -> 0 `i ]
 [; ;sevenSeg.c: 59: delay(DELAYTIME);
 "59
 [e ( _delay (1 -> _DELAYTIME `ui ]
 [; ;sevenSeg.c: 60: displayDigit(dig1, 1);
 "60
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
+[e ( _displayDigit (2 , _dig1 -> 1 `i ]
 [; ;sevenSeg.c: 61: delay(DELAYTIME);
 "61
 [e ( _delay (1 -> _DELAYTIME `ui ]

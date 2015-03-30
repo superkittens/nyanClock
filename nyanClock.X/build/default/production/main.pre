@@ -10389,7 +10389,7 @@ OSCCONbits.IRCF = 0b111;
 
 unsigned int tmp = 0;
 unsigned int counter = 0;
-rtccTime RTCCTimeDate;
+rtccTime RTCCTime;
 rtccTime RTCCRead;
 
 sevenSegInit();
@@ -10399,14 +10399,14 @@ rotEncInit();
 RtccInitClock();
 RtccWrOn();
 (RTCCFGbits.RTCOE=0);
-RTCCTimeDate.f.hour = 0x00;
-RTCCTimeDate.f.min = 0x10;
-RTCCTimeDate.f.sec = 0;
+RTCCTime.f.hour = dtobcd(21);
+RTCCTime.f.min = dtobcd(47);
+RTCCTime.f.sec = 0;
 
 unsigned int RTCHour;
 unsigned int RTCMin;
 
-RtccWriteTime(&RTCCTimeDate, 1);
+RtccWriteTime(&RTCCTime, 1);
 (RTCCFGbits.RTCEN=1);
 (RTCCFGbits.RTCWREN = 0);
 
@@ -10423,13 +10423,12 @@ if(!clickEvent()){
 displayOFF();
 setTime();
 }
-
-# 83
 }
 
 
 return (0);
 }
+
 
 int setTime(){
 int del = 0;
@@ -10538,7 +10537,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 199
+# 183
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){

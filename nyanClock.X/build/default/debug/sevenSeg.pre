@@ -10220,6 +10220,7 @@ extern void _delay3(unsigned char);
 # 22 "sevenSeg.h"
 const int DELAYTIME = 50;
 const unsigned char SEGSINKARRAY[10] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x18};
+const unsigned char SEGSINKARRAYCOL[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x82, 0x82, 0xF8, 0x80, 0x98};
 const unsigned char SEGDIGARRAY[4] = {0x01, 0x02, 0x04, 0x08};
 
 int isColonON = 0;
@@ -10319,17 +10320,14 @@ return 0;
 
 int dispTime(unsigned int hour, unsigned int min){
 
-if(!isColonON){
-(PORTBbits.RB7 = 1);
-}
-
-int dig0, dig1;
+unsigned int dig0, dig1;
 
 if((hour >= 0) && (hour < 10)){
 displayDigit(hour, 2);
 delay(DELAYTIME);
 displayDigit(0, 3);
 delay(DELAYTIME);
+displayOFF();
 }
 
 else if(hour >= 10){
@@ -10340,6 +10338,7 @@ displayDigit(dig0, 2);
 delay(DELAYTIME);
 displayDigit(dig1, 3);
 delay(DELAYTIME);
+displayOFF();
 }
 
 if((min >= 0) && (min < 10)){
@@ -10347,6 +10346,7 @@ displayDigit(min, 0);
 delay(DELAYTIME);
 displayDigit(0, 1);
 delay(DELAYTIME);
+displayOFF();
 }
 
 else if(min >= 10){
@@ -10357,6 +10357,7 @@ displayDigit(dig0, 0);
 delay(DELAYTIME);
 displayDigit(dig1, 1);
 delay(DELAYTIME);
+displayOFF();
 }
 
 }
@@ -10373,6 +10374,7 @@ displayDigit(time, 0);
 delay(DELAYTIME);
 displayDigit(0, 1);
 delay(DELAYTIME);
+displayOFF();
 }
 
 else if(time >= 10){
@@ -10383,6 +10385,7 @@ displayDigit(dig0, 0);
 delay(DELAYTIME);
 displayDigit(dig1, 1);
 delay(DELAYTIME);
+displayOFF();
 }
 
 break;
@@ -10394,6 +10397,7 @@ displayDigit(time, 2);
 delay(DELAYTIME);
 displayDigit(0, 3);
 delay(DELAYTIME);
+displayOFF();
 }
 
 else if(time >= 10){
@@ -10404,6 +10408,7 @@ displayDigit(dig0, 2);
 delay(DELAYTIME);
 displayDigit(dig1, 3);
 delay(DELAYTIME);
+displayOFF();
 }
 
 break;
@@ -10483,7 +10488,7 @@ int displayDigit(unsigned int number, int digit){
 
 if((number > 9) || (number < 0)){ return -1; }
 
-PORTB = SEGSINKARRAY[number];
+PORTB = SEGSINKARRAYCOL[number];
 
 PORTA &= 0xF0;
 PORTA |= SEGDIGARRAY[digit];
@@ -10493,7 +10498,7 @@ return 0;
 
 
 void displayOFF(){
-PORTB = 0x7F;
+PORTB |= 0x7F;
 PORTA &= 0xF0;
 }
 

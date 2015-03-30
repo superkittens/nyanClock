@@ -20,18 +20,15 @@ int sevenSegInit(){
 
 //  Used for displaying time.  For general numbers, use the displayNum() function
 int dispTime(unsigned int hour, unsigned int min){
-    
-    if(!isColonON){
-        COLONON();
-    }
 
-    int dig0, dig1;
+    unsigned int dig0, dig1;
 
     if((hour >= 0) && (hour < 10)){
         displayDigit(hour, DIG2);
         delay(DELAYTIME);
         displayDigit(0, DIG3);
         delay(DELAYTIME);
+        displayOFF();
     }
 
     else if(hour >= 10){
@@ -42,6 +39,7 @@ int dispTime(unsigned int hour, unsigned int min){
         delay(DELAYTIME);
         displayDigit(dig1, DIG3);
         delay(DELAYTIME);
+        displayOFF();
     }
 
     if((min >= 0) && (min < 10)){
@@ -49,6 +47,7 @@ int dispTime(unsigned int hour, unsigned int min){
         delay(DELAYTIME);
         displayDigit(0, DIG1);
         delay(DELAYTIME);
+        displayOFF();
     }
 
     else if(min >= 10){
@@ -59,6 +58,7 @@ int dispTime(unsigned int hour, unsigned int min){
         delay(DELAYTIME);
         displayDigit(dig1, DIG1);
         delay(DELAYTIME);
+        displayOFF();
     }
 
 }
@@ -72,9 +72,10 @@ int dispSetTime(unsigned int time, int hourMin){
         case 0:
             if((time >= 0) && (time <= 9)){
                 displayDigit(time, DIG0);
-            delay(DELAYTIME);
+                delay(DELAYTIME);
                 displayDigit(0, DIG1);
                 delay(DELAYTIME);
+                displayOFF();
              }
 
             else if(time >= 10){
@@ -85,6 +86,7 @@ int dispSetTime(unsigned int time, int hourMin){
                 delay(DELAYTIME);
                 displayDigit(dig1, DIG1);
                 delay(DELAYTIME);
+                displayOFF();
             }
 
             break;
@@ -96,6 +98,7 @@ int dispSetTime(unsigned int time, int hourMin){
                 delay(DELAYTIME);
                 displayDigit(0, DIG3);
                 delay(DELAYTIME);
+                displayOFF();
              }
 
             else if(time >= 10){
@@ -106,6 +109,7 @@ int dispSetTime(unsigned int time, int hourMin){
                 delay(DELAYTIME);
                 displayDigit(dig1, DIG3);
                 delay(DELAYTIME);
+                displayOFF();
             }
 
             break;
@@ -185,7 +189,7 @@ int displayDigit(unsigned int number, int digit){
 
     if((number > 9) || (number < 0)){ return -1; }
 
-    PORTB = SEGSINKARRAY[number];
+    PORTB = SEGSINKARRAYCOL[number];
 
     PORTA &= 0xF0;
     PORTA |= SEGDIGARRAY[digit];
@@ -195,7 +199,7 @@ int displayDigit(unsigned int number, int digit){
 
 
 void displayOFF(){
-    PORTB = 0x7F;
+    PORTB |= 0x7F;
     PORTA &= 0xF0;
 }
 

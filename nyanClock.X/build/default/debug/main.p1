@@ -12,7 +12,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1068 . rsvd sec min hour ]
 [u S1067 `S1068 1 `uc -> 4 `i `ui -> 2 `i `ul 1 ]
 [n S1067 . f b w l ]
-"29 sevenSeg.h
+"30 sevenSeg.h
 [v _sevenSegInit `(i ~T0 @X0 0 ef ]
 "17 rotEnc.h
 [v _rotEncInit `(i ~T0 @X0 0 ef ]
@@ -26,6 +26,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S187 . . ]
 "3308 /Applications/microchip/xc8/v1.12/include/pic18f27j13.h
 [v _RTCCFGbits `VS187 ~T0 @X0 0 e@3903 ]
+"21 main.c
+[v _dtobcd `(uc ~T0 @X0 0 ef1`ui ]
 [c E7742 0 1 .. ]
 [n E7742 _BOOL FALSE TRUE  ]
 "676 /Applications/microchip/xc8/v1.12/include/plib/rtcc.h
@@ -34,11 +36,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RtccReadTime `(v ~T0 @X0 0 ef1`*S1067 ]
 "22 main.c
 [v _bcdtod `(ui ~T0 @X0 0 ef1`uc ]
-"32 sevenSeg.h
+"33 sevenSeg.h
 [v _dispTime `(i ~T0 @X0 0 ef2`ui`ui ]
 "19 rotEnc.h
 [v _clickEvent `(i ~T0 @X0 0 ef ]
-"35 sevenSeg.h
+"36 sevenSeg.h
 [v _displayOFF `(v ~T0 @X0 0 ef ]
 "20 main.c
 [v _setTime `(i ~T0 @X0 0 ef ]
@@ -47,10 +49,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "18 rotEnc.h
 [v _readEnc `(i ~T0 @X0 0 ef ]
-"31 sevenSeg.h
+"32 sevenSeg.h
 [v _dispSetTime `(i ~T0 @X0 0 ef2`ui`i ]
-"21 main.c
-[v _dtobcd `(uc ~T0 @X0 0 ef1`ui ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -8049,6 +8049,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;sevenSeg.h: 23: const unsigned char SEGSINKARRAY[10] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x18};
 "24
+[v _SEGSINKARRAYCOL `Cuc ~T0 @X0 -> 10 `i e ]
+[i _SEGSINKARRAYCOL
+:U ..
+-> -> 192 `i `uc
+-> -> 249 `i `uc
+-> -> 164 `i `uc
+-> -> 176 `i `uc
+-> -> 153 `i `uc
+-> -> 130 `i `uc
+-> -> 130 `i `uc
+-> -> 248 `i `uc
+-> -> 128 `i `uc
+-> -> 152 `i `uc
+..
+]
+[; ;sevenSeg.h: 24: const unsigned char SEGSINKARRAYCOL[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x82, 0x82, 0xF8, 0x80, 0x98};
+"25
 [v _SEGDIGARRAY `Cuc ~T0 @X0 -> 4 `i e ]
 [i _SEGDIGARRAY
 :U ..
@@ -8058,20 +8075,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 8 `i `uc
 ..
 ]
-[; ;sevenSeg.h: 24: const unsigned char SEGDIGARRAY[4] = {0x01, 0x02, 0x04, 0x08};
-"26
+[; ;sevenSeg.h: 25: const unsigned char SEGDIGARRAY[4] = {0x01, 0x02, 0x04, 0x08};
+"27
 [v _isColonON `i ~T0 @X0 1 e ]
 [i _isColonON
 -> 0 `i
 ]
-[; ;sevenSeg.h: 26: int isColonON = 0;
-[; ;sevenSeg.h: 29: int sevenSegInit();
-[; ;sevenSeg.h: 30: int displayNum(unsigned int number);
-[; ;sevenSeg.h: 31: int dispSetTime(unsigned int time, int hourMin);
-[; ;sevenSeg.h: 32: int dispTime(unsigned int hour, unsigned int min);
-[; ;sevenSeg.h: 33: int displayDigit(unsigned int number, int digit);
-[; ;sevenSeg.h: 34: int delay(unsigned int delay);
-[; ;sevenSeg.h: 35: void displayOFF();
+[; ;sevenSeg.h: 27: int isColonON = 0;
+[; ;sevenSeg.h: 30: int sevenSegInit();
+[; ;sevenSeg.h: 31: int displayNum(unsigned int number);
+[; ;sevenSeg.h: 32: int dispSetTime(unsigned int time, int hourMin);
+[; ;sevenSeg.h: 33: int dispTime(unsigned int hour, unsigned int min);
+[; ;sevenSeg.h: 34: int displayDigit(unsigned int number, int digit);
+[; ;sevenSeg.h: 35: int delay(unsigned int delay);
+[; ;sevenSeg.h: 36: void displayOFF();
 "13 rotEnc.h
 [v _encoderStates `i ~T0 @X0 -> 16 `i s ]
 [i _encoderStates
@@ -8139,10 +8156,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 31: unsigned int counter = 0;
 [e = _counter -> -> 0 `i `ui ]
 "32
-[v _RTCCTimeDate `S1067 ~T0 @X0 1 a ]
+[v _RTCCTime `S1067 ~T0 @X0 1 a ]
 "33
 [v _RTCCRead `S1067 ~T0 @X0 1 a ]
-[; ;main.c: 32: rtccTime RTCCTimeDate;
+[; ;main.c: 32: rtccTime RTCCTime;
 [; ;main.c: 33: rtccTime RTCCRead;
 [; ;main.c: 35: sevenSegInit();
 "35
@@ -8159,24 +8176,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 41: (RTCCFGbits.RTCOE=0);
 "41
 [e = . . _RTCCFGbits 0 2 -> -> 0 `i `uc ]
-[; ;main.c: 42: RTCCTimeDate.f.hour = 0x00;
+[; ;main.c: 42: RTCCTime.f.hour = dtobcd(22);
 "42
-[e = . . _RTCCTimeDate 0 3 -> -> 0 `i `uc ]
-[; ;main.c: 43: RTCCTimeDate.f.min = 0x10;
+[e = . . _RTCCTime 0 3 ( _dtobcd (1 -> -> 22 `i `ui ]
+[; ;main.c: 43: RTCCTime.f.min = dtobcd(47);
 "43
-[e = . . _RTCCTimeDate 0 2 -> -> 16 `i `uc ]
-[; ;main.c: 44: RTCCTimeDate.f.sec = 0;
+[e = . . _RTCCTime 0 2 ( _dtobcd (1 -> -> 47 `i `ui ]
+[; ;main.c: 44: RTCCTime.f.sec = 0;
 "44
-[e = . . _RTCCTimeDate 0 1 -> -> 0 `i `uc ]
+[e = . . _RTCCTime 0 1 -> -> 0 `i `uc ]
 "46
 [v _RTCHour `ui ~T0 @X0 1 a ]
 "47
 [v _RTCMin `ui ~T0 @X0 1 a ]
 [; ;main.c: 46: unsigned int RTCHour;
 [; ;main.c: 47: unsigned int RTCMin;
-[; ;main.c: 49: RtccWriteTime(&RTCCTimeDate, 1);
+[; ;main.c: 49: RtccWriteTime(&RTCCTime, 1);
 "49
-[e ( _RtccWriteTime (2 , -> &U _RTCCTimeDate `*CS1067 -> -> 1 `i `E7742 ]
+[e ( _RtccWriteTime (2 , -> &U _RTCCTime `*CS1067 -> -> 1 `i `E7742 ]
 [; ;main.c: 50: (RTCCFGbits.RTCEN=1);
 "50
 [e = . . _RTCCFGbits 0 7 -> -> 1 `i `uc ]
@@ -8212,457 +8229,457 @@ Version 3.2 HI-TECH Software Intermediate Code
 "65
 }
 [e :U 1082 ]
-"83
+"68
 }
 [e :U 1079 ]
 "53
 [e $U 1080  ]
 [e :U 1081 ]
 [; ;main.c: 65: }
-[; ;main.c: 83: }
-[; ;main.c: 86: return (0);
-"86
+[; ;main.c: 68: }
+[; ;main.c: 71: return (0);
+"71
 [e ) -> 0 `i ]
 [e $UE 1078  ]
-[; ;main.c: 87: }
-"87
+[; ;main.c: 72: }
+"72
 [e :UE 1078 ]
 }
-"89
+"75
 [v _setTime `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 89: int setTime(){
+[; ;main.c: 75: int setTime(){
 [e :U _setTime ]
 [f ]
-"90
+"76
 [v _del `i ~T0 @X0 1 a ]
-[; ;main.c: 90: int del = 0;
+[; ;main.c: 76: int del = 0;
 [e = _del -> 0 `i ]
-"91
+"77
 [v _counter `i ~T0 @X0 1 a ]
-[; ;main.c: 91: int counter = 0;
+[; ;main.c: 77: int counter = 0;
 [e = _counter -> 0 `i ]
-"92
+"78
 [v _tmp `i ~T0 @X0 1 a ]
-[; ;main.c: 92: int tmp = 0;
+[; ;main.c: 78: int tmp = 0;
 [e = _tmp -> 0 `i ]
-"93
+"79
 [v _RTCCSetTimeDate `S1067 ~T0 @X0 1 a ]
-[; ;main.c: 93: rtccTime RTCCSetTimeDate;
-[; ;main.c: 95: RtccWrOn();
-"95
+[; ;main.c: 79: rtccTime RTCCSetTimeDate;
+[; ;main.c: 81: RtccWrOn();
+"81
 [e ( _RtccWrOn ..  ]
-[; ;main.c: 97: for(del = 0; del < 5; del++){
-"97
+[; ;main.c: 83: for(del = 0; del < 5; del++){
+"83
 {
 [e = _del -> 0 `i ]
 [e $ < _del -> 5 `i 1084  ]
 [e $U 1085  ]
 [e :U 1084 ]
 {
-[; ;main.c: 99: _delay((unsigned long)((50)*(8000000/4000.0)));
-"99
+[; ;main.c: 85: _delay((unsigned long)((50)*(8000000/4000.0)));
+"85
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 100: _delay((unsigned long)((50)*(8000000/4000.0)));
-"100
+[; ;main.c: 86: _delay((unsigned long)((50)*(8000000/4000.0)));
+"86
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"101
+"87
 }
-"97
+"83
 [e ++ _del -> 1 `i ]
 [e $ < _del -> 5 `i 1084  ]
 [e :U 1085 ]
-"101
+"87
 }
-[; ;main.c: 101: }
-[; ;main.c: 104: while(1){
-"104
+[; ;main.c: 87: }
+[; ;main.c: 90: while(1){
+"90
 [e :U 1088 ]
 {
-[; ;main.c: 105: tmp = readEnc();
-"105
+[; ;main.c: 91: tmp = readEnc();
+"91
 [e = _tmp ( _readEnc ..  ]
-[; ;main.c: 106: if(tmp == -99){ }
-"106
+[; ;main.c: 92: if(tmp == -99){ }
+"92
 [e $ ! == _tmp -U -> 99 `i 1090  ]
 {
 }
 [e $U 1091  ]
-"108
+"94
 [e :U 1090 ]
-[; ;main.c: 108: else if(tmp){
+[; ;main.c: 94: else if(tmp){
 [e $ ! != _tmp -> 0 `i 1092  ]
 {
-[; ;main.c: 109: counter += tmp;
-"109
+[; ;main.c: 95: counter += tmp;
+"95
 [e =+ _counter _tmp ]
-[; ;main.c: 110: if(counter < 0){ counter = 59; }
-"110
+[; ;main.c: 96: if(counter < 0){ counter = 59; }
+"96
 [e $ ! < _counter -> 0 `i 1093  ]
 {
 [e = _counter -> 59 `i ]
 }
 [e $U 1094  ]
-"111
+"97
 [e :U 1093 ]
-[; ;main.c: 111: else if(counter > 59){ counter = 0; }
+[; ;main.c: 97: else if(counter > 59){ counter = 0; }
 [e $ ! > _counter -> 59 `i 1095  ]
 {
 [e = _counter -> 0 `i ]
 }
 [e :U 1095 ]
-"112
+"98
 [e :U 1094 ]
 }
 [e :U 1092 ]
-"114
+"100
 [e :U 1091 ]
-[; ;main.c: 112: }
-[; ;main.c: 114: dispSetTime(counter, 0);
+[; ;main.c: 98: }
+[; ;main.c: 100: dispSetTime(counter, 0);
 [e ( _dispSetTime (2 , -> _counter `ui -> 0 `i ]
-[; ;main.c: 116: if(!clickEvent()){
-"116
+[; ;main.c: 102: if(!clickEvent()){
+"102
 [e $ ! ! != ( _clickEvent ..  -> 0 `i 1096  ]
 {
-[; ;main.c: 117: for(del = 0; del < 5; del++){
-"117
+[; ;main.c: 103: for(del = 0; del < 5; del++){
+"103
 {
 [e = _del -> 0 `i ]
 [e $ < _del -> 5 `i 1097  ]
 [e $U 1098  ]
 [e :U 1097 ]
 {
-[; ;main.c: 118: _delay((unsigned long)((50)*(8000000/4000.0)));
-"118
+[; ;main.c: 104: _delay((unsigned long)((50)*(8000000/4000.0)));
+"104
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 119: _delay((unsigned long)((50)*(8000000/4000.0)));
-"119
+[; ;main.c: 105: _delay((unsigned long)((50)*(8000000/4000.0)));
+"105
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 121: RTCCSetTimeDate.f.min = dtobcd(counter);
-"121
+[; ;main.c: 107: RTCCSetTimeDate.f.min = dtobcd(counter);
+"107
 [e = . . _RTCCSetTimeDate 0 2 ( _dtobcd (1 -> _counter `ui ]
-"122
+"108
 }
-"117
+"103
 [e ++ _del -> 1 `i ]
 [e $ < _del -> 5 `i 1097  ]
 [e :U 1098 ]
-"122
+"108
 }
-[; ;main.c: 122: }
-[; ;main.c: 124: break;
-"124
+[; ;main.c: 108: }
+[; ;main.c: 110: break;
+"110
 [e $U 1089  ]
-"125
+"111
 }
 [e :U 1096 ]
-"126
+"112
 }
 [e :U 1087 ]
-"104
+"90
 [e $U 1088  ]
 [e :U 1089 ]
-[; ;main.c: 125: }
-[; ;main.c: 126: }
-[; ;main.c: 128: tmp = 0;
-"128
+[; ;main.c: 111: }
+[; ;main.c: 112: }
+[; ;main.c: 114: tmp = 0;
+"114
 [e = _tmp -> 0 `i ]
-[; ;main.c: 129: counter = 0;
-"129
+[; ;main.c: 115: counter = 0;
+"115
 [e = _counter -> 0 `i ]
-[; ;main.c: 131: while(1){
-"131
+[; ;main.c: 117: while(1){
+"117
 [e :U 1101 ]
 {
-[; ;main.c: 132: tmp = readEnc();
-"132
+[; ;main.c: 118: tmp = readEnc();
+"118
 [e = _tmp ( _readEnc ..  ]
-[; ;main.c: 133: if(tmp == -99){ }
-"133
+[; ;main.c: 119: if(tmp == -99){ }
+"119
 [e $ ! == _tmp -U -> 99 `i 1103  ]
 {
 }
 [e $U 1104  ]
-"135
+"121
 [e :U 1103 ]
-[; ;main.c: 135: else if(tmp){
+[; ;main.c: 121: else if(tmp){
 [e $ ! != _tmp -> 0 `i 1105  ]
 {
-[; ;main.c: 136: counter += tmp;
-"136
+[; ;main.c: 122: counter += tmp;
+"122
 [e =+ _counter _tmp ]
-[; ;main.c: 137: if(counter < 0){ counter = 23; }
-"137
+[; ;main.c: 123: if(counter < 0){ counter = 23; }
+"123
 [e $ ! < _counter -> 0 `i 1106  ]
 {
 [e = _counter -> 23 `i ]
 }
 [e $U 1107  ]
-"138
+"124
 [e :U 1106 ]
-[; ;main.c: 138: else if(counter > 23){ counter = 0; }
+[; ;main.c: 124: else if(counter > 23){ counter = 0; }
 [e $ ! > _counter -> 23 `i 1108  ]
 {
 [e = _counter -> 0 `i ]
 }
 [e :U 1108 ]
-"139
+"125
 [e :U 1107 ]
 }
 [e :U 1105 ]
-"141
+"127
 [e :U 1104 ]
-[; ;main.c: 139: }
-[; ;main.c: 141: dispSetTime(counter, 1);
+[; ;main.c: 125: }
+[; ;main.c: 127: dispSetTime(counter, 1);
 [e ( _dispSetTime (2 , -> _counter `ui -> 1 `i ]
-[; ;main.c: 143: if(!clickEvent()){
-"143
+[; ;main.c: 129: if(!clickEvent()){
+"129
 [e $ ! ! != ( _clickEvent ..  -> 0 `i 1109  ]
 {
-[; ;main.c: 144: for(del = 0; del < 5; del++){
-"144
+[; ;main.c: 130: for(del = 0; del < 5; del++){
+"130
 {
 [e = _del -> 0 `i ]
 [e $ < _del -> 5 `i 1110  ]
 [e $U 1111  ]
 [e :U 1110 ]
 {
-[; ;main.c: 145: _delay((unsigned long)((50)*(8000000/4000.0)));
-"145
+[; ;main.c: 131: _delay((unsigned long)((50)*(8000000/4000.0)));
+"131
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 146: _delay((unsigned long)((50)*(8000000/4000.0)));
-"146
+[; ;main.c: 132: _delay((unsigned long)((50)*(8000000/4000.0)));
+"132
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-[; ;main.c: 148: RTCCSetTimeDate.f.hour = dtobcd(counter);
-"148
+[; ;main.c: 134: RTCCSetTimeDate.f.hour = dtobcd(counter);
+"134
 [e = . . _RTCCSetTimeDate 0 3 ( _dtobcd (1 -> _counter `ui ]
-[; ;main.c: 149: RTCCSetTimeDate.f.sec = 0;
-"149
+[; ;main.c: 135: RTCCSetTimeDate.f.sec = 0;
+"135
 [e = . . _RTCCSetTimeDate 0 1 -> -> 0 `i `uc ]
-"150
+"136
 }
-"144
+"130
 [e ++ _del -> 1 `i ]
 [e $ < _del -> 5 `i 1110  ]
 [e :U 1111 ]
-"150
+"136
 }
-[; ;main.c: 150: }
-[; ;main.c: 152: break;
-"152
+[; ;main.c: 136: }
+[; ;main.c: 138: break;
+"138
 [e $U 1102  ]
-"153
+"139
 }
 [e :U 1109 ]
-"154
+"140
 }
 [e :U 1100 ]
-"131
+"117
 [e $U 1101  ]
 [e :U 1102 ]
-[; ;main.c: 153: }
-[; ;main.c: 154: }
-[; ;main.c: 156: RtccWriteTime(&RTCCSetTimeDate, 1);
-"156
+[; ;main.c: 139: }
+[; ;main.c: 140: }
+[; ;main.c: 142: RtccWriteTime(&RTCCSetTimeDate, 1);
+"142
 [e ( _RtccWriteTime (2 , -> &U _RTCCSetTimeDate `*CS1067 -> -> 1 `i `E7742 ]
-[; ;main.c: 157: (RTCCFGbits.RTCWREN = 0);
-"157
+[; ;main.c: 143: (RTCCFGbits.RTCWREN = 0);
+"143
 [e = . . _RTCCFGbits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 158: return 0;
-"158
+[; ;main.c: 144: return 0;
+"144
 [e ) -> 0 `i ]
 [e $UE 1083  ]
-[; ;main.c: 160: }
-"160
+[; ;main.c: 146: }
+"146
 [e :UE 1083 ]
 }
-"162
+"148
 [v _dtobcd `(uc ~T0 @X0 1 ef1`ui ]
 {
-[; ;main.c: 162: unsigned char dtobcd(unsigned int dec){
+[; ;main.c: 148: unsigned char dtobcd(unsigned int dec){
 [e :U _dtobcd ]
 [v _dec `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 164: if((dec <0) || (dec > 99)){
-"164
+[; ;main.c: 150: if((dec <0) || (dec > 99)){
+"150
 [e $ ! || < _dec -> -> 0 `i `ui > _dec -> -> 99 `i `ui 1114  ]
 {
-[; ;main.c: 165: return 255;
-"165
+[; ;main.c: 151: return 255;
+"151
 [e ) -> -> 255 `i `uc ]
 [e $UE 1113  ]
-"166
+"152
 }
 [e :U 1114 ]
-"168
+"154
 [v _i `i ~T0 @X0 1 a ]
-"169
+"155
 [v _bcdConv `uc ~T0 @X0 1 a ]
-[; ;main.c: 166: }
-[; ;main.c: 168: int i;
-[; ;main.c: 169: unsigned char bcdConv = 0x00;
+[; ;main.c: 152: }
+[; ;main.c: 154: int i;
+[; ;main.c: 155: unsigned char bcdConv = 0x00;
 [e = _bcdConv -> -> 0 `i `uc ]
-[; ;main.c: 171: for(i = 0; i <= 7; i++){
-"171
+[; ;main.c: 157: for(i = 0; i <= 7; i++){
+"157
 {
 [e = _i -> 0 `i ]
 [e $ <= _i -> 7 `i 1115  ]
 [e $U 1116  ]
 [e :U 1115 ]
 {
-[; ;main.c: 173: if(dec & 0x0080){
-"173
+[; ;main.c: 159: if(dec & 0x0080){
+"159
 [e $ ! != & _dec -> -> 128 `i `ui -> -> 0 `i `ui 1118  ]
 {
-[; ;main.c: 174: bcdConv = bcdConv << 1;
-"174
+[; ;main.c: 160: bcdConv = bcdConv << 1;
+"160
 [e = _bcdConv -> << -> _bcdConv `i -> 1 `i `uc ]
-[; ;main.c: 175: bcdConv |= 0x01;
-"175
+[; ;main.c: 161: bcdConv |= 0x01;
+"161
 [e =| _bcdConv -> -> 1 `i `uc ]
-"176
+"162
 }
-[; ;main.c: 176: }
+[; ;main.c: 162: }
 [e $U 1119  ]
-"178
+"164
 [e :U 1118 ]
-[; ;main.c: 178: else{ bcdConv = bcdConv << 1; }
+[; ;main.c: 164: else{ bcdConv = bcdConv << 1; }
 {
 [e = _bcdConv -> << -> _bcdConv `i -> 1 `i `uc ]
 }
 [e :U 1119 ]
-[; ;main.c: 180: dec = dec << 1;
-"180
+[; ;main.c: 166: dec = dec << 1;
+"166
 [e = _dec << _dec -> 1 `i ]
-[; ;main.c: 182: if(((bcdConv & 0x0F) >= 5) && (i != 7)){
-"182
+[; ;main.c: 168: if(((bcdConv & 0x0F) >= 5) && (i != 7)){
+"168
 [e $ ! && >= & -> _bcdConv `i -> 15 `i -> 5 `i != _i -> 7 `i 1120  ]
 {
-[; ;main.c: 183: bcdConv += 0x03;
-"183
+[; ;main.c: 169: bcdConv += 0x03;
+"169
 [e =+ _bcdConv -> -> 3 `i `uc ]
-"184
+"170
 }
 [e :U 1120 ]
-[; ;main.c: 184: }
-[; ;main.c: 186: if(((bcdConv & 0xF0) >= 0x50) && (i != 7)){
-"186
+[; ;main.c: 170: }
+[; ;main.c: 172: if(((bcdConv & 0xF0) >= 0x50) && (i != 7)){
+"172
 [e $ ! && >= & -> _bcdConv `i -> 240 `i -> 80 `i != _i -> 7 `i 1121  ]
 {
-[; ;main.c: 187: bcdConv += 0x30;
-"187
+[; ;main.c: 173: bcdConv += 0x30;
+"173
 [e =+ _bcdConv -> -> 48 `i `uc ]
-"188
+"174
 }
 [e :U 1121 ]
-"191
+"177
 }
-"171
+"157
 [e ++ _i -> 1 `i ]
 [e $ <= _i -> 7 `i 1115  ]
 [e :U 1116 ]
-"191
+"177
 }
-[; ;main.c: 188: }
-[; ;main.c: 191: }
-[; ;main.c: 193: return bcdConv;
-"193
+[; ;main.c: 174: }
+[; ;main.c: 177: }
+[; ;main.c: 179: return bcdConv;
+"179
 [e ) _bcdConv ]
 [e $UE 1113  ]
-[; ;main.c: 194: }
-"194
+[; ;main.c: 180: }
+"180
 [e :UE 1113 ]
 }
-"199
+"185
 [v _bcdtod `(ui ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 199: unsigned int bcdtod(unsigned char bcd){
+[; ;main.c: 185: unsigned int bcdtod(unsigned char bcd){
 [e :U _bcdtod ]
 [v _bcd `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 201: if((bcd >= 0x00) && (bcd < 0x10)){
-"201
+[; ;main.c: 187: if((bcd >= 0x00) && (bcd < 0x10)){
+"187
 [e $ ! && >= -> _bcd `i -> 0 `i < -> _bcd `i -> 16 `i 1123  ]
 {
-[; ;main.c: 202: return (int)bcd;
-"202
+[; ;main.c: 188: return (int)bcd;
+"188
 [e ) -> -> _bcd `i `ui ]
 [e $UE 1122  ]
-"203
+"189
 }
-[; ;main.c: 203: }
+[; ;main.c: 189: }
 [e $U 1124  ]
-"205
+"191
 [e :U 1123 ]
-[; ;main.c: 205: else if((bcd >= 0x10) && (bcd < 0x20)){
+[; ;main.c: 191: else if((bcd >= 0x10) && (bcd < 0x20)){
 [e $ ! && >= -> _bcd `i -> 16 `i < -> _bcd `i -> 32 `i 1125  ]
 {
-[; ;main.c: 206: return (int)bcd - 6;
-"206
+[; ;main.c: 192: return (int)bcd - 6;
+"192
 [e ) -> - -> _bcd `i -> 6 `i `ui ]
 [e $UE 1122  ]
-"207
+"193
 }
-[; ;main.c: 207: }
+[; ;main.c: 193: }
 [e $U 1126  ]
-"209
+"195
 [e :U 1125 ]
-[; ;main.c: 209: else if((bcd >= 0x20) && (bcd < 0x30)){
+[; ;main.c: 195: else if((bcd >= 0x20) && (bcd < 0x30)){
 [e $ ! && >= -> _bcd `i -> 32 `i < -> _bcd `i -> 48 `i 1127  ]
 {
-[; ;main.c: 210: return (int)bcd - 12;
-"210
+[; ;main.c: 196: return (int)bcd - 12;
+"196
 [e ) -> - -> _bcd `i -> 12 `i `ui ]
 [e $UE 1122  ]
-"211
+"197
 }
-[; ;main.c: 211: }
+[; ;main.c: 197: }
 [e $U 1128  ]
-"213
+"199
 [e :U 1127 ]
-[; ;main.c: 213: else if((bcd >= 0x30) && (bcd < 0x40)){
+[; ;main.c: 199: else if((bcd >= 0x30) && (bcd < 0x40)){
 [e $ ! && >= -> _bcd `i -> 48 `i < -> _bcd `i -> 64 `i 1129  ]
 {
-[; ;main.c: 214: return (int)bcd - 18;
-"214
+[; ;main.c: 200: return (int)bcd - 18;
+"200
 [e ) -> - -> _bcd `i -> 18 `i `ui ]
 [e $UE 1122  ]
-"215
+"201
 }
-[; ;main.c: 215: }
+[; ;main.c: 201: }
 [e $U 1130  ]
-"217
+"203
 [e :U 1129 ]
-[; ;main.c: 217: else if((bcd >= 0x40) && (bcd < 0x50)){
+[; ;main.c: 203: else if((bcd >= 0x40) && (bcd < 0x50)){
 [e $ ! && >= -> _bcd `i -> 64 `i < -> _bcd `i -> 80 `i 1131  ]
 {
-[; ;main.c: 218: return (int)bcd - 24;
-"218
+[; ;main.c: 204: return (int)bcd - 24;
+"204
 [e ) -> - -> _bcd `i -> 24 `i `ui ]
 [e $UE 1122  ]
-"219
+"205
 }
-[; ;main.c: 219: }
+[; ;main.c: 205: }
 [e $U 1132  ]
-"221
+"207
 [e :U 1131 ]
-[; ;main.c: 221: else if((bcd >= 0x50) && (bcd < 0x60)){
+[; ;main.c: 207: else if((bcd >= 0x50) && (bcd < 0x60)){
 [e $ ! && >= -> _bcd `i -> 80 `i < -> _bcd `i -> 96 `i 1133  ]
 {
-[; ;main.c: 222: return (int)bcd - 30;
-"222
+[; ;main.c: 208: return (int)bcd - 30;
+"208
 [e ) -> - -> _bcd `i -> 30 `i `ui ]
 [e $UE 1122  ]
-"223
+"209
 }
 [e :U 1133 ]
-"224
+"210
 [e :U 1132 ]
 [e :U 1130 ]
 [e :U 1128 ]
 [e :U 1126 ]
 [e :U 1124 ]
-[; ;main.c: 223: }
-[; ;main.c: 224: }
+[; ;main.c: 209: }
+[; ;main.c: 210: }
 [e :UE 1122 ]
 }
