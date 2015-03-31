@@ -10375,7 +10375,7 @@ int readEnc();
 int clickEvent();
 
 
-# 18 "main.c"
+# 19 "main.c"
 #pragma config WDTEN = OFF, OSC = INTOSC, XINST = OFF, RTCOSC = T1OSCREF
 
 int setTime();
@@ -10388,14 +10388,16 @@ int main(int argc, char** argv) {
 
 OSCCONbits.IRCF = 0b111;
 
-unsigned int tmp = 0;
-unsigned int counter = 0;
-rtccTime RTCCTime;
-rtccTime RTCCRead;
-
 sevenSegInit();
 rotEncInit();
 
+
+rtccTime RTCCTime;
+rtccTime RTCCRead;
+rtccTime RTCCAlarm;
+
+unsigned int RTCHour;
+unsigned int RTCMin;
 
 RtccInitClock();
 RtccWrOn();
@@ -10404,11 +10406,18 @@ RTCCTime.f.hour = dtobcd(22);
 RTCCTime.f.min = dtobcd(47);
 RTCCTime.f.sec = 0;
 
-unsigned int RTCHour;
-unsigned int RTCMin;
+
+RTCCAlarm.f.hour = 0x12;
+RTCCAlarm.f.min = 0x00;
+RTCCAlarm.f.sec = 0x00;
+
+RtccSetAlarmRpt(RTCC_RPT_MIN, 1);
+RtccSetChimeEnable(1, 1);
 
 RtccWriteTime(&RTCCTime, 1);
+RtccWriteAlrmTime(&RTCCAlarm);
 (RTCCFGbits.RTCEN=1);
+(ALRMCFGbits.ALRMEN=1);
 (RTCCFGbits.RTCWREN = 0);
 
 while(1){
@@ -10434,9 +10443,11 @@ return (0);
 
 
 int setTime(){
+
 int del = 0;
 int counter = 0;
 int tmp = 0;
+int hourMin = 0;
 rtccTime RTCCSetTimeDate;
 
 RtccWrOn();
@@ -10450,7 +10461,7 @@ _delay((unsigned long)((50)*(8000000/4000.0)));
 
 while(1){
 tmp = readEnc();
-if(tmp == -99){ }
+if(tmp == -99){ return -1; }
 
 else if(tmp){
 counter += tmp;
@@ -10458,45 +10469,27 @@ if(counter < 0){ counter = 59; }
 else if(counter > 59){ counter = 0; }
 }
 
-dispSetTime(counter, 0);
+dispSetTime(counter, hourMin);
 
 if(!clickEvent()){
-for(del = 0; del < 5; del++){
+
+displayOFF();
+
 _delay((unsigned long)((50)*(8000000/4000.0)));
 _delay((unsigned long)((50)*(8000000/4000.0)));
 
+if(hourMin == 0){
 RTCCSetTimeDate.f.min = dtobcd(counter);
-}
-
-break;
-}
-}
-
+hourMin = 1;
 tmp = 0;
 counter = 0;
-
-while(1){
-tmp = readEnc();
-if(tmp == -99){ }
-
-else if(tmp){
-counter += tmp;
-if(counter < 0){ counter = 23; }
-else if(counter > 23){ counter = 0; }
 }
 
-dispSetTime(counter, 1);
-
-if(!clickEvent()){
-for(del = 0; del < 5; del++){
-_delay((unsigned long)((50)*(8000000/4000.0)));
-_delay((unsigned long)((50)*(8000000/4000.0)));
-
+else if(hourMin == 1){
 RTCCSetTimeDate.f.hour = dtobcd(counter);
 RTCCSetTimeDate.f.sec = 0;
-}
-
 break;
+}
 }
 }
 
@@ -10540,7 +10533,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 185
+# 179
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){

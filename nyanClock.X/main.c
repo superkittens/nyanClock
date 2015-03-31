@@ -10,6 +10,7 @@
 #include <xc.h>
 #include "sevenSeg.h"
 #include "rotEnc.h"
+//#include "genUtil.h"
 #include <rtcc.h>
 
 #define _XTAL_FREQ 8000000
@@ -26,16 +27,18 @@ int main(int argc, char** argv) {
 
     //  Oscillator Configuration (Internal OSC, 8 MHz no PLL)
     OSCCONbits.IRCF = 0b111;
-    
-    unsigned int tmp = 0;
-    unsigned int counter = 0;
-    rtccTime RTCCTime;
-    rtccTime RTCCRead;
 
     sevenSegInit();
     rotEncInit();
 
     //  RTCC Configuration
+    rtccTime RTCCTime;
+    rtccTime RTCCRead;
+    rtccTime RTCCAlarm;
+
+    unsigned int RTCHour;
+    unsigned int RTCMin;
+
     RtccInitClock();
     RtccWrOn();
     mRtccSetClockOe(0);
@@ -43,11 +46,18 @@ int main(int argc, char** argv) {
     RTCCTime.f.min = dtobcd(47);
     RTCCTime.f.sec = 0;
 
-    unsigned int RTCHour;
-    unsigned int RTCMin;
+    //  Alarm setup here is temporary.  Must be removed for final release
+    RTCCAlarm.f.hour = 0x12;
+    RTCCAlarm.f.min = 0x00;
+    RTCCAlarm.f.sec = 0x00;
+
+    RtccSetAlarmRpt(RTCC_RPT_MIN, 1);
+    RtccSetChimeEnable(1, 1);
 
     RtccWriteTime(&RTCCTime, 1);
+    RtccWriteAlrmTime(&RTCCAlarm);
     mRtccOn();
+    mRtccAlrmEnable();
     mRtccWrOff();
 
     while(1){
@@ -73,9 +83,11 @@ int main(int argc, char** argv) {
 
 
 int setTime(){
+
     int del = 0;
     int counter = 0;
     int tmp = 0;
+    int hourMin = 0;
     rtccTime RTCCSetTimeDate;
 
     RtccWrOn();
@@ -89,7 +101,7 @@ int setTime(){
     //  Set Minute
     while(1){
         tmp = readEnc();
-        if(tmp == -99){  }
+        if(tmp == -99){ return -1; }
 
         else if(tmp){
             counter += tmp;
@@ -97,48 +109,30 @@ int setTime(){
             else if(counter > 59){ counter = 0; }
         }
 
-        dispSetTime(counter, 0);
+        dispSetTime(counter, hourMin);
 
         if(!clickEvent()){ 
-            for(del = 0; del < 5; del++){
-                __delay_ms(50);
-                __delay_ms(50);
-                
+
+            displayOFF();
+
+            __delay_ms(50);
+            __delay_ms(50);
+
+            if(hourMin == 0){
                 RTCCSetTimeDate.f.min = dtobcd(counter);
+                hourMin = 1;
+                tmp = 0;
+                counter = 0;
             }
 
-            break;
-        }
-    }
-
-    tmp = 0;
-    counter = 0;
-    //Set Hour
-    while(1){
-        tmp = readEnc();
-        if(tmp == -99){  }
-
-        else if(tmp){
-            counter += tmp;
-            if(counter < 0){ counter = 23; }
-            else if(counter > 23){ counter = 0; }
-        }
-
-        dispSetTime(counter, 1);
-
-        if(!clickEvent()){
-            for(del = 0; del < 5; del++){
-                __delay_ms(50);
-                __delay_ms(50);
-
+            else if(hourMin == 1){
                 RTCCSetTimeDate.f.hour = dtobcd(counter);
                 RTCCSetTimeDate.f.sec = 0;
+                break;
             }
-
-            break;
         }
     }
-    
+  
     RtccWriteTime(&RTCCSetTimeDate, 1);
     mRtccWrOff();
     return 0;
