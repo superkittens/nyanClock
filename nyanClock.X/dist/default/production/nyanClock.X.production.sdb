@@ -16,9 +16,9 @@
 `uc 1 IRCF2 1 0 :1:6 
 ]
 [u S34 . 1 `S21 1 . 1 0 `S27 1 . 1 0 ]
-"15014 /Applications/microchip/xc8/v1.12/include/pic18f27j13.h
-[s S51 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
-[u S56 . 4 `S51 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
+"17 rotEnc.h
+[s S59 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
+[u S64 . 4 `S59 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
 "680 /Applications/microchip/xc8/v1.12/include/plib/rtcc.h
 [s S77 . 1 `uc 1 RTCPTR0 1 0 :1:0 
 `uc 1 RTCPTR1 1 0 :1:1 
@@ -30,72 +30,39 @@
 `uc 1 RTCEN 1 0 :1:7 
 ]
 [u S86 . 1 `S77 1 . 1 0 ]
-"21 main.c
+"22 main.c
+[e E8366 . `uc
+RTCC_RPT_HALF_SEC 0
+RTCC_RPT_SEC 1
+RTCC_RPT_TEN_SEC 2
+RTCC_RPT_MIN 3
+RTCC_RPT_TEN_MIN 4
+RTCC_RPT_HOUR 5
+RTCC_RPT_DAY 6
+RTCC_RPT_WEEK 7
+RTCC_RPT_MON 8
+RTCC_RPT_YEAR 9
+]
 [e E7742 _BOOL `uc
 FALSE 0
 TRUE 1
 ]
-"6250 /Applications/microchip/xc8/v1.12/include/pic18f27j13.h
-[s S235 . 1 `uc 1 RB0 1 0 :1:0 
-`uc 1 RB1 1 0 :1:1 
-`uc 1 RB2 1 0 :1:2 
-`uc 1 RB3 1 0 :1:3 
-`uc 1 RB4 1 0 :1:4 
-`uc 1 RB5 1 0 :1:5 
-`uc 1 RB6 1 0 :1:6 
-`uc 1 RB7 1 0 :1:7 
+"670 /Applications/microchip/xc8/v1.12/include/plib/rtcc.h
+[s S140 . 1 `uc 1 ALRMPTR 1 0 :2:0 
+`uc 1 AMASK 1 0 :4:2 
+`uc 1 CHIME 1 0 :1:6 
+`uc 1 ALRMEN 1 0 :1:7 
 ]
-[s S244 . 1 `uc 1 AN12 1 0 :1:0 
-`uc 1 AN10 1 0 :1:1 
-`uc 1 AN8 1 0 :1:2 
-`uc 1 AN9 1 0 :1:3 
-`uc 1 . 1 0 :2:4 
-`uc 1 KBI2 1 0 :1:6 
-`uc 1 KBI3 1 0 :1:7 
+[s S145 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
+`uc 1 ALRMPTR1 1 0 :1:1 
+`uc 1 AMASK0 1 0 :1:2 
+`uc 1 AMASK1 1 0 :1:3 
+`uc 1 AMASK2 1 0 :1:4 
+`uc 1 AMASK3 1 0 :1:5 
 ]
-[s S252 . 1 `uc 1 INT0 1 0 :1:0 
-`uc 1 . 1 0 :1:1 
-`uc 1 CTED1 1 0 :1:2 
-`uc 1 CTED2 1 0 :1:3 
-`uc 1 KBI0 1 0 :1:4 
-`uc 1 KBI1 1 0 :1:5 
-`uc 1 PGC 1 0 :1:6 
-`uc 1 PGD 1 0 :1:7 
-]
-[s S261 . 1 `uc 1 RP3 1 0 :1:0 
-`uc 1 RTCC 1 0 :1:1 
-`uc 1 . 1 0 :4:2 
-`uc 1 RP9 1 0 :1:6 
-`uc 1 RP10 1 0 :1:7 
-]
-[s S267 . 1 `uc 1 C3IND 1 0 :1:0 
-`uc 1 C3INC 1 0 :1:1 
-`uc 1 C2INC 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 SCL2 1 0 :1:4 
-`uc 1 SDA2 1 0 :1:5 
-]
-[s S274 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 RP4 1 0 :1:1 
-`uc 1 REFO 1 0 :1:2 
-`uc 1 RP6 1 0 :1:3 
-`uc 1 RP7 1 0 :1:4 
-`uc 1 RP8 1 0 :1:5 
-]
-[s S281 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 RP5 1 0 :1:2 
-`uc 1 C3INA 1 0 :1:3 
-`uc 1 CCP4 1 0 :1:4 
-`uc 1 CCP5 1 0 :1:5 
-`uc 1 CCP6 1 0 :1:6 
-`uc 1 CCP7 1 0 :1:7 
-]
-[s S289 . 1 `uc 1 . 1 0 :3:0 
-`uc 1 CCP2_PA2 1 0 :1:3 
-]
-[u S292 . 1 `S235 1 . 1 0 `S244 1 . 1 0 `S252 1 . 1 0 `S261 1 . 1 0 `S267 1 . 1 0 `S274 1 . 1 0 `S281 1 . 1 0 `S289 1 . 1 0 ]
-"6811
-[s S419 . 1 `uc 1 RC0 1 0 :1:0 
+[u S152 . 1 `S140 1 . 1 0 `S145 1 . 1 0 ]
+"6811 /Applications/microchip/xc8/v1.12/include/pic18f27j13.h
+[s S383 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -104,20 +71,20 @@ TRUE 1
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[s S428 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S392 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 AN11 1 0 :1:2 
 `uc 1 SCL1 1 0 :1:3 
 `uc 1 SDA1 1 0 :1:4 
 ]
-[s S434 . 1 `uc 1 T1CKI 1 0 :1:0 
+[s S398 . 1 `uc 1 T1CKI 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 CTPLS 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 TX1 1 0 :1:6 
 `uc 1 RX1 1 0 :1:7 
 ]
-[s S441 . 1 `uc 1 RP11 1 0 :1:0 
+[s S405 . 1 `uc 1 RP11 1 0 :1:0 
 `uc 1 RP12 1 0 :1:1 
 `uc 1 RP13 1 0 :1:2 
 `uc 1 RP14 1 0 :1:3 
@@ -126,7 +93,7 @@ TRUE 1
 `uc 1 CK1 1 0 :1:6 
 `uc 1 DT1 1 0 :1:7 
 ]
-[s S450 . 1 `uc 1 . 1 0 :1:0 
+[s S414 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP8 1 0 :1:1 
 `uc 1 C2IND 1 0 :1:2 
 `uc 1 SCK1 1 0 :1:3 
@@ -135,46 +102,46 @@ TRUE 1
 `uc 1 CCP9 1 0 :1:6 
 `uc 1 CCP10 1 0 :1:7 
 ]
-[s S459 . 1 `uc 1 . 1 0 :6:0 
+[s S423 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RP17 1 0 :1:6 
 `uc 1 RP18 1 0 :1:7 
 ]
-[s S463 . 1 `uc 1 . 1 0 :1:0 
+[s S427 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 ]
-[s S466 . 1 `uc 1 . 1 0 :2:0 
+[s S430 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PA1 1 0 :1:2 
 ]
-[s S469 . 1 `uc 1 . 1 0 :1:0 
+[s S433 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 ]
-[u S472 . 1 `S419 1 . 1 0 `S428 1 . 1 0 `S434 1 . 1 0 `S441 1 . 1 0 `S450 1 . 1 0 `S459 1 . 1 0 `S463 1 . 1 0 `S466 1 . 1 0 `S469 1 . 1 0 ]
-"26 rotEnc.c
-[s S550 . 1 `uc 1 . 1 0 :2:0 
+[u S436 . 1 `S383 1 . 1 0 `S392 1 . 1 0 `S398 1 . 1 0 `S405 1 . 1 0 `S414 1 . 1 0 `S423 1 . 1 0 `S427 1 . 1 0 `S430 1 . 1 0 `S433 1 . 1 0 ]
+"40 rotEnc.c
+[s S518 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T1SYNC 1 0 :1:2 
 ]
-[s S553 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S521 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 RD16 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
 `uc 1 T1CKPS 1 0 :2:4 
 `uc 1 TMR1CS 1 0 :2:6 
 ]
-[s S560 . 1 `uc 1 . 1 0 :4:0 
+[s S528 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 T1CKPS0 1 0 :1:4 
 `uc 1 T1CKPS1 1 0 :1:5 
 `uc 1 TMR1CS0 1 0 :1:6 
 `uc 1 TMR1CS1 1 0 :1:7 
 ]
-[s S566 . 1 `uc 1 . 1 0 :3:0 
+[s S534 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 SOSCEN 1 0 :1:3 
 ]
-[s S569 . 1 `uc 1 . 1 0 :7:0 
+[s S537 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 T1RD16 1 0 :1:7 
 ]
-[u S572 . 1 `S550 1 . 1 0 `S553 1 . 1 0 `S560 1 . 1 0 `S566 1 . 1 0 `S569 1 . 1 0 ]
+[u S540 . 1 `S518 1 . 1 0 `S521 1 . 1 0 `S528 1 . 1 0 `S534 1 . 1 0 `S537 1 . 1 0 ]
 "3222 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
-[s S603 . 1 `uc 1 RTCPTR0 1 0 :1:0 
+[s S571 . 1 `uc 1 RTCPTR0 1 0 :1:0 
 `uc 1 RTCPTR1 1 0 :1:1 
 `uc 1 RTCOE 1 0 :1:2 
 `uc 1 HALFSEC 1 0 :1:3 
@@ -183,12 +150,12 @@ TRUE 1
 `uc 1 . 1 0 :1:6 
 `uc 1 RTCEN 1 0 :1:7 
 ]
-[u S612 . 1 `S77 1 . 1 0 ]
+[u S580 . 1 `S77 1 . 1 0 ]
 "47 plib/rtcc/RTCCInitClock.c
-[s S623 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
-[u S628 . 4 `S51 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
-[s S633 . 8 `uc 1 year 1 0 `uc 1 rsvd 1 1 `uc 1 mday 1 2 `uc 1 mon 1 3 `uc 1 hour 1 4 `uc 1 wday 1 5 `uc 1 sec 1 6 `uc 1 min 1 7 ]
-[u S642 . 8 `S633 1 f 8 0 `[8]uc 1 b 8 0 `[4]ui 1 w 8 0 `[2]ul 1 l 8 0 ]
+[s S591 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
+[u S596 . 4 `S59 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
+[s S601 . 8 `uc 1 year 1 0 `uc 1 rsvd 1 1 `uc 1 mday 1 2 `uc 1 mon 1 3 `uc 1 hour 1 4 `uc 1 wday 1 5 `uc 1 sec 1 6 `uc 1 min 1 7 ]
+[u S610 . 8 `S601 1 f 8 0 `[8]uc 1 b 8 0 `[4]ui 1 w 8 0 `[2]ul 1 l 8 0 ]
 "3291 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
 [e E7668 . `uc
 RTCCFG_MASK_RTCEN 128
@@ -206,44 +173,37 @@ RTCCPTR_MASK_DAYMON 2
 RTCCPTR_MASK_YEAR 3
 ]
 "52 plib/rtcc/RtccReadTime.c
-[s S711 . 1 `uc 1 RBIF 1 0 :1:0 
-`uc 1 INT0IF 1 0 :1:1 
-`uc 1 TMR0IF 1 0 :1:2 
-`uc 1 RBIE 1 0 :1:3 
-`uc 1 INT0IE 1 0 :1:4 
-`uc 1 TMR0IE 1 0 :1:5 
-`uc 1 PEIE_GIEL 1 0 :1:6 
-`uc 1 GIE_GIEH 1 0 :1:7 
+[e E7726 . `uc
+RTCC_RPT_HALF_SEC 0
+RTCC_RPT_SEC 1
+RTCC_RPT_TEN_SEC 2
+RTCC_RPT_MIN 3
+RTCC_RPT_TEN_MIN 4
+RTCC_RPT_HOUR 5
+RTCC_RPT_DAY 6
+RTCC_RPT_WEEK 7
+RTCC_RPT_MON 8
+RTCC_RPT_YEAR 9
 ]
-[s S720 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 INT0F 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 INT0E 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
+[e E7262 _BOOL `uc
+FALSE 0
+TRUE 1
 ]
-[s S729 . 1 `uc 1 . 1 0 :6:0 
-`uc 1 GIEL 1 0 :1:6 
-`uc 1 GIEH 1 0 :1:7 
+[s S693 . 1 `uc 1 ALRMPTR 1 0 :2:0 
+`uc 1 AMASK 1 0 :4:2 
+`uc 1 CHIME 1 0 :1:6 
+`uc 1 ALRMEN 1 0 :1:7 
 ]
-[s S733 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 INT0F 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 INT0E 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
+[s S698 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
+`uc 1 ALRMPTR1 1 0 :1:1 
+`uc 1 AMASK0 1 0 :1:2 
+`uc 1 AMASK1 1 0 :1:3 
+`uc 1 AMASK2 1 0 :1:4 
+`uc 1 AMASK3 1 0 :1:5 
 ]
-[s S742 . 1 `uc 1 . 1 0 :6:0 
-`uc 1 GIEL 1 0 :1:6 
-`uc 1 GIEH 1 0 :1:7 
-]
-[u S746 . 1 `S711 1 . 1 0 `S720 1 . 1 0 `S729 1 . 1 0 `S720 1 . 1 0 `S729 1 . 1 0 ]
-"9439 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
-[s S789 . 1 `uc 1 RTCPTR0 1 0 :1:0 
+[u S705 . 1 `S140 1 . 1 0 `S145 1 . 1 0 ]
+"3605 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
+[s S709 . 1 `uc 1 RTCPTR0 1 0 :1:0 
 `uc 1 RTCPTR1 1 0 :1:1 
 `uc 1 RTCOE 1 0 :1:2 
 `uc 1 HALFSEC 1 0 :1:3 
@@ -252,16 +212,93 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 . 1 0 :1:6 
 `uc 1 RTCEN 1 0 :1:7 
 ]
-[u S798 . 1 `S77 1 . 1 0 ]
-"46 plib/rtcc/RtccWrOn.c
-[s S811 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
-[u S816 . 4 `S51 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
+[u S718 . 1 `S77 1 . 1 0 ]
+"49 plib/rtcc/RtccSetAlarmRpt.c
 [e E7262 _BOOL `uc
 FALSE 0
 TRUE 1
 ]
-[s S824 . 2 `uc 1 LB 1 0 `uc 1 HB 1 1 ]
-[s S827 . 2 `uc 1 b0 1 0 :1:0 
+[s S728 . 1 `uc 1 ALRMPTR 1 0 :2:0 
+`uc 1 AMASK 1 0 :4:2 
+`uc 1 CHIME 1 0 :1:6 
+`uc 1 ALRMEN 1 0 :1:7 
+]
+[s S733 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
+`uc 1 ALRMPTR1 1 0 :1:1 
+`uc 1 AMASK0 1 0 :1:2 
+`uc 1 AMASK1 1 0 :1:3 
+`uc 1 AMASK2 1 0 :1:4 
+`uc 1 AMASK3 1 0 :1:5 
+]
+[u S740 . 1 `S140 1 . 1 0 `S145 1 . 1 0 ]
+"3605 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
+[s S744 . 1 `uc 1 RTCPTR0 1 0 :1:0 
+`uc 1 RTCPTR1 1 0 :1:1 
+`uc 1 RTCOE 1 0 :1:2 
+`uc 1 HALFSEC 1 0 :1:3 
+`uc 1 RTCSYNC 1 0 :1:4 
+`uc 1 RTCWREN 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 RTCEN 1 0 :1:7 
+]
+[u S753 . 1 `S77 1 . 1 0 ]
+"49 plib/rtcc/RtccSetChimeEnbl.c
+[s S760 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+[s S769 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S778 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[s S782 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S791 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S795 . 1 `S760 1 . 1 0 `S769 1 . 1 0 `S778 1 . 1 0 `S769 1 . 1 0 `S778 1 . 1 0 ]
+"9439 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
+[s S838 . 1 `uc 1 RTCPTR0 1 0 :1:0 
+`uc 1 RTCPTR1 1 0 :1:1 
+`uc 1 RTCOE 1 0 :1:2 
+`uc 1 HALFSEC 1 0 :1:3 
+`uc 1 RTCSYNC 1 0 :1:4 
+`uc 1 RTCWREN 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 RTCEN 1 0 :1:7 
+]
+[u S847 . 1 `S77 1 . 1 0 ]
+"46 plib/rtcc/RtccWrOn.c
+[s S860 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
+[u S865 . 4 `S59 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
+[e E7262 _BOOL `uc
+FALSE 0
+TRUE 1
+]
+[s S873 . 2 `uc 1 LB 1 0 `uc 1 HB 1 1 ]
+[s S876 . 2 `uc 1 b0 1 0 :1:0 
 `uc 1 b1 1 0 :1:1 
 `uc 1 b2 1 0 :1:2 
 `uc 1 b3 1 0 :1:3 
@@ -278,45 +315,8 @@ TRUE 1
 `uc 1 b14 1 1 :1:6 
 `uc 1 b15 1 1 :1:7 
 ]
-[u S844 . 2 `us 1 Val 2 0 `[2]uc 1 v 2 0 `S824 1 byte 2 0 `S827 1 bits 2 0 ]
-[s S849 . 1 `uc 1 RBIF 1 0 :1:0 
-`uc 1 INT0IF 1 0 :1:1 
-`uc 1 TMR0IF 1 0 :1:2 
-`uc 1 RBIE 1 0 :1:3 
-`uc 1 INT0IE 1 0 :1:4 
-`uc 1 TMR0IE 1 0 :1:5 
-`uc 1 PEIE_GIEL 1 0 :1:6 
-`uc 1 GIE_GIEH 1 0 :1:7 
-]
-[s S858 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 INT0F 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 INT0E 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
-]
-[s S867 . 1 `uc 1 . 1 0 :6:0 
-`uc 1 GIEL 1 0 :1:6 
-`uc 1 GIEH 1 0 :1:7 
-]
-[s S871 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 INT0F 1 0 :1:1 
-`uc 1 T0IF 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 INT0E 1 0 :1:4 
-`uc 1 T0IE 1 0 :1:5 
-`uc 1 PEIE 1 0 :1:6 
-`uc 1 GIE 1 0 :1:7 
-]
-[s S880 . 1 `uc 1 . 1 0 :6:0 
-`uc 1 GIEL 1 0 :1:6 
-`uc 1 GIEH 1 0 :1:7 
-]
-[u S884 . 1 `S711 1 . 1 0 `S720 1 . 1 0 `S729 1 . 1 0 `S720 1 . 1 0 `S729 1 . 1 0 ]
-"15907 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
-[s S891 . 1 `uc 1 RTCPTR0 1 0 :1:0 
+[u S893 . 2 `us 1 Val 2 0 `[2]uc 1 v 2 0 `S873 1 byte 2 0 `S876 1 bits 2 0 ]
+[s S898 . 1 `uc 1 RTCPTR0 1 0 :1:0 
 `uc 1 RTCPTR1 1 0 :1:1 
 `uc 1 RTCOE 1 0 :1:2 
 `uc 1 HALFSEC 1 0 :1:3 
@@ -325,21 +325,121 @@ TRUE 1
 `uc 1 . 1 0 :1:6 
 `uc 1 RTCEN 1 0 :1:7 
 ]
-[u S900 . 1 `S77 1 . 1 0 ]
+[u S907 . 1 `S77 1 . 1 0 ]
 "680 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/plib/rtcc.h
-[s S904 . 1 `uc 1 ALRMPTR 1 0 :2:0 
+[s S911 . 1 `uc 1 ALRMPTR 1 0 :2:0 
 `uc 1 AMASK 1 0 :4:2 
 `uc 1 CHIME 1 0 :1:6 
 `uc 1 ALRMEN 1 0 :1:7 
 ]
-[s S909 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
+[s S916 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
 `uc 1 ALRMPTR1 1 0 :1:1 
 `uc 1 AMASK0 1 0 :1:2 
 `uc 1 AMASK1 1 0 :1:3 
 `uc 1 AMASK2 1 0 :1:4 
 `uc 1 AMASK3 1 0 :1:5 
 ]
-[u S916 . 1 `S904 1 . 1 0 `S909 1 . 1 0 ]
+[u S923 . 1 `S140 1 . 1 0 `S145 1 . 1 0 ]
+"3584 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
+[e E7677 . `uc
+ALRMCFG_MASK_ALRMEN 128
+ALRMCFG_MASK_CHIME 64
+ALRMCFG_MASK_AMASK 60
+ALRMCFG_MASK_ALRMPTR 3
+]
+[e E7683 . `uc
+RTCCPTR_MASK_SECMIN 0
+RTCCPTR_MASK_HRSWEEK 1
+RTCCPTR_MASK_DAYMON 2
+RTCCPTR_MASK_YEAR 3
+]
+"77 plib/rtcc/RtccWriteAlrmTime.c
+[s S998 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
+[u S1003 . 4 `S59 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
+[e E7262 _BOOL `uc
+FALSE 0
+TRUE 1
+]
+[s S1011 . 2 `uc 1 LB 1 0 `uc 1 HB 1 1 ]
+[s S1014 . 2 `uc 1 b0 1 0 :1:0 
+`uc 1 b1 1 0 :1:1 
+`uc 1 b2 1 0 :1:2 
+`uc 1 b3 1 0 :1:3 
+`uc 1 b4 1 0 :1:4 
+`uc 1 b5 1 0 :1:5 
+`uc 1 b6 1 0 :1:6 
+`uc 1 b7 1 0 :1:7 
+`uc 1 b8 1 1 :1:0 
+`uc 1 b9 1 1 :1:1 
+`uc 1 b10 1 1 :1:2 
+`uc 1 b11 1 1 :1:3 
+`uc 1 b12 1 1 :1:4 
+`uc 1 b13 1 1 :1:5 
+`uc 1 b14 1 1 :1:6 
+`uc 1 b15 1 1 :1:7 
+]
+[u S1031 . 2 `us 1 Val 2 0 `[2]uc 1 v 2 0 `S873 1 byte 2 0 `S876 1 bits 2 0 ]
+[s S1036 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+[s S1045 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S1054 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[s S1058 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S1067 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S1071 . 1 `S760 1 . 1 0 `S769 1 . 1 0 `S778 1 . 1 0 `S769 1 . 1 0 `S778 1 . 1 0 ]
+"15907 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
+[s S1078 . 1 `uc 1 RTCPTR0 1 0 :1:0 
+`uc 1 RTCPTR1 1 0 :1:1 
+`uc 1 RTCOE 1 0 :1:2 
+`uc 1 HALFSEC 1 0 :1:3 
+`uc 1 RTCSYNC 1 0 :1:4 
+`uc 1 RTCWREN 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 RTCEN 1 0 :1:7 
+]
+[u S1087 . 1 `S77 1 . 1 0 ]
+"680 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/plib/rtcc.h
+[s S1091 . 1 `uc 1 ALRMPTR 1 0 :2:0 
+`uc 1 AMASK 1 0 :4:2 
+`uc 1 CHIME 1 0 :1:6 
+`uc 1 ALRMEN 1 0 :1:7 
+]
+[s S1096 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
+`uc 1 ALRMPTR1 1 0 :1:1 
+`uc 1 AMASK0 1 0 :1:2 
+`uc 1 AMASK1 1 0 :1:3 
+`uc 1 AMASK2 1 0 :1:4 
+`uc 1 AMASK3 1 0 :1:5 
+]
+[u S1103 . 1 `S140 1 . 1 0 `S145 1 . 1 0 ]
 "3291 /Volumes/build/bamboo/xml-data/build-dir/XC8-RELEASE-JOB1/nz/build/dist/osx/include/pic18f27j13.h
 [e E7668 . `uc
 RTCCFG_MASK_RTCEN 128
@@ -478,18 +578,26 @@ RTCCPTR_MASK_YEAR 3
 [v ___tmul `(um  1 e 3 0 ]
 "3 /Applications/microchip/xc8/v1.12/sources/wmul.c
 [v ___wmul `(ui  1 e 2 0 ]
-"25 main.c
+"26 main.c
 [v _main `(i  1 e 2 0 ]
-"73
+"85
+[v _settingsCycle `(i  1 e 2 0 ]
+"168
 [v _setTime `(i  1 e 2 0 ]
-"146
+"228
 [v _dtobcd `(uc  1 e 1 0 ]
-"183
+"265
 [v _bcdtod `(ui  1 e 2 0 ]
 "22 plib/rtcc/RTCCInitClock.c
 [v _RtccInitClock `(v  1 e 0 0 ]
 "24 plib/rtcc/RtccReadTime.c
 [v _RtccReadTime `(v  1 e 0 0 ]
+"26 plib/rtcc/RtccSetAlarmRpt.c
+[v _RtccSetAlarmRpt `(v  1 e 0 0 ]
+"26 plib/rtcc/RtccSetChimeEnbl.c
+[v _RtccSetChimeEnable `(v  1 e 0 0 ]
+"28 plib/rtcc/RtccWriteAlrmTime.c
+[v _RtccWriteAlrmTime `(E7742  1 e 1 0 ]
 "35 plib/rtcc/RtccWriteTime.c
 [v _RtccWriteTime `(E7742  1 e 1 0 ]
 "22 plib/rtcc/RtccWrOn.c
@@ -500,19 +608,21 @@ RTCCPTR_MASK_YEAR 3
 [v _readEnc `(i  1 e 2 0 ]
 "20
 [v _clickEvent `(i  1 e 2 0 ]
+"28
+[v _checkRotEncLimits `(i  1 e 2 0 ]
 "7 sevenSeg.c
 [v _sevenSegInit `(i  1 e 2 0 ]
 "22
 [v _dispTime `(i  1 e 2 0 ]
 "67
 [v _dispSetTime `(i  1 e 2 0 ]
-"118
+"122
 [v _displayNum `(i  1 e 2 0 ]
-"184
+"188
 [v _displayDigit `(i  1 e 2 0 ]
-"197
+"201
 [v _displayOFF `(v  1 e 0 0 ]
-"204
+"208
 [v _delay `(i  1 e 2 0 ]
 [s S77 . 1 `uc 1 RTCPTR0 1 0 :1:0 
 `uc 1 RTCPTR1 1 0 :1:1 
@@ -526,73 +636,28 @@ RTCCPTR_MASK_YEAR 3
 "3308 /Applications/microchip/xc8/v1.12/include/pic18f27j13.h
 [u S86 . 1 `S77 1 . 1 0 ]
 [v _RTCCFGbits `VES86  1 e 1 @3903 ]
+[s S140 . 1 `uc 1 ALRMPTR 1 0 :2:0 
+`uc 1 AMASK 1 0 :4:2 
+`uc 1 CHIME 1 0 :1:6 
+`uc 1 ALRMEN 1 0 :1:7 
+]
+"3605
+[s S145 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
+`uc 1 ALRMPTR1 1 0 :1:1 
+`uc 1 AMASK0 1 0 :1:2 
+`uc 1 AMASK1 1 0 :1:3 
+`uc 1 AMASK2 1 0 :1:4 
+`uc 1 AMASK3 1 0 :1:5 
+]
+[u S152 . 1 `S140 1 . 1 0 `S145 1 . 1 0 ]
+[v _ALRMCFGbits `VES152  1 e 1 @3911 ]
 "6250
 [v _PORTA `VEuc  1 e 1 @3968 ]
 "6525
 [v _PORTB `VEuc  1 e 1 @3969 ]
-[s S235 . 1 `uc 1 RB0 1 0 :1:0 
-`uc 1 RB1 1 0 :1:1 
-`uc 1 RB2 1 0 :1:2 
-`uc 1 RB3 1 0 :1:3 
-`uc 1 RB4 1 0 :1:4 
-`uc 1 RB5 1 0 :1:5 
-`uc 1 RB6 1 0 :1:6 
-`uc 1 RB7 1 0 :1:7 
-]
-"6597
-[s S244 . 1 `uc 1 AN12 1 0 :1:0 
-`uc 1 AN10 1 0 :1:1 
-`uc 1 AN8 1 0 :1:2 
-`uc 1 AN9 1 0 :1:3 
-`uc 1 . 1 0 :2:4 
-`uc 1 KBI2 1 0 :1:6 
-`uc 1 KBI3 1 0 :1:7 
-]
-[s S252 . 1 `uc 1 INT0 1 0 :1:0 
-`uc 1 . 1 0 :1:1 
-`uc 1 CTED1 1 0 :1:2 
-`uc 1 CTED2 1 0 :1:3 
-`uc 1 KBI0 1 0 :1:4 
-`uc 1 KBI1 1 0 :1:5 
-`uc 1 PGC 1 0 :1:6 
-`uc 1 PGD 1 0 :1:7 
-]
-[s S261 . 1 `uc 1 RP3 1 0 :1:0 
-`uc 1 RTCC 1 0 :1:1 
-`uc 1 . 1 0 :4:2 
-`uc 1 RP9 1 0 :1:6 
-`uc 1 RP10 1 0 :1:7 
-]
-[s S267 . 1 `uc 1 C3IND 1 0 :1:0 
-`uc 1 C3INC 1 0 :1:1 
-`uc 1 C2INC 1 0 :1:2 
-`uc 1 . 1 0 :1:3 
-`uc 1 SCL2 1 0 :1:4 
-`uc 1 SDA2 1 0 :1:5 
-]
-[s S274 . 1 `uc 1 . 1 0 :1:0 
-`uc 1 RP4 1 0 :1:1 
-`uc 1 REFO 1 0 :1:2 
-`uc 1 RP6 1 0 :1:3 
-`uc 1 RP7 1 0 :1:4 
-`uc 1 RP8 1 0 :1:5 
-]
-[s S281 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 RP5 1 0 :1:2 
-`uc 1 C3INA 1 0 :1:3 
-`uc 1 CCP4 1 0 :1:4 
-`uc 1 CCP5 1 0 :1:5 
-`uc 1 CCP6 1 0 :1:6 
-`uc 1 CCP7 1 0 :1:7 
-]
-[s S289 . 1 `uc 1 . 1 0 :3:0 
-`uc 1 CCP2_PA2 1 0 :1:3 
-]
-[u S292 . 1 `S235 1 . 1 0 `S244 1 . 1 0 `S252 1 . 1 0 `S261 1 . 1 0 `S267 1 . 1 0 `S274 1 . 1 0 `S281 1 . 1 0 `S289 1 . 1 0 ]
-[v _PORTBbits `VES292  1 e 1 @3969 ]
 "6811
 [v _PORTC `VEuc  1 e 1 @3970 ]
-[s S419 . 1 `uc 1 RC0 1 0 :1:0 
+[s S383 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -602,20 +667,20 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 RC7 1 0 :1:7 
 ]
 "6880
-[s S428 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S392 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 AN11 1 0 :1:2 
 `uc 1 SCL1 1 0 :1:3 
 `uc 1 SDA1 1 0 :1:4 
 ]
-[s S434 . 1 `uc 1 T1CKI 1 0 :1:0 
+[s S398 . 1 `uc 1 T1CKI 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 CTPLS 1 0 :1:2 
 `uc 1 . 1 0 :3:3 
 `uc 1 TX1 1 0 :1:6 
 `uc 1 RX1 1 0 :1:7 
 ]
-[s S441 . 1 `uc 1 RP11 1 0 :1:0 
+[s S405 . 1 `uc 1 RP11 1 0 :1:0 
 `uc 1 RP12 1 0 :1:1 
 `uc 1 RP13 1 0 :1:2 
 `uc 1 RP14 1 0 :1:3 
@@ -624,7 +689,7 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 CK1 1 0 :1:6 
 `uc 1 DT1 1 0 :1:7 
 ]
-[s S450 . 1 `uc 1 . 1 0 :1:0 
+[s S414 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP8 1 0 :1:1 
 `uc 1 C2IND 1 0 :1:2 
 `uc 1 SCK1 1 0 :1:3 
@@ -633,21 +698,21 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 CCP9 1 0 :1:6 
 `uc 1 CCP10 1 0 :1:7 
 ]
-[s S459 . 1 `uc 1 . 1 0 :6:0 
+[s S423 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RP17 1 0 :1:6 
 `uc 1 RP18 1 0 :1:7 
 ]
-[s S463 . 1 `uc 1 . 1 0 :1:0 
+[s S427 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 ]
-[s S466 . 1 `uc 1 . 1 0 :2:0 
+[s S430 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 PA1 1 0 :1:2 
 ]
-[s S469 . 1 `uc 1 . 1 0 :1:0 
+[s S433 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 ]
-[u S472 . 1 `S419 1 . 1 0 `S428 1 . 1 0 `S434 1 . 1 0 `S441 1 . 1 0 `S450 1 . 1 0 `S459 1 . 1 0 `S463 1 . 1 0 `S466 1 . 1 0 `S469 1 . 1 0 ]
-[v _PORTCbits `VES472  1 e 1 @3970 ]
+[u S436 . 1 `S383 1 . 1 0 `S392 1 . 1 0 `S398 1 . 1 0 `S405 1 . 1 0 `S414 1 . 1 0 `S423 1 . 1 0 `S427 1 . 1 0 `S430 1 . 1 0 `S433 1 . 1 0 ]
+[v _PORTCbits `VES436  1 e 1 @3970 ]
 "7944
 [v _TRISA `VEuc  1 e 1 @3986 ]
 "8000
@@ -678,49 +743,40 @@ RTCCPTR_MASK_YEAR 3
 [v _RTCCAL `VEuc  1 e 1 @3902 ]
 "3291
 [v _RTCCFG `VEuc  1 e 1 @3903 ]
-[s S904 . 1 `uc 1 ALRMPTR 1 0 :2:0 
-`uc 1 AMASK 1 0 :4:2 
-`uc 1 CHIME 1 0 :1:6 
-`uc 1 ALRMEN 1 0 :1:7 
-]
-"3605
-[s S909 . 1 `uc 1 ALRMPTR0 1 0 :1:0 
-`uc 1 ALRMPTR1 1 0 :1:1 
-`uc 1 AMASK0 1 0 :1:2 
-`uc 1 AMASK1 1 0 :1:3 
-`uc 1 AMASK2 1 0 :1:4 
-`uc 1 AMASK3 1 0 :1:5 
-]
-[u S916 . 1 `S904 1 . 1 0 `S909 1 . 1 0 ]
-[v _ALRMCFGbits `VES916  1 e 1 @3911 ]
+"3477
+[v _ALRMVALL `VEuc  1 e 1 @3908 ]
+"3496
+[v _ALRMVALH `VEuc  1 e 1 @3909 ]
+"3584
+[v _ALRMCFG `VEuc  1 e 1 @3911 ]
 "9439
 [v _EECON2 `VEuc  1 e 1 @4007 ]
-[s S550 . 1 `uc 1 . 1 0 :2:0 
+[s S518 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_T1SYNC 1 0 :1:2 
 ]
 "14112
-[s S553 . 1 `uc 1 TMR1ON 1 0 :1:0 
+[s S521 . 1 `uc 1 TMR1ON 1 0 :1:0 
 `uc 1 RD16 1 0 :1:1 
 `uc 1 nT1SYNC 1 0 :1:2 
 `uc 1 T1OSCEN 1 0 :1:3 
 `uc 1 T1CKPS 1 0 :2:4 
 `uc 1 TMR1CS 1 0 :2:6 
 ]
-[s S560 . 1 `uc 1 . 1 0 :4:0 
+[s S528 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 T1CKPS0 1 0 :1:4 
 `uc 1 T1CKPS1 1 0 :1:5 
 `uc 1 TMR1CS0 1 0 :1:6 
 `uc 1 TMR1CS1 1 0 :1:7 
 ]
-[s S566 . 1 `uc 1 . 1 0 :3:0 
+[s S534 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 SOSCEN 1 0 :1:3 
 ]
-[s S569 . 1 `uc 1 . 1 0 :7:0 
+[s S537 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 T1RD16 1 0 :1:7 
 ]
-[u S572 . 1 `S550 1 . 1 0 `S553 1 . 1 0 `S560 1 . 1 0 `S566 1 . 1 0 `S569 1 . 1 0 ]
-[v _T1CONbits `VES572  1 e 1 @4045 ]
-[s S711 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S540 . 1 `S518 1 . 1 0 `S521 1 . 1 0 `S528 1 . 1 0 `S534 1 . 1 0 `S537 1 . 1 0 ]
+[v _T1CONbits `VES540  1 e 1 @4045 ]
+[s S760 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -730,7 +786,7 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "15907
-[s S720 . 1 `uc 1 . 1 0 :1:0 
+[s S769 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -739,12 +795,12 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S729 . 1 `uc 1 . 1 0 :6:0 
+[s S778 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S746 . 1 `S711 1 . 1 0 `S720 1 . 1 0 `S729 1 . 1 0 `S720 1 . 1 0 `S729 1 . 1 0 ]
-[v _INTCONbits `VES746  1 e 1 @4082 ]
+[u S795 . 1 `S760 1 . 1 0 `S769 1 . 1 0 `S778 1 . 1 0 `S769 1 . 1 0 `S778 1 . 1 0 ]
+[v _INTCONbits `VES795  1 e 1 @4082 ]
 "13 rotEnc.h
 [v _encoderStates `[16]i  1 s 32 encoderStates ]
 [v rotEnc@encoderStates `[16]i  1 s 32 encoderStates ]
@@ -758,30 +814,30 @@ RTCCPTR_MASK_YEAR 3
 "23
 [v _SEGSINKARRAY `C[10]uc  1 e 10 0 ]
 "24
+[v _SEGSINKARRAYCOL `C[10]uc  1 e 10 0 ]
+"25
 [v _SEGDIGARRAY `C[4]uc  1 e 4 0 ]
-"26
+"27
 [v _isColonON `i  1 e 2 0 ]
-"25 main.c
+"26 main.c
 [v _main `(i  1 e 2 0 ]
 {
-[s S51 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
-"32
-[u S56 . 4 `S51 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
-[v main@RTCCTime `S56  1 a 4 51 ]
-"33
-[v main@RTCCRead `S56  1 a 4 47 ]
-"47
-[v main@RTCMin `ui  1 a 2 45 ]
-"46
-[v main@RTCHour `ui  1 a 2 43 ]
-"31
-[v main@counter `ui  1 a 2 41 ]
-"30
-[v main@tmp `ui  1 a 2 39 ]
-"25
-[v main@argc `i  1 p 2 33 ]
-[v main@argv `*.M*.Muc  1 p 3 35 ]
-"70
+[s S59 . 4 `uc 1 rsvd 1 0 `uc 1 sec 1 1 `uc 1 min 1 2 `uc 1 hour 1 3 ]
+"37
+[u S64 . 4 `S59 1 f 4 0 `[4]uc 1 b 4 0 `[2]ui 1 w 4 0 `ul 1 l 4 0 ]
+[v main@RTCCAlarm `S64  1 a 4 72 ]
+"35
+[v main@RTCCTime `S64  1 a 4 68 ]
+"36
+[v main@RTCCRead `S64  1 a 4 64 ]
+"40
+[v main@RTCMin `ui  1 a 2 62 ]
+"39
+[v main@RTCHour `ui  1 a 2 60 ]
+"26
+[v main@argc `i  1 p 2 53 ]
+[v main@argv `*.M*.Muc  1 p 3 55 ]
+"82
 } 0
 "7 sevenSeg.c
 [v _sevenSegInit `(i  1 e 2 0 ]
@@ -793,73 +849,37 @@ RTCCPTR_MASK_YEAR 3
 {
 "8
 } 0
-"183 main.c
-[v _bcdtod `(ui  1 e 2 0 ]
-{
-[v bcdtod@bcd `uc  1 p 1 0 ]
-"208
-} 0
-"22 sevenSeg.c
-[v _dispTime `(i  1 e 2 0 ]
-{
-"28
-[v dispTime@dig1 `ui  1 a 2 14 ]
-[v dispTime@dig0 `ui  1 a 2 12 ]
-"22
-[v dispTime@hour `ui  1 p 2 8 ]
-[v dispTime@min `ui  1 p 2 10 ]
-"64
-} 0
-"197
-[v _displayOFF `(v  1 e 0 0 ]
-{
-"200
-} 0
-"73 main.c
-[v _setTime `(i  1 e 2 0 ]
-{
-"77
-[v setTime@RTCCSetTimeDate `S56  1 a 4 23 ]
-"75
-[v setTime@counter `i  1 a 2 31 ]
-"74
-[v setTime@del `i  1 a 2 29 ]
-"76
-[v setTime@tmp `i  1 a 2 27 ]
-"144
-} 0
-"20 rotEnc.c
-[v _clickEvent `(i  1 e 2 0 ]
-{
-"26
-} 0
-"10
-[v _readEnc `(i  1 e 2 0 ]
-{
-"18
-} 0
 "22 plib/rtcc/RTCCInitClock.c
 [v _RtccInitClock `(v  1 e 0 0 ]
 {
 "47
 } 0
-"146 main.c
-[v _dtobcd `(uc  1 e 1 0 ]
+"26 plib/rtcc/RtccSetAlarmRpt.c
+[v _RtccSetAlarmRpt `(v  1 e 0 0 ]
 {
-"152
-[v dtobcd@i `i  1 a 2 3 ]
-"153
-[v dtobcd@bcdConv `uc  1 a 1 5 ]
-"146
-[v dtobcd@dec `ui  1 p 2 0 ]
-"178
+"27
+[v RtccSetAlarmRpt@isAlrm `E7262  1 a 1 3 ]
+"26
+[v RtccSetAlarmRpt@rpt `E7726  1 p 1 0 ]
+[v RtccSetAlarmRpt@dsblAlrm `E7262  1 p 1 1 ]
+"49
 } 0
-"35 plib/rtcc/RtccWriteTime.c
-[v _RtccWriteTime `(E7742  1 e 1 0 ]
+"26 plib/rtcc/RtccSetChimeEnbl.c
+[v _RtccSetChimeEnable `(v  1 e 0 0 ]
 {
-[s S824 . 2 `uc 1 LB 1 0 `uc 1 HB 1 1 ]
-"36
-[s S827 . 2 `uc 1 b0 1 0 :1:0 
+"27
+[v RtccSetChimeEnable@isAlrm `E7262  1 a 1 2 ]
+"26
+[v RtccSetChimeEnable@enable `E7262  1 p 1 0 ]
+[v RtccSetChimeEnable@dsblAlrm `E7262  1 p 1 1 ]
+"49
+} 0
+"28 plib/rtcc/RtccWriteAlrmTime.c
+[v _RtccWriteAlrmTime `(E7742  1 e 1 0 ]
+{
+[s S873 . 2 `uc 1 LB 1 0 `uc 1 HB 1 1 ]
+"29
+[s S876 . 2 `uc 1 b0 1 0 :1:0 
 `uc 1 b1 1 0 :1:1 
 `uc 1 b2 1 0 :1:2 
 `uc 1 b3 1 0 :1:3 
@@ -876,10 +896,126 @@ RTCCPTR_MASK_YEAR 3
 `uc 1 b14 1 1 :1:6 
 `uc 1 b15 1 1 :1:7 
 ]
-[u S844 . 2 `us 1 Val 2 0 `[2]uc 1 v 2 0 `S824 1 byte 2 0 `S827 1 bits 2 0 ]
-[v RtccWriteTime@tempHourWDay `S844  1 a 2 9 ]
+[u S893 . 2 `us 1 Val 2 0 `[2]uc 1 v 2 0 `S873 1 byte 2 0 `S876 1 bits 2 0 ]
+[v RtccWriteAlrmTime@tempHourWDay `S893  1 a 2 7 ]
+"30
+[v RtccWriteAlrmTime@tempMinSec `S893  1 a 2 5 ]
+"33
+[v RtccWriteAlrmTime@wasAlrm `E7262  1 a 1 4 ]
+"32
+[v RtccWriteAlrmTime@wasWrEn `E7262  1 a 1 3 ]
+"28
+[v RtccWriteAlrmTime@pTm `*.aCS64  1 p 2 0 ]
+"77
+} 0
+"24 plib/rtcc/RtccReadTime.c
+[v _RtccReadTime `(v  1 e 0 0 ]
+{
+[s S601 . 8 `uc 1 year 1 0 `uc 1 rsvd 1 1 `uc 1 mday 1 2 `uc 1 mon 1 3 `uc 1 hour 1 4 `uc 1 wday 1 5 `uc 1 sec 1 6 `uc 1 min 1 7 ]
+"25
+[u S610 . 8 `S601 1 f 8 0 `[8]uc 1 b 8 0 `[4]ui 1 w 8 0 `[2]ul 1 l 8 0 ]
+[v RtccReadTime@rTD0 `S610  1 a 8 10 ]
+[v RtccReadTime@rTD1 `S610  1 a 8 2 ]
+"24
+[v RtccReadTime@pTm `*.aS64  1 p 2 0 ]
+"52
+} 0
+"265 main.c
+[v _bcdtod `(ui  1 e 2 0 ]
+{
+[v bcdtod@bcd `uc  1 p 1 0 ]
+"290
+} 0
+"22 sevenSeg.c
+[v _dispTime `(i  1 e 2 0 ]
+{
+"24
+[v dispTime@dig1 `ui  1 a 2 20 ]
+[v dispTime@dig0 `ui  1 a 2 18 ]
+"22
+[v dispTime@hour `ui  1 p 2 14 ]
+[v dispTime@min `ui  1 p 2 16 ]
+"64
+} 0
+"85 main.c
+[v _settingsCycle `(i  1 e 2 0 ]
+{
+"87
+[v settingsCycle@setting `i  1 a 2 51 ]
+"90
+[v settingsCycle@i `i  1 a 2 49 ]
+"89
+[v settingsCycle@tmp `i  1 a 2 47 ]
+"88
+[v settingsCycle@settingTemp `i  1 a 2 45 ]
+"91
+[v settingsCycle@alarmOnOffColour `i  1 s 2 alarmOnOffColour ]
+"165
+} 0
+"122 sevenSeg.c
+[v _displayNum `(i  1 e 2 0 ]
+{
+"169
+[v displayNum@dig3 `i  1 a 2 38 ]
+"168
+[v displayNum@dig2_371 `i  1 a 2 36 ]
+"167
+[v displayNum@dig1_370 `i  1 a 2 34 ]
+"166
+[v displayNum@dig0_369 `i  1 a 2 32 ]
+"170
+[v displayNum@del_373 `i  1 a 2 20 ]
+"152
+[v displayNum@dig2 `i  1 a 2 30 ]
+"151
+[v displayNum@dig1_366 `i  1 a 2 28 ]
+"150
+[v displayNum@dig0_365 `i  1 a 2 26 ]
+"153
+[v displayNum@del_368 `i  1 a 2 18 ]
+"138
+[v displayNum@dig1 `i  1 a 2 24 ]
+"137
+[v displayNum@dig0 `i  1 a 2 22 ]
+"139
+[v displayNum@del `i  1 a 2 16 ]
+"122
+[v displayNum@number `ui  1 p 2 14 ]
+"184
+} 0
+"168 main.c
+[v _setTime `(i  1 e 2 0 ]
+{
+"174
+[v setTime@RTCCSetTimeDate `S64  1 a 4 39 ]
+"171
+[v setTime@counter `i  1 a 2 37 ]
+"172
+[v setTime@tmp `i  1 a 2 35 ]
+"173
+[v setTime@hourMin `i  1 a 2 33 ]
+"170
+[v setTime@del `i  1 a 2 31 ]
+"226
+} 0
+"228
+[v _dtobcd `(uc  1 e 1 0 ]
+{
+"234
+[v dtobcd@i `i  1 a 2 3 ]
+"235
+[v dtobcd@bcdConv `uc  1 a 1 5 ]
+"228
+[v dtobcd@dec `ui  1 p 2 0 ]
+"260
+} 0
+"35 plib/rtcc/RtccWriteTime.c
+[v _RtccWriteTime `(E7742  1 e 1 0 ]
+{
+"36
+[v RtccWriteTime@tempHourWDay `S893  1 a 2 9 ]
 "37
-[v RtccWriteTime@tempMinSec `S844  1 a 2 7 ]
+[v RtccWriteTime@tempMinSec `S893  1 a 2 7 ]
 "40
 [v RtccWriteTime@wasWrEn `E7262  1 a 1 6 ]
 "42
@@ -887,7 +1023,7 @@ RTCCPTR_MASK_YEAR 3
 "41
 [v RtccWriteTime@wasOn `E7262  1 a 1 4 ]
 "35
-[v RtccWriteTime@pTm `*.aCS56  1 p 2 0 ]
+[v RtccWriteTime@pTm `*.aCS64  1 p 2 0 ]
 [v RtccWriteTime@di `E7262  1 p 1 2 ]
 "113
 } 0
@@ -896,60 +1032,71 @@ RTCCPTR_MASK_YEAR 3
 {
 "46
 } 0
-"24 plib/rtcc/RtccReadTime.c
-[v _RtccReadTime `(v  1 e 0 0 ]
+"20 rotEnc.c
+[v _clickEvent `(i  1 e 2 0 ]
 {
-[s S633 . 8 `uc 1 year 1 0 `uc 1 rsvd 1 1 `uc 1 mday 1 2 `uc 1 mon 1 3 `uc 1 hour 1 4 `uc 1 wday 1 5 `uc 1 sec 1 6 `uc 1 min 1 7 ]
-"25
-[u S642 . 8 `S633 1 f 8 0 `[8]uc 1 b 8 0 `[4]ui 1 w 8 0 `[2]ul 1 l 8 0 ]
-[v RtccReadTime@rTD0 `S642  1 a 8 10 ]
-[v RtccReadTime@rTD1 `S642  1 a 8 2 ]
-"24
-[v RtccReadTime@pTm `*.aS56  1 p 2 0 ]
-"52
+"26
+} 0
+"10
+[v _readEnc `(i  1 e 2 0 ]
+{
+"18
+} 0
+"28
+[v _checkRotEncLimits `(i  1 e 2 0 ]
+{
+[v checkRotEncLimits@lowerLimit `i  1 p 2 0 ]
+[v checkRotEncLimits@upperLimit `i  1 p 2 2 ]
+[v checkRotEncLimits@valueToCheck `i  1 p 2 4 ]
+"40
 } 0
 "67 sevenSeg.c
 [v _dispSetTime `(i  1 e 2 0 ]
 {
-"103
-[v dispSetTime@dig1_395 `i  1 a 2 20 ]
-"102
-[v dispSetTime@dig0_394 `i  1 a 2 18 ]
+"106
+[v dispSetTime@dig1_359 `i  1 a 2 26 ]
+"105
+[v dispSetTime@dig0_358 `i  1 a 2 24 ]
+"83
+[v dispSetTime@dig1 `i  1 a 2 22 ]
 "82
-[v dispSetTime@dig1 `i  1 a 2 16 ]
-"81
-[v dispSetTime@dig0 `i  1 a 2 14 ]
+[v dispSetTime@dig0 `i  1 a 2 20 ]
 "67
-[v dispSetTime@time `ui  1 p 2 8 ]
-[v dispSetTime@hourMin `i  1 p 2 10 ]
-"114
+[v dispSetTime@time `ui  1 p 2 14 ]
+[v dispSetTime@hourMin `i  1 p 2 16 ]
+"118
 } 0
-"184
+"201
+[v _displayOFF `(v  1 e 0 0 ]
+{
+"204
+} 0
+"188
 [v _displayDigit `(i  1 e 2 0 ]
 {
 [v displayDigit@number `ui  1 p 2 0 ]
 [v displayDigit@digit `i  1 p 2 2 ]
-"194
+"198
 } 0
-"204
+"208
 [v _delay `(i  1 e 2 0 ]
 {
-"205
+"209
 [v delay@i `ui  1 a 2 2 ]
-"204
+"208
 [v delay@delay `ui  1 p 2 0 ]
-"207
+"211
 } 0
 "10 /Applications/microchip/xc8/v1.12/sources/lwdiv.c
 [v ___lwdiv `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwdiv@quotient `ui  1 a 2 5 ]
+[v ___lwdiv@quotient `ui  1 a 2 11 ]
 "12
-[v ___lwdiv@counter `uc  1 a 1 7 ]
+[v ___lwdiv@counter `uc  1 a 1 13 ]
 "10
-[v ___lwdiv@dividend `ui  1 p 2 0 ]
-[v ___lwdiv@divisor `ui  1 p 2 2 ]
+[v ___lwdiv@dividend `ui  1 p 2 6 ]
+[v ___lwdiv@divisor `ui  1 p 2 8 ]
 "31
 } 0
 "10 /Applications/microchip/xc8/v1.12/sources/lwmod.c

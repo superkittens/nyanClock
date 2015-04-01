@@ -7956,6 +7956,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;rotEnc.h: 17: int rotEncInit();
 [; ;rotEnc.h: 18: int readEnc();
 [; ;rotEnc.h: 19: int clickEvent();
+[; ;rotEnc.h: 20: int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck );
 "3 rotEnc.c
 [v _rotEncInit `(i ~T0 @X0 1 ef ]
 {
@@ -8039,4 +8040,47 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;rotEnc.c: 26: }
 "26
 [e :UE 1076 ]
+}
+"28
+[v _checkRotEncLimits `(i ~T0 @X0 1 ef3`i`i`i ]
+{
+[; ;rotEnc.c: 28: int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck){
+[e :U _checkRotEncLimits ]
+[v _lowerLimit `i ~T0 @X0 1 r1 ]
+[v _upperLimit `i ~T0 @X0 1 r2 ]
+[v _valueToCheck `i ~T0 @X0 1 r3 ]
+[f ]
+[; ;rotEnc.c: 30: if(valueToCheck < lowerLimit){
+"30
+[e $ ! < _valueToCheck _lowerLimit 1082  ]
+{
+[; ;rotEnc.c: 31: return upperLimit;
+"31
+[e ) _upperLimit ]
+[e $UE 1081  ]
+"32
+}
+[; ;rotEnc.c: 32: }
+[e $U 1083  ]
+"34
+[e :U 1082 ]
+[; ;rotEnc.c: 34: else if(valueToCheck > upperLimit){
+[e $ ! > _valueToCheck _upperLimit 1084  ]
+{
+[; ;rotEnc.c: 35: return lowerLimit;
+"35
+[e ) _lowerLimit ]
+[e $UE 1081  ]
+"36
+}
+[e :U 1084 ]
+"38
+[e :U 1083 ]
+[; ;rotEnc.c: 36: }
+[; ;rotEnc.c: 38: return valueToCheck;
+[e ) _valueToCheck ]
+[e $UE 1081  ]
+[; ;rotEnc.c: 40: }
+"40
+[e :UE 1081 ]
 }

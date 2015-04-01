@@ -24,3 +24,17 @@ int clickEvent(){
 
     else{ return -2; }
 }
+
+int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck){
+
+    if(valueToCheck < lowerLimit){
+        return upperLimit;
+    }
+
+    else if(valueToCheck > upperLimit){
+        return lowerLimit;
+    }
+
+    return valueToCheck;
+
+}

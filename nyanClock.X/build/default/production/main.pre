@@ -10351,6 +10351,7 @@ extern void _delay3(unsigned char);
 # 22 "sevenSeg.h"
 const int DELAYTIME = 50;
 const unsigned char SEGSINKARRAY[10] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x18};
+const unsigned char SEGSINKARRAYCOL[10] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x82, 0x82, 0xF8, 0x80, 0x98};
 const unsigned char SEGDIGARRAY[4] = {0x01, 0x02, 0x04, 0x08};
 
 int isColonON = 0;
@@ -10372,9 +10373,10 @@ unsigned char PCTemp = 0x00;
 int rotEncInit();
 int readEnc();
 int clickEvent();
+int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck );
 
 
-# 18 "main.c"
+# 19 "main.c"
 #pragma config WDTEN = OFF, OSC = INTOSC, XINST = OFF, RTCOSC = T1OSCREF
 
 int setTime();
@@ -10387,27 +10389,36 @@ int main(int argc, char** argv) {
 
 OSCCONbits.IRCF = 0b111;
 
-unsigned int tmp = 0;
-unsigned int counter = 0;
-rtccTime RTCCTime;
-rtccTime RTCCRead;
-
 sevenSegInit();
 rotEncInit();
 
 
-RtccInitClock();
-RtccWrOn();
-(RTCCFGbits.RTCOE=0);
-RTCCTime.f.hour = dtobcd(21);
-RTCCTime.f.min = dtobcd(47);
-RTCCTime.f.sec = 0;
+rtccTime RTCCTime;
+rtccTime RTCCRead;
+rtccTime RTCCAlarm;
 
 unsigned int RTCHour;
 unsigned int RTCMin;
 
+RtccInitClock();
+RtccWrOn();
+(RTCCFGbits.RTCOE=0);
+RTCCTime.f.hour = dtobcd(22);
+RTCCTime.f.min = dtobcd(47);
+RTCCTime.f.sec = 0;
+
+
+RTCCAlarm.f.hour = 0x12;
+RTCCAlarm.f.min = 0x00;
+RTCCAlarm.f.sec = 0x00;
+
+RtccSetAlarmRpt(RTCC_RPT_MIN, 1);
+RtccSetChimeEnable(1, 1);
+
 RtccWriteTime(&RTCCTime, 1);
+RtccWriteAlrmTime(&RTCCAlarm);
 (RTCCFGbits.RTCEN=1);
+(ALRMCFGbits.ALRMEN=1);
 (RTCCFGbits.RTCWREN = 0);
 
 while(1){
@@ -10421,8 +10432,10 @@ dispTime(RTCHour, RTCMin);
 
 if(!clickEvent()){
 displayOFF();
-setTime();
+settingsCycle();
 }
+
+
 }
 
 
@@ -10430,10 +10443,95 @@ return (0);
 }
 
 
+int settingsCycle(){
+
+int setting = 0;
+int settingTemp = setting;
+int tmp = 0;
+int i = 0;
+static int alarmOnOffColour = 0;
+
+displayNum(1);
+
+for(i = 0; i < 5; i++){
+_delay((unsigned long)((50)*(8000000/4000.0)));
+_delay((unsigned long)((50)*(8000000/4000.0)));
+}
+
+while(1){
+
+tmp = readEnc();
+if(tmp == -99){
+return -1;
+}
+
+else if(tmp){
+setting += tmp;
+setting = checkRotEncLimits(0, 2, setting);
+
+if(setting != settingTemp){
+
+switch(setting){
+
+case 0:
+
+break;
+
+
+case 1:
+if(!alarmOnOffColour){
+
+}
+
+if(alarmOnOffColour){
+
+}
+
+break;
+
+case 2:
+
+break;
+}
+
+settingTemp = setting;
+}
+}
+
+if(!clickEvent()){
+
+for(i = 0; i < 5; i++){
+_delay((unsigned long)((50)*(8000000/4000.0)));
+_delay((unsigned long)((50)*(8000000/4000.0)));
+}
+
+switch(setting){
+case 0:
+setting = setTime();
+break;
+
+case 1:
+setting = setTime();
+break;
+
+}
+}
+
+if((!clickEvent()) && (setting == 2)){
+break;
+}
+}
+
+return 0;
+}
+
+
 int setTime(){
+
 int del = 0;
 int counter = 0;
 int tmp = 0;
+int hourMin = 0;
 rtccTime RTCCSetTimeDate;
 
 RtccWrOn();
@@ -10447,59 +10545,44 @@ _delay((unsigned long)((50)*(8000000/4000.0)));
 
 while(1){
 tmp = readEnc();
-if(tmp == -99){ }
+if(tmp == -99){
+return -1;
+}
 
 else if(tmp){
 counter += tmp;
-if(counter < 0){ counter = 59; }
-else if(counter > 59){ counter = 0; }
+counter = checkRotEncLimits(0, 59, counter);
 }
 
-dispSetTime(counter, 0);
+dispSetTime(counter, hourMin);
 
 if(!clickEvent()){
-for(del = 0; del < 5; del++){
+
+displayOFF();
+
 _delay((unsigned long)((50)*(8000000/4000.0)));
 _delay((unsigned long)((50)*(8000000/4000.0)));
 
+if(hourMin == 0){
 RTCCSetTimeDate.f.min = dtobcd(counter);
-}
-
-break;
-}
-}
-
+hourMin = 1;
 tmp = 0;
 counter = 0;
-
-while(1){
-tmp = readEnc();
-if(tmp == -99){ }
-
-else if(tmp){
-counter += tmp;
-if(counter < 0){ counter = 23; }
-else if(counter > 23){ counter = 0; }
 }
 
-dispSetTime(counter, 1);
-
-if(!clickEvent()){
-for(del = 0; del < 5; del++){
-_delay((unsigned long)((50)*(8000000/4000.0)));
-_delay((unsigned long)((50)*(8000000/4000.0)));
-
+else if(hourMin == 1){
 RTCCSetTimeDate.f.hour = dtobcd(counter);
 RTCCSetTimeDate.f.sec = 0;
-}
-
 break;
+}
 }
 }
 
 RtccWriteTime(&RTCCSetTimeDate, 1);
 (RTCCFGbits.RTCWREN = 0);
-return 0;
+
+
+return 2;
 
 }
 
@@ -10537,7 +10620,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 183
+# 265
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){

@@ -17,6 +17,7 @@ unsigned char PCTemp = 0x00;
 int rotEncInit();
 int readEnc();
 int clickEvent();
+int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck );
 
 #endif	/* ROTENC_H */
 

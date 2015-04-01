@@ -23,7 +23,7 @@ Linker command line:
   -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
   -pfarbss=FARRAM,fardata=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
-  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtz6hLVp.obj \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgt6d4Jcc.obj \
   dist/default/debug/nyanClock.X.debug.obj 
 
 Object code version is 3.10
@@ -36,71 +36,70 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgtz6hLVp.obj
+/tmp/cgt6d4Jcc.obj
                 end_init                              2        2        4        0       0
                 reset_vec                             0        0        2        0       0
                 config                            1FFF8    1FFF8        8    1FFF8       0
 dist/default/debug/nyanClock.X.debug.obj
                 smallconst                          F00      F00       1C      780       0
-                text21                             1C84     1C84       5C      78E       0
-                text20                             1BB0     1BB0       6C      78E       0
-                text19                             1E50     1E50       2E      78E       0
-                text18                             1D88     1D88       4C      78E       0
-                text17                             1EE6     1EE6        A      78E       0
-                text16                              F1C      F1C      278      78E       0
-                text15                             1CE0     1CE0       58      78E       0
-                text14                             1E14     1E14       3C      78E       0
-                text13                             1ED2     1ED2       14      78E       0
-                text12                             1594     1594      160      78E       0
-                text11                             19F2     19F2       CE      78E       0
-                text10                             13E2     13E2      1B2      78E       0
-                text9                              1194     1194      24E      78E       0
-                text8                              1916     1916       DC      78E       0
-                text7                              1AC0     1AC0       7E      78E       0
-                text6                              180A     180A      10C      78E       0
-                text5                              1C1C     1C1C       68      78E       0
-                text4                              1B3E     1B3E       72      78E       0
-                text3                              1DD4     1DD4       40      78E       0
-                text2                              1EF0     1EF0        8      78E       0
-                text1                              1EBE     1EBE       14      78E       0
-                text0                              16F4     16F4      116      78E       0
-                cstackCOMRAM                          1        1       3A        1       1
-                dataBANK0                            60       60       20       60       1
-                dataCOMRAM                           3B       3B       20        1       1
-                bssCOMRAM                            5B       5B        5        1       1
-                cinit                              1D38     1D38       50      78E       0
-                idataCOMRAM                        1E9E     1E9E       20      78E       0
-                idataBANK0                         1E7E     1E7E       20      78E       0
+                text22                             1CDC     1CDC       5C      78E       0
+                text21                             1BAC     1BAC       6C      78E       0
+                text20                             1EC0     1EC0       2E      78E       0
+                text19                             1D88     1D88       4C      78E       0
+                text18                             1F16     1F16        A      78E       0
+                text17                             1E54     1E54       3C      78E       0
+                text16                             1194     1194      24E      78E       0
+                text15                             1912     1912       DC      78E       0
+                text14                             1ABC     1ABC       7E      78E       0
+                text13                             1F02     1F02       14      78E       0
+                text12                             1806     1806      10C      78E       0
+                text11                             1590     1590      160      78E       0
+                text10                             1C18     1C18       68      78E       0
+                text9                              1B3A     1B3A       72      78E       0
+                text8                              19EE     19EE       CE      78E       0
+                text7                               F1C      F1C      278      78E       0
+                text6                              1D38     1D38       50      78E       0
+                text5                              1C80     1C80       5C      78E       0
+                text4                              1E14     1E14       40      78E       0
+                text3                              1F20     1F20        8      78E       0
+                text2                              1EEE     1EEE       14      78E       0
+                text1                              13E2     13E2      1AE      78E       0
+                text0                              16F0     16F0      116      78E       0
+                cstackCOMRAM                          1        1       3C        1       1
+                dataBANK0                            60       60       40       60       1
+                bssCOMRAM                            3D       3D        5        1       1
+                cinit                              1E90     1E90       30      78E       0
+                idataBANK0                         1DD4     1DD4       40      78E       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CODE           
                 end_init                              2        2        4         0
                 reset_vec                             0        0        2         0
-                text21                             1C84     1C84       5C         0
-                text20                             1BB0     1BB0       6C         0
-                text19                             1E50     1E50       2E         0
-                text18                             1D88     1D88       4C         0
-                text17                             1EE6     1EE6        A         0
-                text16                              F1C      F1C      278         0
-                text15                             1CE0     1CE0       58         0
-                text14                             1E14     1E14       3C         0
-                text13                             1ED2     1ED2       14         0
-                text12                             1594     1594      160         0
-                text11                             19F2     19F2       CE         0
-                text10                             13E2     13E2      1B2         0
-                text9                              1194     1194      24E         0
-                text8                              1916     1916       DC         0
-                text7                              1AC0     1AC0       7E         0
-                text6                              180A     180A      10C         0
-                text5                              1C1C     1C1C       68         0
-                text4                              1B3E     1B3E       72         0
-                text3                              1DD4     1DD4       40         0
-                text2                              1EF0     1EF0        8         0
-                text1                              1EBE     1EBE       14         0
-                text0                              16F4     16F4      116         0
-                cinit                              1D38     1D38       50         0
-                idataCOMRAM                        1E9E     1E9E       20         0
-                idataBANK0                         1E7E     1E7E       20         0
+                text22                             1CDC     1CDC       5C         0
+                text21                             1BAC     1BAC       6C         0
+                text20                             1EC0     1EC0       2E         0
+                text19                             1D88     1D88       4C         0
+                text18                             1F16     1F16        A         0
+                text17                             1E54     1E54       3C         0
+                text16                             1194     1194      24E         0
+                text15                             1912     1912       DC         0
+                text14                             1ABC     1ABC       7E         0
+                text13                             1F02     1F02       14         0
+                text12                             1806     1806      10C         0
+                text11                             1590     1590      160         0
+                text10                             1C18     1C18       68         0
+                text9                              1B3A     1B3A       72         0
+                text8                              19EE     19EE       CE         0
+                text7                               F1C      F1C      278         0
+                text6                              1D38     1D38       50         0
+                text5                              1C80     1C80       5C         0
+                text4                              1E14     1E14       40         0
+                text3                              1F20     1F20        8         0
+                text2                              1EEE     1EEE       14         0
+                text1                              13E2     13E2      1AE         0
+                text0                              16F0     16F0      116         0
+                cinit                              1E90     1E90       30         0
+                idataBANK0                         1DD4     1DD4       40         0
 
         CLASS   CONST          
 
@@ -110,9 +109,8 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                cstackCOMRAM                          1        1       3A         1
-                dataCOMRAM                           3B       3B       20         1
-                bssCOMRAM                            5B       5B        5         1
+                cstackCOMRAM                          1        1       3C         1
+                bssCOMRAM                            3D       3D        5         1
 
         CLASS   ABS1           
 
@@ -121,7 +119,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   RAM            
 
         CLASS   BANK0          
-                dataBANK0                            60       60       20         1
+                dataBANK0                            60       60       40         1
 
         CLASS   BANK1          
 
@@ -165,17 +163,17 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000006  000006         0       0  CODE    
-                cstackCOMRAM                   000001  00005F  000060         1       1  COMRAM  
-                dataBANK0                      000060  000020  000080        60       1  BANK0   
+                cstackCOMRAM                   000001  000041  000042         1       1  COMRAM  
+                dataBANK0                      000060  000040  0000A0        60       1  BANK0   
                 smallconst                     000F00  00001C  000F1C       780       0  SMALLCON
-                text16                         000F1C  000FDC  001EF8       78E       0  CODE    
+                text7                          000F1C  00100C  001F28       78E       0  CODE    
                 config                         01FFF8  000008  020000     1FFF8       0  CONFIG  
 
 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            00080-000FF              80
+        BANK0            000A0-000FF              60
         BANK1            00100-001FF             100
         BANK10           00A00-00AFF             100
         BANK11           00B00-00BFF             100
@@ -190,16 +188,18 @@ UNUSED ADDRESS RANGES
         BANK7            00700-007FF             100
         BANK8            00800-008FF             100
         BANK9            00900-009FF             100
-        BIGRAM           00080-00EAF             E30
+        BIGRAM           00042-0005F              1E
+                         000A0-00EAF             E10
         CODE             00006-00EFF             EFA
-                         01EF8-1FFF7           1E100
+                         01F28-1FFF7           1E0D0
+        COMRAM           00042-0005F              1E
         CONST            00006-00EFF             EFA
-                         01EF8-1FFF7           1E100
-        MEDIUMCONST      01EF8-0FFFF            E108
+                         01F28-1FFF7           1E0D0
+        MEDIUMCONST      01F28-0FFFF            E0D8
                          10F00-1FFF7            F0F8
-        RAM              00080-00EAF             100
+        RAM              000A0-00EAF             100
         SFR              00EB0-00FFC              60
-        SMALLCONST       01EF8-1FFF7             100
+        SMALLCONST       01F28-1FFF7             100
 
                                   Symbol Table
 
@@ -211,6 +211,7 @@ UNUSED ADDRESS RANGES
 ?___lwdiv                      cstackCOMRAM  00001
 ?___lwmod                      cstackCOMRAM  00001
 ?_bcdtod                       cstackCOMRAM  00001
+?_checkRotEncLimits            cstackCOMRAM  00001
 ?_clickEvent                   cstackCOMRAM  00001
 ?_delay                        cstackCOMRAM  00001
 ?_dispSetTime                  cstackCOMRAM  00009
@@ -218,6 +219,7 @@ UNUSED ADDRESS RANGES
 ?_displayDigit                 cstackCOMRAM  00001
 ?_dtobcd                       cstackCOMRAM  00001
 ?_readEnc                      cstackCOMRAM  00001
+?_setTime                      cstackCOMRAM  00017
 RtccReadTime@pTm               cstackCOMRAM  00001
 RtccReadTime@rTD0              cstackCOMRAM  0000B
 RtccReadTime@rTD1              cstackCOMRAM  00003
@@ -247,7 +249,7 @@ _DELAYTIME                     smallconst    00F18
 _EECON2                        (abs)         00FA7
 _INTCONbits                    (abs)         00FF2
 _OSCCONbits                    (abs)         00FD3
-_PCTemp                        bssCOMRAM     0005D
+_PCTemp                        bssCOMRAM     0003F
 _PORTA                         (abs)         00F80
 _PORTB                         (abs)         00F81
 _PORTC                         (abs)         00F82
@@ -257,13 +259,13 @@ _RTCCFG                        (abs)         00F3F
 _RTCCFGbits                    (abs)         00F3F
 _RTCVALH                       (abs)         00F3B
 _RTCVALL                       (abs)         00F3A
-_RtccInitClock                 text3         01DD4
-_RtccReadTime                  text7         01AC0
-_RtccSetAlarmRpt               text4         01B3E
-_RtccSetChimeEnable            text5         01C1C
-_RtccWrOn                      text13        01ED2
-_RtccWriteAlrmTime             text6         0180A
-_RtccWriteTime                 text12        01594
+_RtccInitClock                 text4         01E14
+_RtccReadTime                  text14        01ABC
+_RtccSetAlarmRpt               text9         01B3A
+_RtccSetChimeEnable            text10        01C18
+_RtccWrOn                      text13        01F02
+_RtccWriteAlrmTime             text12        01806
+_RtccWriteTime                 text11        01590
 _SEGDIGARRAY                   smallconst    00F14
 _SEGSINKARRAY                  smallconst    00F00
 _SEGSINKARRAYCOL               smallconst    00F0A
@@ -305,14 +307,12 @@ __Hconst                       const         00000
 __HcstackCOMRAM                cstackCOMRAM  00000
 __Hdata                        data          00000
 __HdataBANK0                   dataBANK0     00000
-__HdataCOMRAM                  dataCOMRAM    00000
 __Hend_init                    end_init      00006
 __Hfarbss                      farbss        00000
 __Hfardata                     fardata       00000
 __Hibigdata                    ibigdata      00000
 __Hidata                       idata         00000
 __HidataBANK0                  idataBANK0    00000
-__HidataCOMRAM                 idataCOMRAM   00000
 __Hidloc                       idloc         00000
 __Hifardata                    ifardata      00000
 __Hinit                        init          00002
@@ -356,6 +356,7 @@ __Htext19                      text19        00000
 __Htext2                       text2         00000
 __Htext20                      text20        00000
 __Htext21                      text21        00000
+__Htext22                      text22        00000
 __Htext3                       text3         00000
 __Htext4                       text4         00000
 __Htext5                       text5         00000
@@ -393,14 +394,12 @@ __Lconst                       const         00000
 __LcstackCOMRAM                cstackCOMRAM  00000
 __Ldata                        data          00000
 __LdataBANK0                   dataBANK0     00000
-__LdataCOMRAM                  dataCOMRAM    00000
 __Lend_init                    end_init      00002
 __Lfarbss                      farbss        00000
 __Lfardata                     fardata       00000
 __Libigdata                    ibigdata      00000
 __Lidata                       idata         00000
 __LidataBANK0                  idataBANK0    00000
-__LidataCOMRAM                 idataCOMRAM   00000
 __Lidloc                       idloc         00000
 __Lifardata                    ifardata      00000
 __Linit                        init          00002
@@ -444,6 +443,7 @@ __Ltext19                      text19        00000
 __Ltext2                       text2         00000
 __Ltext20                      text20        00000
 __Ltext21                      text21        00000
+__Ltext22                      text22        00000
 __Ltext3                       text3         00000
 __Ltext4                       text4         00000
 __Ltext5                       text5         00000
@@ -452,77 +452,77 @@ __Ltext7                       text7         00000
 __Ltext8                       text8         00000
 __Ltext9                       text9         00000
 __S0                           (abs)         20000
-__S1                           (abs)         00080
-___lwdiv                       text20        01BB0
+__S1                           (abs)         000A0
+___lwdiv                       text21        01BAC
 ___lwdiv@counter               cstackCOMRAM  00008
 ___lwdiv@dividend              cstackCOMRAM  00001
 ___lwdiv@divisor               cstackCOMRAM  00003
 ___lwdiv@quotient              cstackCOMRAM  00006
-___lwmod                       text21        01C84
+___lwmod                       text22        01CDC
 ___lwmod@counter               cstackCOMRAM  00006
 ___lwmod@dividend              cstackCOMRAM  00001
 ___lwmod@divisor               cstackCOMRAM  00003
 __accesstop                    (abs)         00060
 __activetblptr                 (abs)         00003
 __end_of_DELAYTIME             smallconst    00F1A
-__end_of_RtccInitClock         text3         01E14
-__end_of_RtccReadTime          text7         01B3E
-__end_of_RtccSetAlarmRpt       text4         01BB0
-__end_of_RtccSetChimeEnable    text5         01C84
-__end_of_RtccWrOn              text13        01EE6
-__end_of_RtccWriteAlrmTime     text6         01916
-__end_of_RtccWriteTime         text12        016F4
+__end_of_RtccInitClock         text4         01E54
+__end_of_RtccReadTime          text14        01B3A
+__end_of_RtccSetAlarmRpt       text9         01BAC
+__end_of_RtccSetChimeEnable    text10        01C80
+__end_of_RtccWrOn              text13        01F16
+__end_of_RtccWriteAlrmTime     text12        01912
+__end_of_RtccWriteTime         text11        016F0
 __end_of_SEGDIGARRAY           smallconst    00F18
 __end_of_SEGSINKARRAY          smallconst    00F0A
 __end_of_SEGSINKARRAYCOL       smallconst    00F14
-__end_of___lwdiv               text20        01C1C
-__end_of___lwmod               text21        01CE0
-__end_of__initialization       cinit         01D82
-__end_of_bcdtod                text8         019F2
-__end_of_clickEvent            text14        01E50
-__end_of_delay                 text19        01E7E
-__end_of_dispSetTime           text16        01194
-__end_of_dispTime              text9         013E2
-__end_of_displayDigit          text18        01DD4
-__end_of_displayOFF            text17        01EF0
-__end_of_dtobcd                text11        01AC0
-__end_of_main                  text0         0180A
-__end_of_readEnc               text15        01D38
-__end_of_rotEncInit            text2         01EF8
-__end_of_setTime               text10        01594
-__end_of_sevenSegInit          text1         01ED2
-__initialization               cinit         01D38
+__end_of___lwdiv               text21        01C18
+__end_of___lwmod               text22        01D38
+__end_of__initialization       cinit         01EBA
+__end_of_bcdtod                text15        019EE
+__end_of_checkRotEncLimits     text6         01D88
+__end_of_clickEvent            text17        01E90
+__end_of_delay                 text20        01EEE
+__end_of_dispSetTime           text7         01194
+__end_of_dispTime              text16        013E2
+__end_of_displayDigit          text19        01DD4
+__end_of_displayOFF            text18        01F20
+__end_of_dtobcd                text8         01ABC
+__end_of_main                  text0         01806
+__end_of_readEnc               text5         01CDC
+__end_of_rotEncInit            text3         01F28
+__end_of_setTime               text1         01590
+__end_of_sevenSegInit          text2         01F02
+__initialization               cinit         01E90
 __mediumconst                  mediumconst   00000
-__pbssCOMRAM                   bssCOMRAM     0005B
-__pcinit                       cinit         01D38
+__pbssCOMRAM                   bssCOMRAM     0003D
+__pcinit                       cinit         01E90
 __pcstackCOMRAM                cstackCOMRAM  00001
 __pdataBANK0                   dataBANK0     00060
-__pdataCOMRAM                  dataCOMRAM    0003B
-__pidataBANK0                  idataBANK0    01E7E
-__pidataCOMRAM                 idataCOMRAM   01E9E
+__pidataBANK0                  idataBANK0    01DD4
 __psmallconst                  smallconst    00F00
-__ptext0                       text0         016F4
-__ptext1                       text1         01EBE
-__ptext10                      text10        013E2
-__ptext11                      text11        019F2
-__ptext12                      text12        01594
-__ptext13                      text13        01ED2
-__ptext14                      text14        01E14
-__ptext15                      text15        01CE0
-__ptext16                      text16        00F1C
-__ptext17                      text17        01EE6
-__ptext18                      text18        01D88
-__ptext19                      text19        01E50
-__ptext2                       text2         01EF0
-__ptext20                      text20        01BB0
-__ptext21                      text21        01C84
-__ptext3                       text3         01DD4
-__ptext4                       text4         01B3E
-__ptext5                       text5         01C1C
-__ptext6                       text6         0180A
-__ptext7                       text7         01AC0
-__ptext8                       text8         01916
-__ptext9                       text9         01194
+__ptext0                       text0         016F0
+__ptext1                       text1         013E2
+__ptext10                      text10        01C18
+__ptext11                      text11        01590
+__ptext12                      text12        01806
+__ptext13                      text13        01F02
+__ptext14                      text14        01ABC
+__ptext15                      text15        01912
+__ptext16                      text16        01194
+__ptext17                      text17        01E54
+__ptext18                      text18        01F16
+__ptext19                      text19        01D88
+__ptext2                       text2         01EEE
+__ptext20                      text20        01EC0
+__ptext21                      text21        01BAC
+__ptext22                      text22        01CDC
+__ptext3                       text3         01F20
+__ptext4                       text4         01E14
+__ptext5                       text5         01C80
+__ptext6                       text6         01D38
+__ptext7                       text7         00F1C
+__ptext8                       text8         019EE
+__ptext9                       text9         01B3A
 __ramtop                       ramtop        00F00
 __size_of_RtccInitClock        (abs)         00000
 __size_of_RtccReadTime         (abs)         00000
@@ -534,6 +534,7 @@ __size_of_RtccWriteTime        (abs)         00000
 __size_of___lwdiv              (abs)         00000
 __size_of___lwmod              (abs)         00000
 __size_of_bcdtod               (abs)         00000
+__size_of_checkRotEncLimits    (abs)         00000
 __size_of_clickEvent           (abs)         00000
 __size_of_delay                (abs)         00000
 __size_of_dispSetTime          (abs)         00000
@@ -547,27 +548,31 @@ __size_of_rotEncInit           (abs)         00000
 __size_of_setTime              (abs)         00000
 __size_of_sevenSegInit         (abs)         00000
 __smallconst                   smallconst    00F00
-_bcdtod                        text8         01916
-_clickEvent                    text14        01E14
-_delay                         text19        01E50
-_dispSetTime                   text16        00F1C
-_dispTime                      text9         01194
-_displayDigit                  text18        01D88
-_displayOFF                    text17        01EE6
-_dtobcd                        text11        019F2
-_isColonON                     bssCOMRAM     0005B
-_main                          text0         016F4
-_readEnc                       text15        01CE0
-_rotEncInit                    text2         01EF0
-_setTime                       text10        013E2
-_sevenSegInit                  text1         01EBE
+_bcdtod                        text15        01912
+_checkRotEncLimits             text6         01D38
+_clickEvent                    text17        01E54
+_delay                         text20        01EC0
+_dispSetTime                   text7         00F1C
+_dispTime                      text16        01194
+_displayDigit                  text19        01D88
+_displayOFF                    text18        01F16
+_dtobcd                        text8         019EE
+_isColonON                     bssCOMRAM     0003D
+_main                          text0         016F0
+_readEnc                       text5         01C80
+_rotEncInit                    text3         01F20
+_setTime                       text1         013E2
+_sevenSegInit                  text2         01EEE
 bcdtod@bcd                     cstackCOMRAM  00001
+checkRotEncLimits@lowerLimit   cstackCOMRAM  00001
+checkRotEncLimits@upperLimit   cstackCOMRAM  00003
+checkRotEncLimits@valueToCheck cstackCOMRAM  00005
 delay@delay                    cstackCOMRAM  00001
 delay@i                        cstackCOMRAM  00003
 dispSetTime@dig0               cstackCOMRAM  0000F
-dispSetTime@dig0_336           cstackCOMRAM  00013
+dispSetTime@dig0_349           cstackCOMRAM  00013
 dispSetTime@dig1               cstackCOMRAM  00011
-dispSetTime@dig1_337           cstackCOMRAM  00015
+dispSetTime@dig1_350           cstackCOMRAM  00015
 dispSetTime@hourMin            cstackCOMRAM  0000B
 dispSetTime@time               cstackCOMRAM  00009
 dispTime@dig0                  cstackCOMRAM  0000D
@@ -579,25 +584,25 @@ displayDigit@number            cstackCOMRAM  00001
 dtobcd@bcdConv                 cstackCOMRAM  00006
 dtobcd@dec                     cstackCOMRAM  00001
 dtobcd@i                       cstackCOMRAM  00004
-end_of_initialization          cinit         01D82
+end_of_initialization          cinit         01EBA
 intlevel0                      text          00000
 intlevel1                      text          00000
 intlevel2                      text          00000
 intlevel3                      text          00000
-main@RTCCAlarm                 cstackCOMRAM  00037
-main@RTCCRead                  cstackCOMRAM  0002F
-main@RTCCTime                  cstackCOMRAM  00033
-main@RTCHour                   cstackCOMRAM  0002B
-main@RTCMin                    cstackCOMRAM  0002D
-rotEnc@encoderStates           dataCOMRAM    0003B
-rotEnc@oldState                bssCOMRAM     0005F
-setTime@RTCCSetTimeDate        cstackCOMRAM  0001E
-setTime@counter                cstackCOMRAM  00022
-setTime@del                    cstackCOMRAM  00018
-setTime@hourMin                cstackCOMRAM  0001A
-setTime@tmp                    cstackCOMRAM  0001C
+main@RTCCAlarm                 cstackCOMRAM  00039
+main@RTCCRead                  cstackCOMRAM  00031
+main@RTCCTime                  cstackCOMRAM  00035
+main@RTCHour                   cstackCOMRAM  0002D
+main@RTCMin                    cstackCOMRAM  0002F
+rotEnc@encoderStates           dataBANK0     00080
+rotEnc@oldState                bssCOMRAM     00041
+setTime@RTCCSetTimeDate        cstackCOMRAM  00022
+setTime@counter                cstackCOMRAM  00020
+setTime@del                    cstackCOMRAM  0001A
+setTime@hourMin                cstackCOMRAM  0001C
+setTime@tmp                    cstackCOMRAM  0001E
 start                          init          00002
-start_initialization           cinit         01D38
+start_initialization           cinit         01E90
 
 
 FUNCTION INFORMATION:
@@ -606,16 +611,16 @@ FUNCTION INFORMATION:
  Defined at:
 		line 26 in file "main.c"
  Parameters:    Size  Location     Type
-  argc            2   35[COMRAM] int 
-  argv            3   37[COMRAM] PTR PTR unsigned char 
+  argc            2   37[COMRAM] int 
+  argv            3   39[COMRAM] PTR PTR unsigned char 
  Auto vars:     Size  Location     Type
-  RTCCAlarm       4   54[COMRAM] struct .
-  RTCCTime        4   50[COMRAM] struct .
-  RTCCRead        4   46[COMRAM] struct .
-  RTCMin          2   44[COMRAM] unsigned int 
-  RTCHour         2   42[COMRAM] unsigned int 
+  RTCCAlarm       4   56[COMRAM] struct .
+  RTCCTime        4   52[COMRAM] struct .
+  RTCCRead        4   48[COMRAM] struct .
+  RTCMin          2   46[COMRAM] unsigned int 
+  RTCHour         2   44[COMRAM] unsigned int 
  Return value:  Size  Location     Type
-                  2   35[COMRAM] int 
+                  2   37[COMRAM] int 
  Registers used:
 		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
  Tracked objects:
@@ -647,6 +652,48 @@ Total ram usage:       23 bytes
 		_setTime
  This function is called by:
 		Startup code after reset
+ This function uses a non-reentrant model
+
+
+ *************** function _setTime *****************
+ Defined at:
+		line 164 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  RTCCSetTimeD    4   33[COMRAM] struct .
+  counter         2   31[COMRAM] int 
+  tmp             2   29[COMRAM] int 
+  hourMin         2   27[COMRAM] int 
+  del             2   25[COMRAM] int 
+ Return value:  Size  Location     Type
+                  2   22[COMRAM] int 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:        12       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:        15       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       15 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		_RtccWrOn
+		_readEnc
+		_checkRotEncLimits
+		_dispSetTime
+		_clickEvent
+		_displayOFF
+		_dtobcd
+		_RtccWriteTime
+ This function is called by:
+		_main
+		_settingsCycle
  This function uses a non-reentrant model
 
 
@@ -738,6 +785,137 @@ Total ram usage:        0 bytes
  This function uses a non-reentrant model
 
 
+ *************** function _readEnc *****************
+ Defined at:
+		line 10 in file "rotEnc.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  2    0[COMRAM] int 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          3       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        5 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_setTime
+		_settingsCycle
+ This function uses a non-reentrant model
+
+
+ *************** function _checkRotEncLimits *****************
+ Defined at:
+		line 28 in file "rotEnc.c"
+ Parameters:    Size  Location     Type
+  lowerLimit      2    0[COMRAM] int 
+  upperLimit      2    2[COMRAM] int 
+  valueToCheck    2    4[COMRAM] int 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  2    0[COMRAM] int 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         6       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         7       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_setTime
+		_settingsCycle
+ This function uses a non-reentrant model
+
+
+ *************** function _dispSetTime *****************
+ Defined at:
+		line 67 in file "sevenSeg.c"
+ Parameters:    Size  Location     Type
+  time            2    8[COMRAM] unsigned int 
+  hourMin         2   10[COMRAM] int 
+ Auto vars:     Size  Location     Type
+  dig1            2   20[COMRAM] int 
+  dig0            2   18[COMRAM] int 
+  dig1            2   16[COMRAM] int 
+  dig0            2   14[COMRAM] int 
+ Return value:  Size  Location     Type
+                  2    8[COMRAM] int 
+ Registers used:
+		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         4       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         8       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:        14       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       14 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_displayDigit
+		_delay
+		_displayOFF
+		___lwmod
+		___lwdiv
+ This function is called by:
+		_setTime
+ This function uses a non-reentrant model
+
+
+ *************** function _dtobcd *****************
+ Defined at:
+		line 224 in file "main.c"
+ Parameters:    Size  Location     Type
+  dec             2    0[COMRAM] unsigned int 
+ Auto vars:     Size  Location     Type
+  i               2    3[COMRAM] int 
+  bcdConv         1    5[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        6 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+		_setTime
+ This function uses a non-reentrant model
+
+
  *************** function _RtccSetAlarmRpt *****************
  Defined at:
 		line 26 in file "plib/rtcc/RtccSetAlarmRpt.c"
@@ -798,6 +976,43 @@ Total ram usage:        3 bytes
  This function uses a non-reentrant model
 
 
+ *************** function _RtccWriteTime *****************
+ Defined at:
+		line 35 in file "plib/rtcc/RtccWriteTime.c"
+ Parameters:    Size  Location     Type
+  pTm             2    0[COMRAM] PTR const struct .
+		 -> setTime@RTCCSetTimeDate(4), main@RTCCTime(4), 
+  di              1    2[COMRAM] enum E7262
+ Auto vars:     Size  Location     Type
+  tempHourWDay    2    9[COMRAM] struct .
+  tempMinSec      2    7[COMRAM] struct .
+  wasWrEn         1    6[COMRAM] enum E7262
+  wasAlrm         1    5[COMRAM] enum E7262
+  wasOn           1    4[COMRAM] enum E7262
+ Return value:  Size  Location     Type
+                  1    wreg      enum E7742
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         3       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         7       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:        11       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       11 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_RtccWrOn
+ This function is called by:
+		_main
+		_setTime
+ This function uses a non-reentrant model
+
+
  *************** function _RtccWriteAlrmTime *****************
  Defined at:
 		line 28 in file "plib/rtcc/RtccWriteAlrmTime.c"
@@ -829,6 +1044,39 @@ Total ram usage:        9 bytes
 		_RtccWrOn
  This function is called by:
 		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _RtccWrOn *****************
+ Defined at:
+		line 22 in file "plib/rtcc/RtccWrOn.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  data            2    0        unsigned int 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
+      Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+		_setTime
+		_RtccInitClock
+		_RtccWriteAlrmTime
+		_RtccWriteTime
  This function uses a non-reentrant model
 
 
@@ -865,7 +1113,7 @@ Total ram usage:       18 bytes
 
  *************** function _bcdtod *****************
  Defined at:
-		line 179 in file "main.c"
+		line 261 in file "main.c"
  Parameters:    Size  Location     Type
   bcd             1    0[COMRAM] unsigned char 
  Auto vars:     Size  Location     Type
@@ -928,147 +1176,6 @@ Total ram usage:        8 bytes
  This function uses a non-reentrant model
 
 
- *************** function _setTime *****************
- Defined at:
-		line 85 in file "main.c"
- Parameters:    Size  Location     Type
-		None
- Auto vars:     Size  Location     Type
-  RTCCSetTimeD    4   29[COMRAM] struct .
-  counter         2   33[COMRAM] int 
-  tmp             2   27[COMRAM] int 
-  hourMin         2   25[COMRAM] int 
-  del             2   23[COMRAM] int 
- Return value:  Size  Location     Type
-                  2   36[COMRAM] int 
- Registers used:
-		wreg, fsr2l, fsr2h, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
-      Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:        12       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:        13       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       13 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    2
- This function calls:
-		_RtccWrOn
-		_readEnc
-		_dispSetTime
-		_clickEvent
-		_displayOFF
-		_dtobcd
-		_RtccWriteTime
- This function is called by:
-		_main
- This function uses a non-reentrant model
-
-
- *************** function _dtobcd *****************
- Defined at:
-		line 142 in file "main.c"
- Parameters:    Size  Location     Type
-  dec             2    0[COMRAM] unsigned int 
- Auto vars:     Size  Location     Type
-  i               2    3[COMRAM] int 
-  bcdConv         1    5[COMRAM] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      unsigned char 
- Registers used:
-		wreg, status,2, status,0
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
-      Params:         2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         3       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         6       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        6 bytes
- Hardware stack levels used:    1
- This function calls:
-		Nothing
- This function is called by:
-		_main
-		_setTime
- This function uses a non-reentrant model
-
-
- *************** function _RtccWriteTime *****************
- Defined at:
-		line 35 in file "plib/rtcc/RtccWriteTime.c"
- Parameters:    Size  Location     Type
-  pTm             2    0[COMRAM] PTR const struct .
-		 -> setTime@RTCCSetTimeDate(4), main@RTCCTime(4), 
-  di              1    2[COMRAM] enum E7262
- Auto vars:     Size  Location     Type
-  tempHourWDay    2    9[COMRAM] struct .
-  tempMinSec      2    7[COMRAM] struct .
-  wasWrEn         1    6[COMRAM] enum E7262
-  wasAlrm         1    5[COMRAM] enum E7262
-  wasOn           1    4[COMRAM] enum E7262
- Return value:  Size  Location     Type
-                  1    wreg      enum E7742
- Registers used:
-		wreg, fsr2l, fsr2h, status,2, status,0, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
-      Params:         3       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         7       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          1       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:        11       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       11 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		_RtccWrOn
- This function is called by:
-		_main
-		_setTime
- This function uses a non-reentrant model
-
-
- *************** function _RtccWrOn *****************
- Defined at:
-		line 22 in file "plib/rtcc/RtccWrOn.c"
- Parameters:    Size  Location     Type
-		None
- Auto vars:     Size  Location     Type
-  data            2    0        unsigned int 
- Return value:  Size  Location     Type
-		None               void
- Registers used:
-		wreg, status,2
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
-      Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        0 bytes
- Hardware stack levels used:    1
- This function calls:
-		Nothing
- This function is called by:
-		_main
-		_setTime
-		_RtccInitClock
-		_RtccWriteAlrmTime
-		_RtccWriteTime
- This function uses a non-reentrant model
-
-
  *************** function _clickEvent *****************
  Defined at:
 		line 20 in file "rotEnc.c"
@@ -1096,73 +1203,7 @@ Total ram usage:        2 bytes
  This function is called by:
 		_main
 		_setTime
- This function uses a non-reentrant model
-
-
- *************** function _readEnc *****************
- Defined at:
-		line 10 in file "rotEnc.c"
- Parameters:    Size  Location     Type
-		None
- Auto vars:     Size  Location     Type
-		None
- Return value:  Size  Location     Type
-                  2    0[COMRAM] int 
- Registers used:
-		wreg, fsr2l, fsr2h, status,2, status,0
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
-      Params:         2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          3       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         5       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        5 bytes
- Hardware stack levels used:    1
- This function calls:
-		Nothing
- This function is called by:
-		_setTime
- This function uses a non-reentrant model
-
-
- *************** function _dispSetTime *****************
- Defined at:
-		line 67 in file "sevenSeg.c"
- Parameters:    Size  Location     Type
-  time            2    8[COMRAM] unsigned int 
-  hourMin         2   10[COMRAM] int 
- Auto vars:     Size  Location     Type
-  dig1            2   20[COMRAM] int 
-  dig0            2   18[COMRAM] int 
-  dig1            2   16[COMRAM] int 
-  dig0            2   14[COMRAM] int 
- Return value:  Size  Location     Type
-                  2    8[COMRAM] int 
- Registers used:
-		wreg, status,2, status,0, tblptrl, tblptrh, tblptru, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12  BANK13  BANK14
-      Params:         4       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         8       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          2       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:        14       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       14 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		_displayDigit
-		_delay
-		_displayOFF
-		___lwmod
-		___lwdiv
- This function is called by:
-		_setTime
+		_settingsCycle
  This function uses a non-reentrant model
 
 
@@ -1332,81 +1373,82 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 plib/rtcc/RtccReadTime.c
-		_RtccReadTime  		CODE           	1AC0	0000	126
+		_RtccReadTime  		CODE           	1ABC	0000	126
 
 plib/rtcc/RtccReadTime.c estimated size: 126
 
 plib/rtcc/RtccSetAlarmRpt.c
-		_RtccSetAlarmRp		CODE           	1B3E	0000	114
+		_RtccSetAlarmRp		CODE           	1B3A	0000	114
 
 plib/rtcc/RtccSetAlarmRpt.c estimated size: 114
 
 shared
 		_SEGSINKARRAYCO		SMALLCONST     	0F0A	0000	10
 		_SEGDIGARRAY   		SMALLCONST     	0F14	0000	4
-		__initializatio		CODE           	1D38	0000	74
+		__initializatio		CODE           	1E90	0000	42
 		_DELAYTIME     		SMALLCONST     	0F18	0000	2
 		_SEGSINKARRAY  		SMALLCONST     	0F00	0000	10
 
-shared estimated size: 100
+shared estimated size: 68
 
 plib/rtcc/RtccWriteAlrmTime.c
-		_RtccWriteAlrmT		CODE           	180A	0000	268
+		_RtccWriteAlrmT		CODE           	1806	0000	268
 
 plib/rtcc/RtccWriteAlrmTime.c estimated size: 268
 
 main.c
-		_bcdtod        		CODE           	1916	0000	220
-		_dtobcd        		CODE           	19F2	0000	206
-		_main          		CODE           	16F4	0000	278
-		_setTime       		CODE           	13E2	0000	434
+		_bcdtod        		CODE           	1912	0000	220
+		_dtobcd        		CODE           	19EE	0000	206
+		_main          		CODE           	16F0	0000	278
+		_setTime       		CODE           	13E2	0000	430
 
-main.c estimated size: 1138
+main.c estimated size: 1134
 
 rotEnc.c
-		_readEnc       		CODE           	1CE0	0000	88
-		_rotEncInit    		CODE           	1EF0	0000	8
-		_clickEvent    		CODE           	1E14	0000	60
+		_readEnc       		CODE           	1C80	0000	92
+		_checkRotEncLim		CODE           	1D38	0000	80
+		_rotEncInit    		CODE           	1F20	0000	8
+		_clickEvent    		CODE           	1E54	0000	60
 
-rotEnc.c estimated size: 156
+rotEnc.c estimated size: 240
 
 plib/rtcc/RtccWrOn.c
-		_RtccWrOn      		CODE           	1ED2	0000	20
+		_RtccWrOn      		CODE           	1F02	0000	20
 
 plib/rtcc/RtccWrOn.c estimated size: 20
 
 sevenSeg.c
-		_delay         		CODE           	1E50	0000	46
-		_displayOFF    		CODE           	1EE6	0000	10
+		_delay         		CODE           	1EC0	0000	46
+		_displayOFF    		CODE           	1F16	0000	10
 		_displayDigit  		CODE           	1D88	0000	76
-		_sevenSegInit  		CODE           	1EBE	0000	20
+		_sevenSegInit  		CODE           	1EEE	0000	20
 		_dispTime      		CODE           	1194	0000	590
 		_dispSetTime   		CODE           	0F1C	0000	632
 
 sevenSeg.c estimated size: 1374
 
 /Applications/microchip/xc8/v1.12/sources/lwmod.c
-		___lwmod       		CODE           	1C84	0000	92
+		___lwmod       		CODE           	1CDC	0000	92
 
 /Applications/microchip/xc8/v1.12/sources/lwmod.c estimated size: 92
 
 /Applications/microchip/xc8/v1.12/sources/lwdiv.c
-		___lwdiv       		CODE           	1BB0	0000	108
+		___lwdiv       		CODE           	1BAC	0000	108
 
 /Applications/microchip/xc8/v1.12/sources/lwdiv.c estimated size: 108
 
 plib/rtcc/RTCCInitClock.c
-		_RtccInitClock 		CODE           	1DD4	0000	64
+		_RtccInitClock 		CODE           	1E14	0000	64
 
 plib/rtcc/RTCCInitClock.c estimated size: 64
 
 plib/rtcc/RtccWriteTime.c
-		_RtccWriteTime 		CODE           	1594	0000	352
+		_RtccWriteTime 		CODE           	1590	0000	352
 
 plib/rtcc/RtccWriteTime.c estimated size: 352
 
 plib/rtcc/RtccSetChimeEnbl.c
-		_RtccSetChimeEn		CODE           	1C1C	0000	104
+		_RtccSetChimeEn		CODE           	1C18	0000	104
 
 plib/rtcc/RtccSetChimeEnbl.c estimated size: 104
 

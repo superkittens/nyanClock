@@ -71,6 +71,7 @@ int main(int argc, char** argv) {
         
         if(!clickEvent()){
             displayOFF();
+            //settingsCycle();
             setTime();
         }
 
@@ -79,6 +80,84 @@ int main(int argc, char** argv) {
 
 
     return (EXIT_SUCCESS);
+}
+
+//  Function to handle the click of the rotary encoder to set time, alarm and alarm on/off 
+int settingsCycle(){
+
+    int setting = 0;
+    int settingTemp = setting;
+    int tmp = 0;
+    int i = 0;
+    int alarmOnOffColour = 0;
+
+    //displayNum(1);
+
+    while(1){
+
+        tmp = readEnc();
+        if(tmp == -99){
+            return -1;
+        }
+
+        else if(tmp){
+            setting += tmp;
+            setting = checkRotEncLimits(0, 2, setting);
+
+            if(setting != settingTemp){
+
+                switch(setting){
+
+                    case 0:
+                        //  Light setTime LED
+                        break;
+
+                    //  Two cases in set alarm indicator.  If alarm is currently OFF, then LED will be red.  If it is ON, the LED will be green
+                    case 1:
+                        if(!alarmOnOffColour){
+                        //  Light OFF LED
+                        }
+
+                        if(alarmOnOffColour){
+                        //  Light ON LED
+                        }
+
+                        break;
+
+                    case 2:
+                        //  Light Exit LED
+                        break;
+                }
+
+                settingTemp = setting;
+            }
+        }
+
+        if(!clickEvent()){
+
+            for(i = 0; i < 5; i++){
+                __delay_ms(50);
+                __delay_ms(50);
+            }
+
+            switch(setting){
+                case 0:
+                    setting = setTime();
+                    break;
+
+                case 1:
+                    setting = setTime();
+                    break;
+
+            }
+        }
+
+        if((!clickEvent()) && (setting == 2)){
+            break;
+        }
+    }
+
+    return 0;
 }
 
 
@@ -101,12 +180,13 @@ int setTime(){
     //  Set Minute
     while(1){
         tmp = readEnc();
-        if(tmp == -99){ return -1; }
+        if(tmp == -99){ 
+            return -1; 
+        }
 
         else if(tmp){
             counter += tmp;
-            if(counter < 0){ counter = 59; }
-            else if(counter > 59){ counter = 0; }
+            counter = checkRotEncLimits(0, 59, counter);
         }
 
         dispSetTime(counter, hourMin);
@@ -135,7 +215,9 @@ int setTime(){
   
     RtccWriteTime(&RTCCSetTimeDate, 1);
     mRtccWrOff();
-    return 0;
+
+    //  Returns 2, which is the "Exit" option for the settings function (from which setTime was called)
+    return 2;
 
 }
 

@@ -10373,6 +10373,7 @@ unsigned char PCTemp = 0x00;
 int rotEncInit();
 int readEnc();
 int clickEvent();
+int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck );
 
 
 # 19 "main.c"
@@ -10431,6 +10432,7 @@ dispTime(RTCHour, RTCMin);
 
 if(!clickEvent()){
 displayOFF();
+
 setTime();
 }
 
@@ -10439,6 +10441,84 @@ setTime();
 
 
 return (0);
+}
+
+
+int settingsCycle(){
+
+int setting = 0;
+int settingTemp = setting;
+int tmp = 0;
+int i = 0;
+int alarmOnOffColour = 0;
+
+
+
+while(1){
+
+tmp = readEnc();
+if(tmp == -99){
+return -1;
+}
+
+else if(tmp){
+setting += tmp;
+setting = checkRotEncLimits(0, 2, setting);
+
+if(setting != settingTemp){
+
+switch(setting){
+
+case 0:
+
+break;
+
+
+case 1:
+if(!alarmOnOffColour){
+
+}
+
+if(alarmOnOffColour){
+
+}
+
+break;
+
+case 2:
+
+break;
+}
+
+settingTemp = setting;
+}
+}
+
+if(!clickEvent()){
+
+for(i = 0; i < 5; i++){
+_delay((unsigned long)((50)*(8000000/4000.0)));
+_delay((unsigned long)((50)*(8000000/4000.0)));
+}
+
+switch(setting){
+case 0:
+setting = setTime();
+break;
+
+case 1:
+setting = setTime();
+break;
+
+}
+}
+
+if((!clickEvent()) && (setting == 2)){
+break;
+}
+}
+
+return 0;
 }
 
 
@@ -10461,12 +10541,13 @@ _delay((unsigned long)((50)*(8000000/4000.0)));
 
 while(1){
 tmp = readEnc();
-if(tmp == -99){ return -1; }
+if(tmp == -99){
+return -1;
+}
 
 else if(tmp){
 counter += tmp;
-if(counter < 0){ counter = 59; }
-else if(counter > 59){ counter = 0; }
+counter = checkRotEncLimits(0, 59, counter);
 }
 
 dispSetTime(counter, hourMin);
@@ -10495,7 +10576,9 @@ break;
 
 RtccWriteTime(&RTCCSetTimeDate, 1);
 (RTCCFGbits.RTCWREN = 0);
-return 0;
+
+
+return 2;
 
 }
 
@@ -10533,7 +10616,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 179
+# 261
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){
