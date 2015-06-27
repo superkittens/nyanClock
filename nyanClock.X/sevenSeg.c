@@ -6,14 +6,14 @@
 
 int sevenSegInit(){
 
-    //  PORTB is dedicated for current sinks
-    //  PORTB[0:6] for Segments A-G respectively.  PORTB[7] for colon
-    TRISB = 0x00;
-    PORTB = 0x7F;
+    //  PORTD is dedicated for current sinks
+    //  PORTD[0:6] for Segments A-G respectively.  PORTD[7] for colon
+    TRISD = 0x00;
+    LATD = 0x7F;
 
-    //  PORTA is dedicated for current sources
+    //  PORTA[0:3] is dedicated for current sources
     TRISA &= 0xF0;
-    PORTA &= 0xF0;
+    LATA &= 0xF0;
 
     return 0;
 }
@@ -21,13 +21,18 @@ int sevenSegInit(){
 //  Used for displaying time.  For general numbers, use the displayNum() function
 int dispTime(unsigned int hour, unsigned int min){
 
+    if(genDelayLockStatus){
+        return 1;
+    }
+    
+    COLONON();
     unsigned int dig0, dig1;
 
     if((hour >= 0) && (hour < 10)){
         displayDigit(hour, DIG2);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(0, DIG3);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
@@ -36,17 +41,17 @@ int dispTime(unsigned int hour, unsigned int min){
         dig1 = hour / 10;
 
         displayDigit(dig0, DIG2);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG3);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
     if((min >= 0) && (min < 10)){
         displayDigit(min, DIG0);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(0, DIG1);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
@@ -55,9 +60,9 @@ int dispTime(unsigned int hour, unsigned int min){
         dig1 = min / 10;
 
         displayDigit(dig0, DIG0);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG1);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
@@ -66,15 +71,19 @@ int dispTime(unsigned int hour, unsigned int min){
 // Special function to display setting the hour or min depending on the value of hourMin.  hourMin = 0 -> minute, 1 -> hour
 int dispSetTime(unsigned int time, int hourMin){
 
+    if(genDelayLockStatus){
+        return 1;
+    }
+    
     switch(hourMin){
 
         //  Case 0 handles setting the minute
         case 0:
             if((time >= 0) && (time <= 9)){
                 displayDigit(time, DIG0);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayDigit(0, DIG1);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayOFF();
              }
 
@@ -83,9 +92,9 @@ int dispSetTime(unsigned int time, int hourMin){
                 int dig1 = time / 10;
 
                 displayDigit(dig0, DIG0);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayDigit(dig1, DIG1);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayOFF();
             }
 
@@ -95,9 +104,9 @@ int dispSetTime(unsigned int time, int hourMin){
         case 1:
             if((time >= 0) && (time <= 9)){
                 displayDigit(time, DIG2);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayDigit(0, DIG3);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayOFF();
              }
 
@@ -106,9 +115,9 @@ int dispSetTime(unsigned int time, int hourMin){
                 int dig1 = time / 10;
 
                 displayDigit(dig0, DIG2);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayDigit(dig1, DIG3);
-                delay(DELAYTIME);
+                genDelay_ms(DELAYTIME);
                 displayOFF();
             }
 
@@ -121,6 +130,9 @@ int dispSetTime(unsigned int time, int hourMin){
 //  Used to display general, non-time numbers
 int displayNum(unsigned int number){
 
+    if(genDelayLockStatus){
+        return 1;
+    }
     //  The maximum number a four-digit display is 9999.  Need to check for this first
     if(number > 9999){ return -1; }
 
@@ -128,7 +140,7 @@ int displayNum(unsigned int number){
     if((number >= 0) && (number <= 9)){
 
         displayDigit(number, DIG0);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
     }
 
     //  If number is double digits
@@ -139,9 +151,9 @@ int displayNum(unsigned int number){
         int del = 0;
 
         displayDigit(dig0, DIG0);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG1);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         
     }
 
@@ -153,11 +165,11 @@ int displayNum(unsigned int number){
         int del = 0;
 
         displayDigit(dig0, DIG0);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG1);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig2, DIG2);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
 
     }
 
@@ -170,13 +182,13 @@ int displayNum(unsigned int number){
         int del = 0;
 
         displayDigit(dig0, DIG0);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG1);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig2, DIG2);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
         displayDigit(dig3, DIG3);
-        delay(DELAYTIME);
+        genDelay_ms(DELAYTIME);
 
     }
 
@@ -187,11 +199,18 @@ int displayNum(unsigned int number){
 //  displayDigit actually switches on/off GPIOs to light segment LEDs
 int displayDigit(unsigned int number, int digit){
 
-    if((number > 9) || (number < 0)){ return -1; }
-
-    PORTB = SEGSINKARRAYCOL[number];
-
-    PORTA &= 0xF0;
+    if((number > 9) || (number < 0)){ 
+        return -1;
+    }
+    
+    //  Sequence for lighting a digit:
+    //  1.  Turn off all segments (leave colon alone) and sources
+    //  2.  Flip on the pins specified in SEGSINKARRAY[number] by using the bitwise OR operation
+    //  3.  Turn on specified source pin (int digit)
+    LATA &= 0xF0;
+    LATD &= 0x80;
+    
+    LATD |= SEGSINKARRAY[number];
     PORTA |= SEGDIGARRAY[digit];
 
     return 0;
@@ -201,11 +220,4 @@ int displayDigit(unsigned int number, int digit){
 void displayOFF(){
     PORTB |= 0x7F;
     PORTA &= 0xF0;
-}
-
-
-//  Extremely crude delay function as __delay_x() functions don't seem to want to work here...
-int delay(unsigned int delay){
-    unsigned int i = 0;
-    for(i = 0; i != delay; i++);
 }

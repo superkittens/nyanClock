@@ -10,62 +10,55 @@
 #include <xc.h>
 #include "sevenSeg.h"
 #include "rotEnc.h"
-//#include "genUtil.h"
+#include "led.h"
+#include "time.h"
 #include <rtcc.h>
 
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 16000000
 
 
-#pragma config WDTEN = OFF, OSC = INTOSC, XINST = OFF, RTCOSC = T1OSCREF
+#pragma config WDTEN = OFF, OSC = HS, CPUDIV = OSC1, CFGPLLEN = OFF, PLLDIV =1, XINST = OFF, RTCOSC = T1OSCREF
 
+//  States in das state machine are defined here
 int setTime();
-unsigned char dtobcd(unsigned int dec);
-unsigned int bcdtod(unsigned char bcd);
-unsigned int concatInt(unsigned int x, unsigned int y);
 
 int main(int argc, char** argv) {
 
-    //  Oscillator Configuration (Internal OSC, 8 MHz no PLL)
-    OSCCONbits.IRCF = 0b111;
-
+    //  Setup interrupts
+    RCONbits.IPEN = 1;      //  Enable priorities
+    INTCONbits.GIEH = 1;    //  Enable high priority interrupts
+    INTCONbits.GIEL = 0;    //  Disable low priority interrupts
+    INTCONbits.TMR0IE = 1;  //  Enable TMR0 overflow interrupt
+    INTCON2bits.T0IP = 1;   //  Set TMR0 int to high priority
+    
+    enableLED();
+    initGeneralTimer();
     sevenSegInit();
     rotEncInit();
-
-    //  RTCC Configuration
+    
     rtccTime RTCCTime;
     rtccTime RTCCRead;
-    rtccTime RTCCAlarm;
-
-    unsigned int RTCHour;
-    unsigned int RTCMin;
-
-    RtccInitClock();
-    RtccWrOn();
-    mRtccSetClockOe(0);
-    RTCCTime.f.hour = dtobcd(22);
-    RTCCTime.f.min = dtobcd(47);
-    RTCCTime.f.sec = 0;
-
-    //  Alarm setup here is temporary.  Must be removed for final release
-    RTCCAlarm.f.hour = 0x12;
-    RTCCAlarm.f.min = 0x00;
-    RTCCAlarm.f.sec = 0x00;
-
-    RtccSetAlarmRpt(RTCC_RPT_MIN, 1);
-    RtccSetChimeEnable(1, 1);
-
-    RtccWriteTime(&RTCCTime, 1);
-    RtccWriteAlrmTime(&RTCCAlarm);
-    mRtccOn();
-    mRtccAlrmEnable();
-    mRtccWrOff();
+    
+    timeInit(&RTCCTime, 0, 27);
+    enableTime();
+    
+    ALM_LED_RED_ON();
+    genDelay_ms(100);
+    ALM_LED_RED_OFF();
+    ALM_LED_GRN_ON();
+    genDelay_ms(100);
+    ALM_LED_GRN_OFF();
+    ALM_LED_BLUE_ON();
+    genDelay_ms(100);
+    ALM_LED_BLUE_OFF();
+   
 
     while(1){
 
         
-        RtccReadTime(&RTCCRead);
-        RTCHour = bcdtod(RTCCRead.f.hour);
-        RTCMin = bcdtod(RTCCRead.f.min);
+        getTime(&RTCCRead);
+        unsigned int RTCHour = bcdtod(RTCCRead.f.hour);
+        unsigned int RTCMin = bcdtod(RTCCRead.f.min);
 
         dispTime(RTCHour, RTCMin);
         
@@ -81,6 +74,7 @@ int main(int argc, char** argv) {
 
     return (EXIT_SUCCESS);
 }
+
 
 //  Function to handle the click of the rotary encoder to set time, alarm and alarm on/off 
 int settingsCycle(){
@@ -136,8 +130,8 @@ int settingsCycle(){
         if(!clickEvent()){
 
             for(i = 0; i < 5; i++){
-                __delay_ms(50);
-                __delay_ms(50);
+                //__delay_ms(50);
+                //__delay_ms(50);
             }
 
             switch(setting){
@@ -173,8 +167,8 @@ int setTime(){
 
     for(del = 0; del < 5; del++){
         //  __delay_ms can't take an argument of 100, so we use 2 50 ms delays instead
-        __delay_ms(50);
-        __delay_ms(50);
+        //__delay_ms(50);
+        //__delay_ms(50);
     }
 
     //  Set Minute
@@ -194,9 +188,10 @@ int setTime(){
         if(!clickEvent()){ 
 
             displayOFF();
-
-            __delay_ms(50);
-            __delay_ms(50);
+            for(del = 0; del < 5; del++){
+                //__delay_ms(50);
+                //__delay_ms(50);
+            }
 
             if(hourMin == 0){
                 RTCCSetTimeDate.f.min = dtobcd(counter);
@@ -221,66 +216,13 @@ int setTime(){
 
 }
 
-unsigned char dtobcd(unsigned int dec){
 
-    if((dec <0) || (dec > 99)){
-        return 255;
+void interrupt high_priority hp_isr(){
+    
+    if(TMR0IE && TMR0IF){
+        genDelayLockStatus = 0;
+        TMR0IF = 0;
+        return;
     }
-
-    int i;
-    unsigned char bcdConv = 0x00;
-
-    for(i = 0; i <= 7; i++){
-
-        if(dec & 0x0080){
-            bcdConv = bcdConv << 1;
-            bcdConv |= 0x01;
-        }
-
-        else{ bcdConv = bcdConv << 1; }
-        
-        dec = dec << 1;
-
-        if(((bcdConv & 0x0F) >= 5) && (i != 7)){
-            bcdConv += 0x03;
-        }
-
-        if(((bcdConv & 0xF0) >= 0x50) && (i != 7)){
-            bcdConv += 0x30;
-        }
-
-        
-    }
-
-    return bcdConv;
-}
-
-/*  This is a very, very brute force method of converting from BCD to Decimal which is alright for our purposes as the numbers on the clock really only
- *  to 60.  A more elegant method is needed if we need bigger numbers
- */
-unsigned int bcdtod(unsigned char bcd){
-
-    if((bcd >= 0x00) && (bcd < 0x10)){
-        return (int)bcd;
-    }
-
-    else if((bcd >= 0x10) && (bcd < 0x20)){
-        return (int)bcd - 6;
-    }
-
-    else if((bcd >= 0x20) && (bcd < 0x30)){
-        return (int)bcd - 12;
-    }
-
-    else if((bcd >= 0x30) && (bcd < 0x40)){
-        return (int)bcd - 18;
-    }
-
-    else if((bcd >= 0x40) && (bcd < 0x50)){
-        return (int)bcd - 24;
-    }
-
-    else if((bcd >= 0x50) && (bcd < 0x60)){
-        return (int)bcd - 30;
-    }
+    
 }

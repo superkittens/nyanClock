@@ -1,44 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"11951 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"11307
-[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"11781
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"10933
-[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
-[s S732 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S732 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
-[s S733 :1 `uc 1 ]
-[n S733 . LD0 ]
-[s S734 :1 `uc 1 :1 `uc 1 ]
-[n S734 . . LD1 ]
-[s S735 :2 `uc 1 :1 `uc 1 ]
-[n S735 . . LD2 ]
-[s S736 :3 `uc 1 :1 `uc 1 ]
-[n S736 . . LD3 ]
-[s S737 :4 `uc 1 :1 `uc 1 ]
-[n S737 . . LD4 ]
-[s S738 :5 `uc 1 :1 `uc 1 ]
-[n S738 . . LD5 ]
-[s S739 :6 `uc 1 :1 `uc 1 ]
-[n S739 . . LD6 ]
-[s S740 :7 `uc 1 :1 `uc 1 ]
-[n S740 . . LD7 ]
-[u S731 `S732 1 `S733 1 `S734 1 `S735 1 `S736 1 `S737 1 `S738 1 `S739 1 `S740 1 ]
-[n S731 . . . . . . . . . . ]
-"11355
-[v _LATDbits `VS731 ~T0 @X0 0 e@3980 ]
-"33 sevenSeg.h
-[v _displayDigit `(i ~T0 @X0 0 ef2`ui`i ]
-"18 delay.h
-[v _genDelay_ms `(i ~T0 @X0 0 ef1`ui ]
-"34 sevenSeg.h
-[v _displayOFF `(v ~T0 @X0 0 ef ]
-"9317 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
-[v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
-"9610
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+[s S1222 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1222 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
+[s S1223 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1223 . T0PS0 T0PS1 T0PS2 ]
+[u S1221 `S1222 1 `S1223 1 ]
+[n S1221 . . . ]
+"19091 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
+[v _T0CONbits `VS1221 ~T0 @X0 0 e@4053 ]
+"19165
+[v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
+"19146
+[v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
 [; ;pic18f47j53.h: 44: extern volatile unsigned char ADCTRIG @ 0xEB8;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
 [; ;pic18f47j53.h: 46: asm("ADCTRIG equ 0EB8h");
@@ -9789,664 +9761,96 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;delay.h: 15: volatile int genDelayLockStatus = 0;
 [; ;delay.h: 17: int initGeneralTimer();
 [; ;delay.h: 18: int genDelay_ms(unsigned int);
-"22 sevenSeg.h
-[v _DELAYTIME `Ci ~T0 @X0 1 e ]
-[i _DELAYTIME
--> 5 `i
-]
-[; ;sevenSeg.h: 22: const int DELAYTIME = 5;
-"23
-[v _SEGSINKARRAY `Cuc ~T0 @X0 -> 10 `i e ]
-[i _SEGSINKARRAY
-:U ..
--> -> 64 `i `uc
--> -> 121 `i `uc
--> -> 36 `i `uc
--> -> 48 `i `uc
--> -> 25 `i `uc
--> -> 18 `i `uc
--> -> 2 `i `uc
--> -> 120 `i `uc
--> -> 0 `i `uc
--> -> 24 `i `uc
-..
-]
-[; ;sevenSeg.h: 23: const unsigned char SEGSINKARRAY[10] = {0x40, 0x79, 0x24, 0x30, 0x19, 0x12, 0x02, 0x78, 0x00, 0x18};
-"24
-[v _SEGDIGARRAY `Cuc ~T0 @X0 -> 4 `i e ]
-[i _SEGDIGARRAY
-:U ..
--> -> 8 `i `uc
--> -> 4 `i `uc
--> -> 2 `i `uc
--> -> 1 `i `uc
-..
-]
-[; ;sevenSeg.h: 24: const unsigned char SEGDIGARRAY[4] = {0x08, 0x04, 0x02, 0x01};
-"26
-[v _isColonON `i ~T0 @X0 1 e ]
-[i _isColonON
--> 0 `i
-]
-[; ;sevenSeg.h: 26: int isColonON = 0;
-[; ;sevenSeg.h: 29: int sevenSegInit();
-[; ;sevenSeg.h: 30: int displayNum(unsigned int number);
-[; ;sevenSeg.h: 31: int dispSetTime(unsigned int time, int hourMin);
-[; ;sevenSeg.h: 32: int dispTime(unsigned int hour, unsigned int min);
-[; ;sevenSeg.h: 33: int displayDigit(unsigned int number, int digit);
-[; ;sevenSeg.h: 34: void displayOFF();
-[; ;stdlib.h: 27: typedef struct {
-[; ;stdlib.h: 28: int rem;
-[; ;stdlib.h: 29: int quot;
-[; ;stdlib.h: 30: } div_t;
-[; ;stdlib.h: 31: typedef struct {
-[; ;stdlib.h: 32: unsigned rem;
-[; ;stdlib.h: 33: unsigned quot;
-[; ;stdlib.h: 34: } udiv_t;
-[; ;stdlib.h: 35: typedef struct {
-[; ;stdlib.h: 36: long quot;
-[; ;stdlib.h: 37: long rem;
-[; ;stdlib.h: 38: } ldiv_t;
-[; ;stdlib.h: 39: typedef struct {
-[; ;stdlib.h: 40: unsigned long quot;
-[; ;stdlib.h: 41: unsigned long rem;
-[; ;stdlib.h: 42: } uldiv_t;
-[; ;stdlib.h: 65: extern double atof(const char *);
-[; ;stdlib.h: 66: extern double strtod(const char *, const char **);
-[; ;stdlib.h: 67: extern int atoi(const char *);
-[; ;stdlib.h: 68: extern unsigned xtoi(const char *);
-[; ;stdlib.h: 69: extern long atol(const char *);
-[; ;stdlib.h: 70: extern long strtol(const char *, char **, int);
-[; ;stdlib.h: 72: extern int rand(void);
-[; ;stdlib.h: 73: extern void srand(unsigned int);
-[; ;stdlib.h: 74: extern void * calloc(size_t, size_t);
-[; ;stdlib.h: 75: extern div_t div(int numer, int denom);
-[; ;stdlib.h: 76: extern udiv_t udiv(unsigned numer, unsigned denom);
-[; ;stdlib.h: 77: extern ldiv_t ldiv(long numer, long denom);
-[; ;stdlib.h: 78: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
-[; ;stdlib.h: 79: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
-[; ;stdlib.h: 80: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
-[; ;stdlib.h: 81: extern unsigned int _rotl(unsigned int value, unsigned int shift);
-[; ;stdlib.h: 82: extern unsigned int _rotr(unsigned int value, unsigned int shift);
-[; ;stdlib.h: 87: extern void * malloc(size_t);
-[; ;stdlib.h: 88: extern void free(void *);
-[; ;stdlib.h: 89: extern void * realloc(void *, size_t);
-[; ;stdlib.h: 91: extern void abort(void);
-[; ;stdlib.h: 92: extern void exit(int);
-[; ;stdlib.h: 93: extern int atexit(void (*)(void));
-[; ;stdlib.h: 94: extern char * getenv(const char *);
-[; ;stdlib.h: 95: extern char ** environ;
-[; ;stdlib.h: 96: extern int system(char *);
-[; ;stdlib.h: 97: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
-[; ;stdlib.h: 98: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
-[; ;stdlib.h: 99: extern int abs(int);
-[; ;stdlib.h: 100: extern long labs(long);
-[; ;stdlib.h: 103: extern char * itoa(char * buf, int val, int base);
-[; ;stdlib.h: 104: extern char * utoa(char * buf, unsigned val, int base);
-[; ;stdlib.h: 109: extern char * ltoa(char * buf, long val, int base);
-[; ;stdlib.h: 110: extern char * ultoa(char * buf, unsigned long val, int base);
-[; ;stdlib.h: 112: extern char * ftoa(float f, int * status);
-"7 sevenSeg.c
-[v _sevenSegInit `(i ~T0 @X0 1 ef ]
+"5 delay.c
+[v _initGeneralTimer `(i ~T0 @X0 1 ef ]
 {
-[; ;sevenSeg.c: 7: int sevenSegInit(){
-[e :U _sevenSegInit ]
+[; ;delay.c: 5: int initGeneralTimer(){
+[e :U _initGeneralTimer ]
 [f ]
-[; ;sevenSeg.c: 11: TRISD = 0x00;
-"11
-[e = _TRISD -> -> 0 `i `uc ]
-[; ;sevenSeg.c: 12: LATD = 0x7F;
-"12
-[e = _LATD -> -> 127 `i `uc ]
-[; ;sevenSeg.c: 15: TRISA &= 0xF0;
+[; ;delay.c: 14: T0CONbits.TMR0ON = 0;
+"14
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;delay.c: 15: T0CONbits.T08BIT = 0;
 "15
-[e =& _TRISA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 16: LATA &= 0xF0;
+[e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
+[; ;delay.c: 16: T0CONbits.T0CS = 0;
 "16
-[e =& _LATA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 18: return 0;
+[e = . . _T0CONbits 0 3 -> -> 0 `i `uc ]
+[; ;delay.c: 17: T0CONbits.T0SE = 0;
+"17
+[e = . . _T0CONbits 0 2 -> -> 0 `i `uc ]
+[; ;delay.c: 18: T0CONbits.PSA = 0;
 "18
-[e ) -> 0 `i ]
-[e $UE 1360  ]
-[; ;sevenSeg.c: 19: }
+[e = . . _T0CONbits 0 1 -> -> 0 `i `uc ]
+[; ;delay.c: 19: T0CONbits.T0PS = 0b111;
 "19
-[e :UE 1360 ]
-}
-"22
-[v _dispTime `(i ~T0 @X0 1 ef2`ui`ui ]
-{
-[; ;sevenSeg.c: 22: int dispTime(unsigned int hour, unsigned int min){
-[e :U _dispTime ]
-[v _hour `ui ~T0 @X0 1 r1 ]
-[v _min `ui ~T0 @X0 1 r2 ]
-[f ]
-[; ;sevenSeg.c: 24: if(genDelayLockStatus){
-"24
-[e $ ! != _genDelayLockStatus -> 0 `i 1362  ]
-{
-[; ;sevenSeg.c: 25: return 1;
-"25
-[e ) -> 1 `i ]
-[e $UE 1361  ]
-"26
-}
-[e :U 1362 ]
-[; ;sevenSeg.c: 26: }
-[; ;sevenSeg.c: 28: (LATDbits.LD7 = 1);
-"28
-[e = . . _LATDbits 8 1 -> -> 1 `i `uc ]
-"29
-[v _dig0 `ui ~T0 @X0 1 a ]
-[v _dig1 `ui ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 29: unsigned int dig0, dig1;
-[; ;sevenSeg.c: 31: if((hour >= 0) && (hour < 10)){
-"31
-[e $ ! && >= _hour -> -> 0 `i `ui < _hour -> -> 10 `i `ui 1363  ]
-{
-[; ;sevenSeg.c: 32: displayDigit(hour, 2);
-"32
-[e ( _displayDigit (2 , _hour -> 2 `i ]
-[; ;sevenSeg.c: 33: genDelay_ms(DELAYTIME);
-"33
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 34: displayDigit(0, 3);
-"34
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 3 `i ]
-[; ;sevenSeg.c: 35: genDelay_ms(DELAYTIME);
-"35
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 36: displayOFF();
-"36
-[e ( _displayOFF ..  ]
-"37
-}
-[; ;sevenSeg.c: 37: }
-[e $U 1364  ]
-"39
-[e :U 1363 ]
-[; ;sevenSeg.c: 39: else if(hour >= 10){
-[e $ ! >= _hour -> -> 10 `i `ui 1365  ]
-{
-[; ;sevenSeg.c: 40: dig0 = hour % 10;
-"40
-[e = _dig0 % _hour -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 41: dig1 = hour / 10;
-"41
-[e = _dig1 / _hour -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 43: displayDigit(dig0, 2);
-"43
-[e ( _displayDigit (2 , _dig0 -> 2 `i ]
-[; ;sevenSeg.c: 44: genDelay_ms(DELAYTIME);
-"44
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 45: displayDigit(dig1, 3);
-"45
-[e ( _displayDigit (2 , _dig1 -> 3 `i ]
-[; ;sevenSeg.c: 46: genDelay_ms(DELAYTIME);
-"46
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 47: displayOFF();
-"47
-[e ( _displayOFF ..  ]
-"48
-}
-[e :U 1365 ]
-"50
-[e :U 1364 ]
-[; ;sevenSeg.c: 48: }
-[; ;sevenSeg.c: 50: if((min >= 0) && (min < 10)){
-[e $ ! && >= _min -> -> 0 `i `ui < _min -> -> 10 `i `ui 1366  ]
-{
-[; ;sevenSeg.c: 51: displayDigit(min, 0);
-"51
-[e ( _displayDigit (2 , _min -> 0 `i ]
-[; ;sevenSeg.c: 52: genDelay_ms(DELAYTIME);
-"52
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 53: displayDigit(0, 1);
-"53
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 1 `i ]
-[; ;sevenSeg.c: 54: genDelay_ms(DELAYTIME);
-"54
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 55: displayOFF();
-"55
-[e ( _displayOFF ..  ]
-"56
-}
-[; ;sevenSeg.c: 56: }
-[e $U 1367  ]
-"58
-[e :U 1366 ]
-[; ;sevenSeg.c: 58: else if(min >= 10){
-[e $ ! >= _min -> -> 10 `i `ui 1368  ]
-{
-[; ;sevenSeg.c: 59: dig0 = min % 10;
-"59
-[e = _dig0 % _min -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 60: dig1 = min / 10;
-"60
-[e = _dig1 / _min -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 62: displayDigit(dig0, 0);
-"62
-[e ( _displayDigit (2 , _dig0 -> 0 `i ]
-[; ;sevenSeg.c: 63: genDelay_ms(DELAYTIME);
-"63
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 64: displayDigit(dig1, 1);
-"64
-[e ( _displayDigit (2 , _dig1 -> 1 `i ]
-[; ;sevenSeg.c: 65: genDelay_ms(DELAYTIME);
-"65
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 66: displayOFF();
-"66
-[e ( _displayOFF ..  ]
-"67
-}
-[e :U 1368 ]
-"69
-[e :U 1367 ]
-[; ;sevenSeg.c: 67: }
-[; ;sevenSeg.c: 69: }
-[e :UE 1361 ]
-}
-"72
-[v _dispSetTime `(i ~T0 @X0 1 ef2`ui`i ]
-{
-[; ;sevenSeg.c: 72: int dispSetTime(unsigned int time, int hourMin){
-[e :U _dispSetTime ]
-[v _time `ui ~T0 @X0 1 r1 ]
-[v _hourMin `i ~T0 @X0 1 r2 ]
-[f ]
-[; ;sevenSeg.c: 74: if(genDelayLockStatus){
-"74
-[e $ ! != _genDelayLockStatus -> 0 `i 1370  ]
-{
-[; ;sevenSeg.c: 75: return 1;
-"75
-[e ) -> 1 `i ]
-[e $UE 1369  ]
-"76
-}
-[e :U 1370 ]
-[; ;sevenSeg.c: 76: }
-[; ;sevenSeg.c: 78: switch(hourMin){
-"78
-[e $U 1372  ]
-{
-[; ;sevenSeg.c: 81: case 0:
-"81
-[e :U 1373 ]
-[; ;sevenSeg.c: 82: if((time >= 0) && (time <= 9)){
-"82
-[e $ ! && >= _time -> -> 0 `i `ui <= _time -> -> 9 `i `ui 1374  ]
-{
-[; ;sevenSeg.c: 83: displayDigit(time, 0);
-"83
-[e ( _displayDigit (2 , _time -> 0 `i ]
-[; ;sevenSeg.c: 84: genDelay_ms(DELAYTIME);
-"84
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 85: displayDigit(0, 1);
-"85
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 1 `i ]
-[; ;sevenSeg.c: 86: genDelay_ms(DELAYTIME);
-"86
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 87: displayOFF();
-"87
-[e ( _displayOFF ..  ]
-"88
-}
-[; ;sevenSeg.c: 88: }
-[e $U 1375  ]
-"90
-[e :U 1374 ]
-[; ;sevenSeg.c: 90: else if(time >= 10){
-[e $ ! >= _time -> -> 10 `i `ui 1376  ]
-{
-"91
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 91: int dig0 = time % 10;
-[e = _dig0 -> % _time -> -> 10 `i `ui `i ]
-"92
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 92: int dig1 = time / 10;
-[e = _dig1 -> / _time -> -> 10 `i `ui `i ]
-[; ;sevenSeg.c: 94: displayDigit(dig0, 0);
-"94
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 95: genDelay_ms(DELAYTIME);
-"95
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 96: displayDigit(dig1, 1);
-"96
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 97: genDelay_ms(DELAYTIME);
-"97
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 98: displayOFF();
-"98
-[e ( _displayOFF ..  ]
-"99
-}
-[e :U 1376 ]
-"101
-[e :U 1375 ]
-[; ;sevenSeg.c: 99: }
-[; ;sevenSeg.c: 101: break;
-[e $U 1371  ]
-[; ;sevenSeg.c: 104: case 1:
-"104
-[e :U 1377 ]
-[; ;sevenSeg.c: 105: if((time >= 0) && (time <= 9)){
-"105
-[e $ ! && >= _time -> -> 0 `i `ui <= _time -> -> 9 `i `ui 1378  ]
-{
-[; ;sevenSeg.c: 106: displayDigit(time, 2);
-"106
-[e ( _displayDigit (2 , _time -> 2 `i ]
-[; ;sevenSeg.c: 107: genDelay_ms(DELAYTIME);
-"107
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 108: displayDigit(0, 3);
-"108
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 3 `i ]
-[; ;sevenSeg.c: 109: genDelay_ms(DELAYTIME);
-"109
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 110: displayOFF();
-"110
-[e ( _displayOFF ..  ]
-"111
-}
-[; ;sevenSeg.c: 111: }
-[e $U 1379  ]
-"113
-[e :U 1378 ]
-[; ;sevenSeg.c: 113: else if(time >= 10){
-[e $ ! >= _time -> -> 10 `i `ui 1380  ]
-{
-"114
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 114: int dig0 = time % 10;
-[e = _dig0 -> % _time -> -> 10 `i `ui `i ]
-"115
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 115: int dig1 = time / 10;
-[e = _dig1 -> / _time -> -> 10 `i `ui `i ]
-[; ;sevenSeg.c: 117: displayDigit(dig0, 2);
-"117
-[e ( _displayDigit (2 , -> _dig0 `ui -> 2 `i ]
-[; ;sevenSeg.c: 118: genDelay_ms(DELAYTIME);
-"118
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 119: displayDigit(dig1, 3);
-"119
-[e ( _displayDigit (2 , -> _dig1 `ui -> 3 `i ]
-[; ;sevenSeg.c: 120: genDelay_ms(DELAYTIME);
-"120
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 121: displayOFF();
-"121
-[e ( _displayOFF ..  ]
-"122
-}
-[e :U 1380 ]
-"124
-[e :U 1379 ]
-[; ;sevenSeg.c: 122: }
-[; ;sevenSeg.c: 124: break;
-[e $U 1371  ]
-"126
-}
-[; ;sevenSeg.c: 126: }
-[e $U 1371  ]
-"78
-[e :U 1372 ]
-[e [\ _hourMin , $ -> 0 `i 1373
- , $ -> 1 `i 1377
- 1371 ]
-"126
-[e :U 1371 ]
-[; ;sevenSeg.c: 127: }
-"127
-[e :UE 1369 ]
-}
-"131
-[v _displayNum `(i ~T0 @X0 1 ef1`ui ]
-{
-[; ;sevenSeg.c: 131: int displayNum(unsigned int number){
-[e :U _displayNum ]
-[v _number `ui ~T0 @X0 1 r1 ]
-[f ]
-[; ;sevenSeg.c: 133: if(genDelayLockStatus){
-"133
-[e $ ! != _genDelayLockStatus -> 0 `i 1382  ]
-{
-[; ;sevenSeg.c: 134: return 1;
-"134
-[e ) -> 1 `i ]
-[e $UE 1381  ]
-"135
-}
-[e :U 1382 ]
-[; ;sevenSeg.c: 135: }
-[; ;sevenSeg.c: 137: if(number > 9999){ return -1; }
-"137
-[e $ ! > _number -> -> 9999 `i `ui 1383  ]
-{
-[e ) -U -> 1 `i ]
-[e $UE 1381  ]
-}
-[e :U 1383 ]
-[; ;sevenSeg.c: 140: if((number >= 0) && (number <= 9)){
-"140
-[e $ ! && >= _number -> -> 0 `i `ui <= _number -> -> 9 `i `ui 1384  ]
-{
-[; ;sevenSeg.c: 142: displayDigit(number, 0);
-"142
-[e ( _displayDigit (2 , _number -> 0 `i ]
-[; ;sevenSeg.c: 143: genDelay_ms(DELAYTIME);
-"143
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"144
-}
-[; ;sevenSeg.c: 144: }
-[e $U 1385  ]
-"147
-[e :U 1384 ]
-[; ;sevenSeg.c: 147: else if((number > 9) && (number <= 99)){
-[e $ ! && > _number -> -> 9 `i `ui <= _number -> -> 99 `i `ui 1386  ]
-{
-"149
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 149: int dig0 = number % 10;
-[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
-"150
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 150: int dig1 = number / 10;
-[e = _dig1 -> / _number -> -> 10 `i `ui `i ]
-"151
-[v _del `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 151: int del = 0;
-[e = _del -> 0 `i ]
-[; ;sevenSeg.c: 153: displayDigit(dig0, 0);
-"153
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 154: genDelay_ms(DELAYTIME);
-"154
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 155: displayDigit(dig1, 1);
-"155
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 156: genDelay_ms(DELAYTIME);
-"156
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"158
-}
-[; ;sevenSeg.c: 158: }
-[e $U 1387  ]
-"160
-[e :U 1386 ]
-[; ;sevenSeg.c: 160: else if((number > 99) && (number <= 999)){
-[e $ ! && > _number -> -> 99 `i `ui <= _number -> -> 999 `i `ui 1388  ]
-{
-"162
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 162: int dig0 = number % 10;
-[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
-"163
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 163: int dig1 = number % 100 / 10;
-[e = _dig1 -> / % _number -> -> 100 `i `ui -> -> 10 `i `ui `i ]
-"164
-[v _dig2 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 164: int dig2 = number / 100;
-[e = _dig2 -> / _number -> -> 100 `i `ui `i ]
-"165
-[v _del `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 165: int del = 0;
-[e = _del -> 0 `i ]
-[; ;sevenSeg.c: 167: displayDigit(dig0, 0);
-"167
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 168: genDelay_ms(DELAYTIME);
-"168
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 169: displayDigit(dig1, 1);
-"169
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 170: genDelay_ms(DELAYTIME);
-"170
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 171: displayDigit(dig2, 2);
-"171
-[e ( _displayDigit (2 , -> _dig2 `ui -> 2 `i ]
-[; ;sevenSeg.c: 172: genDelay_ms(DELAYTIME);
-"172
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"174
-}
-[; ;sevenSeg.c: 174: }
-[e $U 1389  ]
-"176
-[e :U 1388 ]
-[; ;sevenSeg.c: 176: else if((number > 999) && (number <= 9999)){
-[e $ ! && > _number -> -> 999 `i `ui <= _number -> -> 9999 `i `ui 1390  ]
-{
-"178
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 178: int dig0 = number % 10;
-[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
-"179
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 179: int dig1 = number % 1000 % 100 / 10;
-[e = _dig1 -> / % % _number -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 10 `i `ui `i ]
-"180
-[v _dig2 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 180: int dig2 = number % 1000 / 100;
-[e = _dig2 -> / % _number -> -> 1000 `i `ui -> -> 100 `i `ui `i ]
-"181
-[v _dig3 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 181: int dig3 = number / 1000;
-[e = _dig3 -> / _number -> -> 1000 `i `ui `i ]
-"182
-[v _del `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 182: int del = 0;
-[e = _del -> 0 `i ]
-[; ;sevenSeg.c: 184: displayDigit(dig0, 0);
-"184
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 185: genDelay_ms(DELAYTIME);
-"185
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 186: displayDigit(dig1, 1);
-"186
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 187: genDelay_ms(DELAYTIME);
-"187
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 188: displayDigit(dig2, 2);
-"188
-[e ( _displayDigit (2 , -> _dig2 `ui -> 2 `i ]
-[; ;sevenSeg.c: 189: genDelay_ms(DELAYTIME);
-"189
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 190: displayDigit(dig3, 3);
-"190
-[e ( _displayDigit (2 , -> _dig3 `ui -> 3 `i ]
-[; ;sevenSeg.c: 191: genDelay_ms(DELAYTIME);
-"191
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"193
-}
-[e :U 1390 ]
-"195
-[e :U 1389 ]
-[e :U 1387 ]
-[e :U 1385 ]
-[; ;sevenSeg.c: 193: }
-[; ;sevenSeg.c: 195: displayOFF();
-[e ( _displayOFF ..  ]
-[; ;sevenSeg.c: 196: }
-"196
-[e :UE 1381 ]
-}
-"200
-[v _displayDigit `(i ~T0 @X0 1 ef2`ui`i ]
-{
-[; ;sevenSeg.c: 200: int displayDigit(unsigned int number, int digit){
-[e :U _displayDigit ]
-[v _number `ui ~T0 @X0 1 r1 ]
-[v _digit `i ~T0 @X0 1 r2 ]
-[f ]
-[; ;sevenSeg.c: 202: if((number > 9) || (number < 0)){
-"202
-[e $ ! || > _number -> -> 9 `i `ui < _number -> -> 0 `i `ui 1392  ]
-{
-[; ;sevenSeg.c: 203: return -1;
-"203
-[e ) -U -> 1 `i ]
-[e $UE 1391  ]
-"204
-}
-[e :U 1392 ]
-[; ;sevenSeg.c: 204: }
-[; ;sevenSeg.c: 210: LATA &= 0xF0;
-"210
-[e =& _LATA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 211: LATD &= 0x80;
-"211
-[e =& _LATD -> -> 128 `i `uc ]
-[; ;sevenSeg.c: 213: LATD |= SEGSINKARRAY[number];
-"213
-[e =| _LATD *U + &U _SEGSINKARRAY * -> _number `ux -> -> # *U &U _SEGSINKARRAY `ui `ux ]
-[; ;sevenSeg.c: 214: PORTA |= SEGDIGARRAY[digit];
-"214
-[e =| _PORTA *U + &U _SEGDIGARRAY * -> -> _digit `ui `ux -> -> # *U &U _SEGDIGARRAY `ui `ux ]
-[; ;sevenSeg.c: 216: return 0;
-"216
+[e = . . _T0CONbits 0 0 -> -> 7 `i `uc ]
+[; ;delay.c: 20: return 0;
+"20
 [e ) -> 0 `i ]
-[e $UE 1391  ]
-[; ;sevenSeg.c: 217: }
-"217
-[e :UE 1391 ]
+[e $UE 1356  ]
+[; ;delay.c: 21: }
+"21
+[e :UE 1356 ]
 }
-"220
-[v _displayOFF `(v ~T0 @X0 1 ef ]
+"24
+[v _genDelay_ms `(i ~T0 @X0 1 ef1`ui ]
 {
-[; ;sevenSeg.c: 220: void displayOFF(){
-[e :U _displayOFF ]
+[; ;delay.c: 24: int genDelay_ms(unsigned int delayTime_ms){
+[e :U _genDelay_ms ]
+[v _delayTime_ms `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;sevenSeg.c: 221: PORTB |= 0x7F;
-"221
-[e =| _PORTB -> -> 127 `i `uc ]
-[; ;sevenSeg.c: 222: PORTA &= 0xF0;
-"222
-[e =& _PORTA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 223: }
-"223
-[e :UE 1393 ]
+[; ;delay.c: 26: genDelayLockStatus = 1;
+"26
+[e = _genDelayLockStatus -> 1 `i ]
+[; ;delay.c: 28: if(delayTime_ms > (4000)){
+"28
+[e $ ! > _delayTime_ms -> -> 4000 `i `ui 1358  ]
+{
+[; ;delay.c: 29: return 1;
+"29
+[e ) -> 1 `i ]
+[e $UE 1357  ]
+"30
+}
+[e :U 1358 ]
+"32
+[v _tmrReg `ui ~T0 @X0 1 a ]
+[; ;delay.c: 30: }
+[; ;delay.c: 32: unsigned int tmrReg = 65536 - (delayTime_ms * 16);
+[e = _tmrReg -> - -> 65536 `l -> * _delayTime_ms -> -> 16 `i `ui `l `ui ]
+"33
+[v _tmrRegL `uc ~T0 @X0 1 a ]
+[; ;delay.c: 33: unsigned char tmrRegL = tmrReg & 0xFF;
+[e = _tmrRegL -> & _tmrReg -> -> 255 `i `ui `uc ]
+"34
+[v _tmrRegH `uc ~T0 @X0 1 a ]
+[; ;delay.c: 34: unsigned char tmrRegH = (tmrReg >> 8) & 0xFF;
+[e = _tmrRegH -> & >> _tmrReg -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;delay.c: 36: TMR0H = tmrRegH;
+"36
+[e = _TMR0H _tmrRegH ]
+[; ;delay.c: 37: TMR0L = tmrRegL;
+"37
+[e = _TMR0L _tmrRegL ]
+[; ;delay.c: 39: T0CONbits.TMR0ON = 1;
+"39
+[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
+[; ;delay.c: 42: while(genDelayLockStatus);
+"42
+[e $U 1359  ]
+[e :U 1360 ]
+[e :U 1359 ]
+[e $ != _genDelayLockStatus -> 0 `i 1360  ]
+[e :U 1361 ]
+[; ;delay.c: 44: T0CONbits.TMR0ON = 0;
+"44
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;delay.c: 46: return 0;
+"46
+[e ) -> 0 `i ]
+[e $UE 1357  ]
+[; ;delay.c: 47: }
+"47
+[e :UE 1357 ]
 }

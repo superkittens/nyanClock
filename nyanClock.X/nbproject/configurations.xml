@@ -6,6 +6,9 @@
                    projectFiles="true">
       <itemPath>sevenSeg.h</itemPath>
       <itemPath>rotEnc.h</itemPath>
+      <itemPath>led.h</itemPath>
+      <itemPath>delay.h</itemPath>
+      <itemPath>time.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,6 +20,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>sevenSeg.c</itemPath>
       <itemPath>rotEnc.c</itemPath>
+      <itemPath>delay.c</itemPath>
+      <itemPath>time.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -29,7 +34,7 @@
     <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <targetDevice>PIC18F27J13</targetDevice>
+        <targetDevice>PIC18F47J53</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
         <platformTool>PICkit3PlatformTool</platformTool>
@@ -125,7 +130,6 @@
       </HI-TECH-LINK>
       <PICkit3PlatformTool>
         <property key="AutoSelectMemRanges" value="auto"/>
-        <property key="Freeze Peripherals" value="true"/>
         <property key="SecureSegment.SegmentProgramming" value="FullChipProgramming"/>
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
