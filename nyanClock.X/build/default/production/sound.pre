@@ -1,5 +1,5 @@
 
-# 1 "delay.c"
+# 1 "sound.c"
 
 # 44 "/Applications/microchip/xc8/v1.12/include/pic18f47j53.h"
 extern volatile unsigned char ADCTRIG @ 0xEB8;
@@ -12619,51 +12619,383 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
+# 16 "sound.h"
+int soundInit();
+void enableAmplifier();
+void disableAmplifier();
+void vsHoldRST();
+void vsReleaseRST();
+int setTempo();
+void setVolume(char channel, char volume);
+void setBank(char channel, char bank);
+void setInstrument(char channel, char instrument);
+void playNote(char channel, char note);
+void setupForPlayback();
+void playback();
+void resetPlaybackParams();
+
+static void txMIDI(char cmd, char data1, char data2);
+static unsigned int parseDuration(char duration);
+
+unsigned int numInstruments = 2;
+
+unsigned int whole, half, quarter, eighth, sixteenth;
+char volume = 127;
+int exitAlarmFlag = 0;
+static int scoreIndex = 0;
+
+
+
+unsigned int score1Length = 53;
+unsigned int score1Repeat = 2;
+unsigned int score1Count = 0;
+char score1[53][4] = {
+{78, 'q', 52, 'q'},
+{80, 'q', 64, 'q'},
+{74, 'e', 54, 'q'},
+{75, 'e', 0, 'e'},
+{0, 'e', 66, 'q'},
+{71, 'e', 0, 'e'},
+{74, 'e', 51, 'q'},
+{73, 'e', 0, 'e'},
+{71, 'q', 63, 'q'},
+{71, 'q', 56, 'q'},
+{71, 'e', 68, 'q'},
+{73, 'e', 0, 'q'},
+{74, 'q', 49, 'q'},
+{74, 'e', 61, 'q'},
+{73, 'e', 0, 'e'},
+{71, 'e', 54, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 66, 'q'},
+{78, 'e', 0, 'e'},
+{80, 'e', 47, 'q'},
+{75, 'e', 0, 'e'},
+{78, 'e', 59, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 47, 'q'},
+{71, 'e', 0, 'e'},
+{73, 'e', 59, 'q'},
+{71, 'e', 0, 'e'},
+{75, 'q', 52, 'q'},
+{78, 'q', 64, 'q'},
+{80, 'e', 54, 'q'},
+{75, 'e', 0, 'e'},
+{78, 'e', 66, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 51, 'q'},
+{71, 'e', 0, 'e'},
+{73, 'e', 63, 'q'},
+{75, 'e', 0, 'e'},
+{73, 'e', 56, 'q'},
+{71, 'e', 0, 'e'},
+{68, 'e', 68, 'q'},
+{71, 'e', 0, 'e'},
+{74, 'q', 49, 'q'},
+{71, 'e', 61, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 54, 'q'},
+{78, 'e', 0, 'e'},
+{73, 'e', 66, 'q'},
+{75, 'e', 0, 'e'},
+{73, 'e', 47, 'q'},
+{71, 'e', 0, 'e'},
+{68, 'q', 59, 'q'},
+{71, 'q', 47, 'q'},
+{0, 'q', 59, 'q'}
+};
+
+unsigned int score2Length = 55;
+unsigned int score2Repeat = 2;
+unsigned int score2Count = 0;
+char score2[55][4] = {
+{71, 'q', 52, 'q'},
+{66, 'e', 56, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'q', 59, 'q'},
+{66, 'e', 63, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'e', 51, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 54, 'q'},
+{71, 'e', 0, 'e'},
+{76, 'e', 59 , 'q'},
+{75, 'e', 0, 'e'},
+{76, 'e', 63, 'q'},
+{78, 'e', 0, 'e'},
+{71, 'q', 49, 'q'},
+{66, 'e', 52, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'q', 56, 'q'},
+{66, 'e', 59, 'q'},
+{68, 'e', 0, 'e'},
+{76, 'e', 47, 'q'},
+{75, 'e', 0, 'e'},
+{73, 'e', 51, 'q'},
+{71, 'e', 0, 'e'},
+{66, 'e', 54, 'e'},
+{63, 'e', 0, 'e'},
+{64, 'e', 59, 'q'},
+{66, 'e', 0, 'e'},
+{71, 'q', 52, 'q'},
+{66, 'e', 56, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'q', 59, 'q'},
+{66, 'e', 63, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'e', 51, 'q'},
+{71, 'e', 0, 'e'},
+{73, 'e', 54, 'q'},
+{75, 'e', 0, 'e'},
+{71, 'e', 59, 'q'},
+{66, 'e', 0, 'e'},
+{68, 'e', 63, 'q'},
+{66, 'e', 0, 'e'},
+{71, 'q', 49, 'q'},
+{71, 'e', 52, 'q'},
+{70, 'e', 0, 'e'},
+{71, 'e', 56, 'q'},
+{66, 'e', 0, 'e'},
+{68, 'e', 59, 'q'},
+{70, 'e', 0, 'e'},
+{76, 'e', 47, 'q'},
+{75, 'e', 0, 'e'},
+{76, 'e', 51, 'q'},
+{78, 'e', 0, 'e'},
+{71, 'q', 54, 'q'},
+{70, 'q', 59, 'q'}
+};
+
 # 15 "delay.h"
 volatile int genDelayLockStatus = 0;
 
 int initGeneralTimer();
 int genDelay_ms(unsigned int);
 
-# 5 "delay.c"
-int initGeneralTimer(){
-
-# 14
-T0CONbits.TMR0ON = 0;
-T0CONbits.T08BIT = 0;
-T0CONbits.T0CS = 0;
-T0CONbits.T0SE = 0;
-T0CONbits.PSA = 0;
-T0CONbits.T0PS = 0b111;
-return 0;
-}
+# 6 "sound.c"
+int soundInit(){
 
 
-int genDelay_ms(unsigned int delayTime_ms){
+TRISCbits.TRISC6 = 0;
+TXSTA1bits.TX9 = 0;
+TXSTA1bits.SYNC = 0;
+TXSTA1bits.BRGH = 1;
+RCSTA1bits.SPEN = 1;
+BAUDCON1bits.BRG16 = 0;
+BAUDCON1bits.RXDTP = 1;
+SPBRG1 = 31;
+TXSTA1bits.TXEN = 1;
 
-genDelayLockStatus = 1;
-
-if(delayTime_ms > (4000)){
-return 1;
-}
-
-if(delayTime_ms == 0){
-return 2;
-}
-
-unsigned int tmrReg = 65535 - (delayTime_ms * 16);
-unsigned char tmrRegL = tmrReg & 0xFF;
-unsigned char tmrRegH = (tmrReg >> 8) & 0xFF;
-
-TMR0H = tmrRegH;
-TMR0L = tmrRegL;
-
-T0CONbits.TMR0ON = 1;
+# 34
+(TRISCbits.TRISC7) = 0;
+(LATCbits.LC7) = 0;
 
 
-while(genDelayLockStatus);
+ANCON1bits.PCFG11 = 1;
 
-T0CONbits.TMR0ON = 0;
+(TRISCbits.TRISC2) = 0;
 
 return 0;
 }
+
+void enableAmplifier(){
+(LATCbits.LC7) = 1;
+}
+
+void disableAmplifier(){
+(LATCbits.LC7) = 0;
+}
+
+void vsHoldRST(){
+(LATCbits.LC2) = 0;
+}
+
+void vsReleaseRST(){
+(LATCbits.LC2) = 1;
+}
+
+int setTempo(){
+float tempo = 100.0;
+
+
+if(tempo < 60.0){
+return -1;
+}
+
+float baseTime = 1/((tempo / 60.0)) * 1000;
+
+quarter = (unsigned int)baseTime;
+half = quarter * 2;
+whole = quarter * 4;
+eighth = quarter / 2;
+sixteenth = quarter / 4;
+
+return 0;
+}
+
+static void txMIDI(char cmd, char data1, char data2){
+
+TXREG1 = cmd;
+while(!TXSTA1bits.TRMT);
+TXREG1 = data1;
+while(!TXSTA1bits.TRMT);
+
+if((cmd & 0xF0) <= 0xB0){
+TXREG1 = data2;
+while(!TXSTA1bits.TRMT);
+}
+}
+
+void setBank(char channel, char bank){
+
+txMIDI(((char)0xB0 | channel), (char)0x00, bank);
+}
+
+void setVolume(char channel, char volume){
+
+txMIDI(((char)0xB0) | channel, (char)0x07, volume);
+}
+
+void setInstrumet(char channel, char instrument){
+txMIDI((char)0xC0 | channel, instrument, (char)0x00);
+}
+
+void playNote(char channel, char note){
+
+txMIDI((char)0x90 | channel, note, (char)127);
+}
+
+void setupForPlayback(){
+
+vsHoldRST();
+enableAmplifier();
+setTempo();
+setBank((char)0x00, (char)0x00);
+setBank((char)0x00, (char)0x00);
+setVolume((char)0x00, volume);
+setVolume((char)0x01, volume);
+scoreIndex = 0;
+vsReleaseRST();
+
+}
+
+static unsigned int parseDuration(char duration){
+switch(duration){
+
+case 'q':
+return quarter;
+break;
+
+case 'h':
+return half;
+break;
+
+case 'w':
+return whole;
+break;
+
+case 'e':
+return eighth;
+break;
+
+case 's':
+return sixteenth;
+break;
+
+default:
+return -1;
+break;
+}
+}
+
+void playback(){
+static int block = 0;
+char note1, note2;
+unsigned int dur1, dur2;
+unsigned int grandDuration = 0;
+
+if(block == 0){
+if(score1Count <= (score1Repeat - 1)){
+if(scoreIndex <= (score1Length - 1)){
+note1 = score1[scoreIndex][0];
+dur1 = parseDuration(score1[scoreIndex][1]);
+note2 = score1[scoreIndex][2];
+dur2 = parseDuration(score1[scoreIndex][3]);
+
+
+if(dur1 <= dur2){
+grandDuration = dur1;
+}
+
+else if(dur2 < dur1){
+grandDuration = dur2;
+}
+
+scoreIndex++;
+if(scoreIndex > (score1Length - 1)){
+score1Count++;
+scoreIndex = 0;
+}
+
+playNote(0, note1);
+playNote(1, note2);
+
+genDelay_ms(grandDuration);
+}
+}
+
+else{
+block = 1;
+score1Count = 0;
+scoreIndex = 0;
+}
+}
+
+if(block == 1){
+if(score2Count <= (score2Repeat - 1)){
+if(scoreIndex <= (score2Length - 1)){
+note1 = score2[scoreIndex][0];
+dur1 = parseDuration(score2[scoreIndex][1]);
+note2 = score2[scoreIndex][2];
+dur2 = parseDuration(score2[scoreIndex][3]);
+
+
+if(dur1 <= dur2){
+grandDuration = dur1;
+}
+
+else if(dur2 < dur1){
+grandDuration = dur2;
+}
+
+scoreIndex++;
+if(scoreIndex > (score2Length - 1)){
+score2Count++;
+scoreIndex = 0;
+}
+
+playNote(0, note1);
+playNote(1, note2);
+
+genDelay_ms(grandDuration);
+}
+}
+
+else{
+block = 0;
+score2Count = 0;
+scoreIndex = 0;
+}
+
+}
+
+
+
+}
+
+void resetPlaybackParams(){
+
+score1Count = 0;
+scoreIndex = 0;
+}
+

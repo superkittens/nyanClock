@@ -12726,16 +12726,21 @@ return 0;
 
 int dispTime(unsigned int hour, unsigned int min){
 
+int del = 0;
 if(genDelayLockStatus){
 return 1;
 }
+
+(LATDbits.LD7 = 1);
 unsigned int dig0, dig1;
 
 if((hour >= 0) && (hour < 10)){
 displayDigit(hour, 2);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(0, 3);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12744,17 +12749,21 @@ dig0 = hour % 10;
 dig1 = hour / 10;
 
 displayDigit(dig0, 2);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(dig1, 3);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
 if((min >= 0) && (min < 10)){
 displayDigit(min, 0);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(0, 1);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12763,9 +12772,11 @@ dig0 = min % 10;
 dig1 = min / 10;
 
 displayDigit(dig0, 0);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(dig1, 1);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12774,9 +12785,8 @@ displayOFF();
 
 int dispSetTime(unsigned int time, int hourMin){
 
-if(genDelayLockStatus){
-return 1;
-}
+int del = 0;
+
 
 switch(hourMin){
 
@@ -12784,9 +12794,11 @@ switch(hourMin){
 case 0:
 if((time >= 0) && (time <= 9)){
 displayDigit(time, 0);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(0, 1);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12795,9 +12807,11 @@ int dig0 = time % 10;
 int dig1 = time / 10;
 
 displayDigit(dig0, 0);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(dig1, 1);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12807,9 +12821,11 @@ break;
 case 1:
 if((time >= 0) && (time <= 9)){
 displayDigit(time, 2);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(0, 3);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12818,9 +12834,11 @@ int dig0 = time % 10;
 int dig1 = time / 10;
 
 displayDigit(dig0, 2);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayDigit(dig1, 3);
-genDelay_ms(DELAYTIME);
+for(del = 0; del < 50; del++);
+
 displayOFF();
 }
 
@@ -12854,8 +12872,10 @@ int dig1 = number / 10;
 int del = 0;
 
 displayDigit(dig0, 0);
+
 genDelay_ms(DELAYTIME);
 displayDigit(dig1, 1);
+
 genDelay_ms(DELAYTIME);
 
 }
@@ -12906,7 +12926,7 @@ if((number > 9) || (number < 0)){
 return -1;
 }
 
-# 208
+# 228
 LATA &= 0xF0;
 LATD &= 0x80;
 
@@ -12918,6 +12938,7 @@ return 0;
 
 
 void displayOFF(){
-PORTB |= 0x7F;
+PORTD |= 0x7F;
+LATDbits.LD7 = 0;
 PORTA &= 0xF0;
 }

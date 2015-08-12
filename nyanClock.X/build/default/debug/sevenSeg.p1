@@ -31,14 +31,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATDbits `VS731 ~T0 @X0 0 e@3980 ]
 "33 sevenSeg.h
 [v _displayDigit `(i ~T0 @X0 0 ef2`ui`i ]
+"34
+[v _displayOFF `(v ~T0 @X0 0 ef ]
 "18 delay.h
 [v _genDelay_ms `(i ~T0 @X0 0 ef1`ui ]
-"34 sevenSeg.h
-[v _displayOFF `(v ~T0 @X0 0 ef ]
 "9317 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
 [v _PORTA `Vuc ~T0 @X0 0 e@3968 ]
-"9610
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+"10232
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
 [; ;pic18f47j53.h: 44: extern volatile unsigned char ADCTRIG @ 0xEB8;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
 [; ;pic18f47j53.h: 46: asm("ADCTRIG equ 0EB8h");
@@ -9920,533 +9920,660 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _hour `ui ~T0 @X0 1 r1 ]
 [v _min `ui ~T0 @X0 1 r2 ]
 [f ]
-[; ;sevenSeg.c: 24: if(genDelayLockStatus){
 "24
+[v _del `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 24: int del = 0;
+[e = _del -> 0 `i ]
+[; ;sevenSeg.c: 25: if(genDelayLockStatus){
+"25
 [e $ ! != _genDelayLockStatus -> 0 `i 1362  ]
 {
-[; ;sevenSeg.c: 25: return 1;
-"25
+[; ;sevenSeg.c: 26: return 1;
+"26
 [e ) -> 1 `i ]
 [e $UE 1361  ]
-"26
+"27
 }
 [e :U 1362 ]
-[; ;sevenSeg.c: 26: }
-[; ;sevenSeg.c: 28: (LATDbits.LD7 = 1);
-"28
-[e = . . _LATDbits 8 1 -> -> 1 `i `uc ]
+[; ;sevenSeg.c: 27: }
+[; ;sevenSeg.c: 29: (LATDbits.LD7 = 1);
 "29
+[e = . . _LATDbits 8 1 -> -> 1 `i `uc ]
+"30
 [v _dig0 `ui ~T0 @X0 1 a ]
 [v _dig1 `ui ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 29: unsigned int dig0, dig1;
-[; ;sevenSeg.c: 31: if((hour >= 0) && (hour < 10)){
-"31
+[; ;sevenSeg.c: 30: unsigned int dig0, dig1;
+[; ;sevenSeg.c: 32: if((hour >= 0) && (hour < 10)){
+"32
 [e $ ! && >= _hour -> -> 0 `i `ui < _hour -> -> 10 `i `ui 1363  ]
 {
-[; ;sevenSeg.c: 32: displayDigit(hour, 2);
-"32
-[e ( _displayDigit (2 , _hour -> 2 `i ]
-[; ;sevenSeg.c: 33: genDelay_ms(DELAYTIME);
+[; ;sevenSeg.c: 33: displayDigit(hour, 2);
 "33
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 34: displayDigit(0, 3);
+[e ( _displayDigit (2 , _hour -> 2 `i ]
+[; ;sevenSeg.c: 34: for(del = 0; del < 50; del++);
 "34
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 3 `i ]
-[; ;sevenSeg.c: 35: genDelay_ms(DELAYTIME);
-"35
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 36: displayOFF();
-"36
-[e ( _displayOFF ..  ]
-"37
-}
-[; ;sevenSeg.c: 37: }
-[e $U 1364  ]
-"39
-[e :U 1363 ]
-[; ;sevenSeg.c: 39: else if(hour >= 10){
-[e $ ! >= _hour -> -> 10 `i `ui 1365  ]
 {
-[; ;sevenSeg.c: 40: dig0 = hour % 10;
-"40
-[e = _dig0 % _hour -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 41: dig1 = hour / 10;
-"41
-[e = _dig1 / _hour -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 43: displayDigit(dig0, 2);
-"43
-[e ( _displayDigit (2 , _dig0 -> 2 `i ]
-[; ;sevenSeg.c: 44: genDelay_ms(DELAYTIME);
-"44
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 45: displayDigit(dig1, 3);
-"45
-[e ( _displayDigit (2 , _dig1 -> 3 `i ]
-[; ;sevenSeg.c: 46: genDelay_ms(DELAYTIME);
-"46
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 47: displayOFF();
-"47
-[e ( _displayOFF ..  ]
-"48
-}
-[e :U 1365 ]
-"50
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1364  ]
+[e $U 1365  ]
 [e :U 1364 ]
-[; ;sevenSeg.c: 48: }
-[; ;sevenSeg.c: 50: if((min >= 0) && (min < 10)){
-[e $ ! && >= _min -> -> 0 `i `ui < _min -> -> 10 `i `ui 1366  ]
-{
-[; ;sevenSeg.c: 51: displayDigit(min, 0);
-"51
-[e ( _displayDigit (2 , _min -> 0 `i ]
-[; ;sevenSeg.c: 52: genDelay_ms(DELAYTIME);
-"52
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 53: displayDigit(0, 1);
-"53
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 1 `i ]
-[; ;sevenSeg.c: 54: genDelay_ms(DELAYTIME);
-"54
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 55: displayOFF();
-"55
-[e ( _displayOFF ..  ]
-"56
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1364  ]
+[e :U 1365 ]
 }
-[; ;sevenSeg.c: 56: }
-[e $U 1367  ]
-"58
-[e :U 1366 ]
-[; ;sevenSeg.c: 58: else if(min >= 10){
-[e $ ! >= _min -> -> 10 `i `ui 1368  ]
+[; ;sevenSeg.c: 36: displayDigit(0, 3);
+"36
+[e ( _displayDigit (2 , -> -> 0 `i `ui -> 3 `i ]
+[; ;sevenSeg.c: 37: for(del = 0; del < 50; del++);
+"37
 {
-[; ;sevenSeg.c: 59: dig0 = min % 10;
-"59
-[e = _dig0 % _min -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 60: dig1 = min / 10;
-"60
-[e = _dig1 / _min -> -> 10 `i `ui ]
-[; ;sevenSeg.c: 62: displayDigit(dig0, 0);
-"62
-[e ( _displayDigit (2 , _dig0 -> 0 `i ]
-[; ;sevenSeg.c: 63: genDelay_ms(DELAYTIME);
-"63
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 64: displayDigit(dig1, 1);
-"64
-[e ( _displayDigit (2 , _dig1 -> 1 `i ]
-[; ;sevenSeg.c: 65: genDelay_ms(DELAYTIME);
-"65
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 66: displayOFF();
-"66
-[e ( _displayOFF ..  ]
-"67
-}
-[e :U 1368 ]
-"69
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1367  ]
+[e $U 1368  ]
 [e :U 1367 ]
-[; ;sevenSeg.c: 67: }
-[; ;sevenSeg.c: 69: }
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1367  ]
+[e :U 1368 ]
+}
+[; ;sevenSeg.c: 39: displayOFF();
+"39
+[e ( _displayOFF ..  ]
+"40
+}
+[; ;sevenSeg.c: 40: }
+[e $U 1370  ]
+"42
+[e :U 1363 ]
+[; ;sevenSeg.c: 42: else if(hour >= 10){
+[e $ ! >= _hour -> -> 10 `i `ui 1371  ]
+{
+[; ;sevenSeg.c: 43: dig0 = hour % 10;
+"43
+[e = _dig0 % _hour -> -> 10 `i `ui ]
+[; ;sevenSeg.c: 44: dig1 = hour / 10;
+"44
+[e = _dig1 / _hour -> -> 10 `i `ui ]
+[; ;sevenSeg.c: 46: displayDigit(dig0, 2);
+"46
+[e ( _displayDigit (2 , _dig0 -> 2 `i ]
+[; ;sevenSeg.c: 47: for(del = 0; del < 50; del++);
+"47
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1372  ]
+[e $U 1373  ]
+[e :U 1372 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1372  ]
+[e :U 1373 ]
+}
+[; ;sevenSeg.c: 49: displayDigit(dig1, 3);
+"49
+[e ( _displayDigit (2 , _dig1 -> 3 `i ]
+[; ;sevenSeg.c: 50: for(del = 0; del < 50; del++);
+"50
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1375  ]
+[e $U 1376  ]
+[e :U 1375 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1375  ]
+[e :U 1376 ]
+}
+[; ;sevenSeg.c: 52: displayOFF();
+"52
+[e ( _displayOFF ..  ]
+"53
+}
+[e :U 1371 ]
+"55
+[e :U 1370 ]
+[; ;sevenSeg.c: 53: }
+[; ;sevenSeg.c: 55: if((min >= 0) && (min < 10)){
+[e $ ! && >= _min -> -> 0 `i `ui < _min -> -> 10 `i `ui 1378  ]
+{
+[; ;sevenSeg.c: 56: displayDigit(min, 0);
+"56
+[e ( _displayDigit (2 , _min -> 0 `i ]
+[; ;sevenSeg.c: 57: for(del = 0; del < 50; del++);
+"57
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1379  ]
+[e $U 1380  ]
+[e :U 1379 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1379  ]
+[e :U 1380 ]
+}
+[; ;sevenSeg.c: 59: displayDigit(0, 1);
+"59
+[e ( _displayDigit (2 , -> -> 0 `i `ui -> 1 `i ]
+[; ;sevenSeg.c: 60: for(del = 0; del < 50; del++);
+"60
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1382  ]
+[e $U 1383  ]
+[e :U 1382 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1382  ]
+[e :U 1383 ]
+}
+[; ;sevenSeg.c: 62: displayOFF();
+"62
+[e ( _displayOFF ..  ]
+"63
+}
+[; ;sevenSeg.c: 63: }
+[e $U 1385  ]
+"65
+[e :U 1378 ]
+[; ;sevenSeg.c: 65: else if(min >= 10){
+[e $ ! >= _min -> -> 10 `i `ui 1386  ]
+{
+[; ;sevenSeg.c: 66: dig0 = min % 10;
+"66
+[e = _dig0 % _min -> -> 10 `i `ui ]
+[; ;sevenSeg.c: 67: dig1 = min / 10;
+"67
+[e = _dig1 / _min -> -> 10 `i `ui ]
+[; ;sevenSeg.c: 69: displayDigit(dig0, 0);
+"69
+[e ( _displayDigit (2 , _dig0 -> 0 `i ]
+[; ;sevenSeg.c: 70: for(del = 0; del < 50; del++);
+"70
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1387  ]
+[e $U 1388  ]
+[e :U 1387 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1387  ]
+[e :U 1388 ]
+}
+[; ;sevenSeg.c: 72: displayDigit(dig1, 1);
+"72
+[e ( _displayDigit (2 , _dig1 -> 1 `i ]
+[; ;sevenSeg.c: 73: for(del = 0; del < 50; del++);
+"73
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1390  ]
+[e $U 1391  ]
+[e :U 1390 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1390  ]
+[e :U 1391 ]
+}
+[; ;sevenSeg.c: 75: displayOFF();
+"75
+[e ( _displayOFF ..  ]
+"76
+}
+[e :U 1386 ]
+"78
+[e :U 1385 ]
+[; ;sevenSeg.c: 76: }
+[; ;sevenSeg.c: 78: }
 [e :UE 1361 ]
 }
-"72
+"81
 [v _dispSetTime `(i ~T0 @X0 1 ef2`ui`i ]
 {
-[; ;sevenSeg.c: 72: int dispSetTime(unsigned int time, int hourMin){
+[; ;sevenSeg.c: 81: int dispSetTime(unsigned int time, int hourMin){
 [e :U _dispSetTime ]
 [v _time `ui ~T0 @X0 1 r1 ]
 [v _hourMin `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;sevenSeg.c: 74: if(genDelayLockStatus){
-"74
-[e $ ! != _genDelayLockStatus -> 0 `i 1370  ]
-{
-[; ;sevenSeg.c: 75: return 1;
-"75
-[e ) -> 1 `i ]
-[e $UE 1369  ]
-"76
-}
-[e :U 1370 ]
-[; ;sevenSeg.c: 76: }
-[; ;sevenSeg.c: 78: switch(hourMin){
-"78
-[e $U 1372  ]
-{
-[; ;sevenSeg.c: 81: case 0:
-"81
-[e :U 1373 ]
-[; ;sevenSeg.c: 82: if((time >= 0) && (time <= 9)){
-"82
-[e $ ! && >= _time -> -> 0 `i `ui <= _time -> -> 9 `i `ui 1374  ]
-{
-[; ;sevenSeg.c: 83: displayDigit(time, 0);
 "83
-[e ( _displayDigit (2 , _time -> 0 `i ]
-[; ;sevenSeg.c: 84: genDelay_ms(DELAYTIME);
-"84
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 85: displayDigit(0, 1);
-"85
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 1 `i ]
-[; ;sevenSeg.c: 86: genDelay_ms(DELAYTIME);
+[v _del `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 83: int del = 0;
+[e = _del -> 0 `i ]
+[; ;sevenSeg.c: 86: switch(hourMin){
 "86
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 87: displayOFF();
-"87
-[e ( _displayOFF ..  ]
-"88
-}
-[; ;sevenSeg.c: 88: }
-[e $U 1375  ]
+[e $U 1395  ]
+{
+[; ;sevenSeg.c: 89: case 0:
+"89
+[e :U 1396 ]
+[; ;sevenSeg.c: 90: if((time >= 0) && (time <= 9)){
 "90
-[e :U 1374 ]
-[; ;sevenSeg.c: 90: else if(time >= 10){
-[e $ ! >= _time -> -> 10 `i `ui 1376  ]
+[e $ ! && >= _time -> -> 0 `i `ui <= _time -> -> 9 `i `ui 1397  ]
 {
+[; ;sevenSeg.c: 91: displayDigit(time, 0);
 "91
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 91: int dig0 = time % 10;
-[e = _dig0 -> % _time -> -> 10 `i `ui `i ]
+[e ( _displayDigit (2 , _time -> 0 `i ]
+[; ;sevenSeg.c: 92: for(del = 0; del < 50; del++);
 "92
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 92: int dig1 = time / 10;
-[e = _dig1 -> / _time -> -> 10 `i `ui `i ]
-[; ;sevenSeg.c: 94: displayDigit(dig0, 0);
-"94
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 95: genDelay_ms(DELAYTIME);
-"95
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 96: displayDigit(dig1, 1);
-"96
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 97: genDelay_ms(DELAYTIME);
-"97
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 98: displayOFF();
-"98
-[e ( _displayOFF ..  ]
-"99
-}
-[e :U 1376 ]
-"101
-[e :U 1375 ]
-[; ;sevenSeg.c: 99: }
-[; ;sevenSeg.c: 101: break;
-[e $U 1371  ]
-[; ;sevenSeg.c: 104: case 1:
-"104
-[e :U 1377 ]
-[; ;sevenSeg.c: 105: if((time >= 0) && (time <= 9)){
-"105
-[e $ ! && >= _time -> -> 0 `i `ui <= _time -> -> 9 `i `ui 1378  ]
 {
-[; ;sevenSeg.c: 106: displayDigit(time, 2);
-"106
-[e ( _displayDigit (2 , _time -> 2 `i ]
-[; ;sevenSeg.c: 107: genDelay_ms(DELAYTIME);
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1398  ]
+[e $U 1399  ]
+[e :U 1398 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1398  ]
+[e :U 1399 ]
+}
+[; ;sevenSeg.c: 94: displayDigit(0, 1);
+"94
+[e ( _displayDigit (2 , -> -> 0 `i `ui -> 1 `i ]
+[; ;sevenSeg.c: 95: for(del = 0; del < 50; del++);
+"95
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1401  ]
+[e $U 1402  ]
+[e :U 1401 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1401  ]
+[e :U 1402 ]
+}
+[; ;sevenSeg.c: 97: displayOFF();
+"97
+[e ( _displayOFF ..  ]
+"98
+}
+[; ;sevenSeg.c: 98: }
+[e $U 1404  ]
+"100
+[e :U 1397 ]
+[; ;sevenSeg.c: 100: else if(time >= 10){
+[e $ ! >= _time -> -> 10 `i `ui 1405  ]
+{
+"101
+[v _dig0 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 101: int dig0 = time % 10;
+[e = _dig0 -> % _time -> -> 10 `i `ui `i ]
+"102
+[v _dig1 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 102: int dig1 = time / 10;
+[e = _dig1 -> / _time -> -> 10 `i `ui `i ]
+[; ;sevenSeg.c: 104: displayDigit(dig0, 0);
+"104
+[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
+[; ;sevenSeg.c: 105: for(del = 0; del < 50; del++);
+"105
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1406  ]
+[e $U 1407  ]
+[e :U 1406 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1406  ]
+[e :U 1407 ]
+}
+[; ;sevenSeg.c: 107: displayDigit(dig1, 1);
 "107
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 108: displayDigit(0, 3);
+[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
+[; ;sevenSeg.c: 108: for(del = 0; del < 50; del++);
 "108
-[e ( _displayDigit (2 , -> -> 0 `i `ui -> 3 `i ]
-[; ;sevenSeg.c: 109: genDelay_ms(DELAYTIME);
-"109
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1409  ]
+[e $U 1410  ]
+[e :U 1409 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1409  ]
+[e :U 1410 ]
+}
 [; ;sevenSeg.c: 110: displayOFF();
 "110
 [e ( _displayOFF ..  ]
 "111
 }
-[; ;sevenSeg.c: 111: }
-[e $U 1379  ]
+[e :U 1405 ]
 "113
-[e :U 1378 ]
-[; ;sevenSeg.c: 113: else if(time >= 10){
-[e $ ! >= _time -> -> 10 `i `ui 1380  ]
-{
-"114
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 114: int dig0 = time % 10;
-[e = _dig0 -> % _time -> -> 10 `i `ui `i ]
-"115
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 115: int dig1 = time / 10;
-[e = _dig1 -> / _time -> -> 10 `i `ui `i ]
-[; ;sevenSeg.c: 117: displayDigit(dig0, 2);
+[e :U 1404 ]
+[; ;sevenSeg.c: 111: }
+[; ;sevenSeg.c: 113: break;
+[e $U 1394  ]
+[; ;sevenSeg.c: 116: case 1:
+"116
+[e :U 1412 ]
+[; ;sevenSeg.c: 117: if((time >= 0) && (time <= 9)){
 "117
-[e ( _displayDigit (2 , -> _dig0 `ui -> 2 `i ]
-[; ;sevenSeg.c: 118: genDelay_ms(DELAYTIME);
+[e $ ! && >= _time -> -> 0 `i `ui <= _time -> -> 9 `i `ui 1413  ]
+{
+[; ;sevenSeg.c: 118: displayDigit(time, 2);
 "118
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 119: displayDigit(dig1, 3);
+[e ( _displayDigit (2 , _time -> 2 `i ]
+[; ;sevenSeg.c: 119: for(del = 0; del < 50; del++);
 "119
-[e ( _displayDigit (2 , -> _dig1 `ui -> 3 `i ]
-[; ;sevenSeg.c: 120: genDelay_ms(DELAYTIME);
-"120
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 121: displayOFF();
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1414  ]
+[e $U 1415  ]
+[e :U 1414 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1414  ]
+[e :U 1415 ]
+}
+[; ;sevenSeg.c: 121: displayDigit(0, 3);
 "121
-[e ( _displayOFF ..  ]
+[e ( _displayDigit (2 , -> -> 0 `i `ui -> 3 `i ]
+[; ;sevenSeg.c: 122: for(del = 0; del < 50; del++);
 "122
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1417  ]
+[e $U 1418  ]
+[e :U 1417 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1417  ]
+[e :U 1418 ]
 }
-[e :U 1380 ]
+[; ;sevenSeg.c: 124: displayOFF();
 "124
-[e :U 1379 ]
-[; ;sevenSeg.c: 122: }
-[; ;sevenSeg.c: 124: break;
-[e $U 1371  ]
-"126
+[e ( _displayOFF ..  ]
+"125
 }
-[; ;sevenSeg.c: 126: }
-[e $U 1371  ]
-"78
-[e :U 1372 ]
-[e [\ _hourMin , $ -> 0 `i 1373
- , $ -> 1 `i 1377
- 1371 ]
-"126
-[e :U 1371 ]
-[; ;sevenSeg.c: 127: }
+[; ;sevenSeg.c: 125: }
+[e $U 1420  ]
 "127
-[e :UE 1369 ]
-}
+[e :U 1413 ]
+[; ;sevenSeg.c: 127: else if(time >= 10){
+[e $ ! >= _time -> -> 10 `i `ui 1421  ]
+{
+"128
+[v _dig0 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 128: int dig0 = time % 10;
+[e = _dig0 -> % _time -> -> 10 `i `ui `i ]
+"129
+[v _dig1 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 129: int dig1 = time / 10;
+[e = _dig1 -> / _time -> -> 10 `i `ui `i ]
+[; ;sevenSeg.c: 131: displayDigit(dig0, 2);
 "131
+[e ( _displayDigit (2 , -> _dig0 `ui -> 2 `i ]
+[; ;sevenSeg.c: 132: for(del = 0; del < 50; del++);
+"132
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1422  ]
+[e $U 1423  ]
+[e :U 1422 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1422  ]
+[e :U 1423 ]
+}
+[; ;sevenSeg.c: 134: displayDigit(dig1, 3);
+"134
+[e ( _displayDigit (2 , -> _dig1 `ui -> 3 `i ]
+[; ;sevenSeg.c: 135: for(del = 0; del < 50; del++);
+"135
+{
+[e = _del -> 0 `i ]
+[e $ < _del -> 50 `i 1425  ]
+[e $U 1426  ]
+[e :U 1425 ]
+[e ++ _del -> 1 `i ]
+[e $ < _del -> 50 `i 1425  ]
+[e :U 1426 ]
+}
+[; ;sevenSeg.c: 137: displayOFF();
+"137
+[e ( _displayOFF ..  ]
+"138
+}
+[e :U 1421 ]
+"140
+[e :U 1420 ]
+[; ;sevenSeg.c: 138: }
+[; ;sevenSeg.c: 140: break;
+[e $U 1394  ]
+"142
+}
+[; ;sevenSeg.c: 142: }
+[e $U 1394  ]
+"86
+[e :U 1395 ]
+[e [\ _hourMin , $ -> 0 `i 1396
+ , $ -> 1 `i 1412
+ 1394 ]
+"142
+[e :U 1394 ]
+[; ;sevenSeg.c: 143: }
+"143
+[e :UE 1393 ]
+}
+"147
 [v _displayNum `(i ~T0 @X0 1 ef1`ui ]
 {
-[; ;sevenSeg.c: 131: int displayNum(unsigned int number){
+[; ;sevenSeg.c: 147: int displayNum(unsigned int number){
 [e :U _displayNum ]
 [v _number `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;sevenSeg.c: 133: if(genDelayLockStatus){
-"133
-[e $ ! != _genDelayLockStatus -> 0 `i 1382  ]
+[; ;sevenSeg.c: 149: if(genDelayLockStatus){
+"149
+[e $ ! != _genDelayLockStatus -> 0 `i 1429  ]
 {
-[; ;sevenSeg.c: 134: return 1;
-"134
+[; ;sevenSeg.c: 150: return 1;
+"150
 [e ) -> 1 `i ]
-[e $UE 1381  ]
-"135
+[e $UE 1428  ]
+"151
 }
-[e :U 1382 ]
-[; ;sevenSeg.c: 135: }
-[; ;sevenSeg.c: 137: if(number > 9999){ return -1; }
-"137
-[e $ ! > _number -> -> 9999 `i `ui 1383  ]
+[e :U 1429 ]
+[; ;sevenSeg.c: 151: }
+[; ;sevenSeg.c: 153: if(number > 9999){ return -1; }
+"153
+[e $ ! > _number -> -> 9999 `i `ui 1430  ]
 {
 [e ) -U -> 1 `i ]
-[e $UE 1381  ]
+[e $UE 1428  ]
 }
-[e :U 1383 ]
-[; ;sevenSeg.c: 140: if((number >= 0) && (number <= 9)){
-"140
-[e $ ! && >= _number -> -> 0 `i `ui <= _number -> -> 9 `i `ui 1384  ]
-{
-[; ;sevenSeg.c: 142: displayDigit(number, 0);
-"142
-[e ( _displayDigit (2 , _number -> 0 `i ]
-[; ;sevenSeg.c: 143: genDelay_ms(DELAYTIME);
-"143
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"144
-}
-[; ;sevenSeg.c: 144: }
-[e $U 1385  ]
-"147
-[e :U 1384 ]
-[; ;sevenSeg.c: 147: else if((number > 9) && (number <= 99)){
-[e $ ! && > _number -> -> 9 `i `ui <= _number -> -> 99 `i `ui 1386  ]
-{
-"149
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 149: int dig0 = number % 10;
-[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
-"150
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 150: int dig1 = number / 10;
-[e = _dig1 -> / _number -> -> 10 `i `ui `i ]
-"151
-[v _del `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 151: int del = 0;
-[e = _del -> 0 `i ]
-[; ;sevenSeg.c: 153: displayDigit(dig0, 0);
-"153
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 154: genDelay_ms(DELAYTIME);
-"154
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 155: displayDigit(dig1, 1);
-"155
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 156: genDelay_ms(DELAYTIME);
+[e :U 1430 ]
+[; ;sevenSeg.c: 156: if((number >= 0) && (number <= 9)){
 "156
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+[e $ ! && >= _number -> -> 0 `i `ui <= _number -> -> 9 `i `ui 1431  ]
+{
+[; ;sevenSeg.c: 158: displayDigit(number, 0);
 "158
-}
-[; ;sevenSeg.c: 158: }
-[e $U 1387  ]
+[e ( _displayDigit (2 , _number -> 0 `i ]
+[; ;sevenSeg.c: 159: genDelay_ms(DELAYTIME);
+"159
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
 "160
-[e :U 1386 ]
-[; ;sevenSeg.c: 160: else if((number > 99) && (number <= 999)){
-[e $ ! && > _number -> -> 99 `i `ui <= _number -> -> 999 `i `ui 1388  ]
-{
-"162
-[v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 162: int dig0 = number % 10;
-[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
+}
+[; ;sevenSeg.c: 160: }
+[e $U 1432  ]
 "163
-[v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 163: int dig1 = number % 100 / 10;
-[e = _dig1 -> / % _number -> -> 100 `i `ui -> -> 10 `i `ui `i ]
-"164
-[v _dig2 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 164: int dig2 = number / 100;
-[e = _dig2 -> / _number -> -> 100 `i `ui `i ]
-"165
-[v _del `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 165: int del = 0;
-[e = _del -> 0 `i ]
-[; ;sevenSeg.c: 167: displayDigit(dig0, 0);
-"167
-[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 168: genDelay_ms(DELAYTIME);
-"168
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 169: displayDigit(dig1, 1);
-"169
-[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 170: genDelay_ms(DELAYTIME);
-"170
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 171: displayDigit(dig2, 2);
-"171
-[e ( _displayDigit (2 , -> _dig2 `ui -> 2 `i ]
-[; ;sevenSeg.c: 172: genDelay_ms(DELAYTIME);
-"172
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"174
-}
-[; ;sevenSeg.c: 174: }
-[e $U 1389  ]
-"176
-[e :U 1388 ]
-[; ;sevenSeg.c: 176: else if((number > 999) && (number <= 9999)){
-[e $ ! && > _number -> -> 999 `i `ui <= _number -> -> 9999 `i `ui 1390  ]
+[e :U 1431 ]
+[; ;sevenSeg.c: 163: else if((number > 9) && (number <= 99)){
+[e $ ! && > _number -> -> 9 `i `ui <= _number -> -> 99 `i `ui 1433  ]
 {
-"178
+"165
 [v _dig0 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 178: int dig0 = number % 10;
+[; ;sevenSeg.c: 165: int dig0 = number % 10;
 [e = _dig0 -> % _number -> -> 10 `i `ui `i ]
-"179
+"166
 [v _dig1 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 179: int dig1 = number % 1000 % 100 / 10;
-[e = _dig1 -> / % % _number -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 10 `i `ui `i ]
-"180
-[v _dig2 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 180: int dig2 = number % 1000 / 100;
-[e = _dig2 -> / % _number -> -> 1000 `i `ui -> -> 100 `i `ui `i ]
-"181
-[v _dig3 `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 181: int dig3 = number / 1000;
-[e = _dig3 -> / _number -> -> 1000 `i `ui `i ]
-"182
+[; ;sevenSeg.c: 166: int dig1 = number / 10;
+[e = _dig1 -> / _number -> -> 10 `i `ui `i ]
+"167
 [v _del `i ~T0 @X0 1 a ]
-[; ;sevenSeg.c: 182: int del = 0;
+[; ;sevenSeg.c: 167: int del = 0;
 [e = _del -> 0 `i ]
-[; ;sevenSeg.c: 184: displayDigit(dig0, 0);
-"184
+[; ;sevenSeg.c: 169: displayDigit(dig0, 0);
+"169
 [e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
-[; ;sevenSeg.c: 185: genDelay_ms(DELAYTIME);
-"185
+[; ;sevenSeg.c: 171: genDelay_ms(DELAYTIME);
+"171
 [e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 186: displayDigit(dig1, 1);
-"186
+[; ;sevenSeg.c: 172: displayDigit(dig1, 1);
+"172
 [e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
-[; ;sevenSeg.c: 187: genDelay_ms(DELAYTIME);
+[; ;sevenSeg.c: 174: genDelay_ms(DELAYTIME);
+"174
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+"176
+}
+[; ;sevenSeg.c: 176: }
+[e $U 1434  ]
+"178
+[e :U 1433 ]
+[; ;sevenSeg.c: 178: else if((number > 99) && (number <= 999)){
+[e $ ! && > _number -> -> 99 `i `ui <= _number -> -> 999 `i `ui 1435  ]
+{
+"180
+[v _dig0 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 180: int dig0 = number % 10;
+[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
+"181
+[v _dig1 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 181: int dig1 = number % 100 / 10;
+[e = _dig1 -> / % _number -> -> 100 `i `ui -> -> 10 `i `ui `i ]
+"182
+[v _dig2 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 182: int dig2 = number / 100;
+[e = _dig2 -> / _number -> -> 100 `i `ui `i ]
+"183
+[v _del `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 183: int del = 0;
+[e = _del -> 0 `i ]
+[; ;sevenSeg.c: 185: displayDigit(dig0, 0);
+"185
+[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
+[; ;sevenSeg.c: 186: genDelay_ms(DELAYTIME);
+"186
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+[; ;sevenSeg.c: 187: displayDigit(dig1, 1);
 "187
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 188: displayDigit(dig2, 2);
+[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
+[; ;sevenSeg.c: 188: genDelay_ms(DELAYTIME);
 "188
-[e ( _displayDigit (2 , -> _dig2 `ui -> 2 `i ]
-[; ;sevenSeg.c: 189: genDelay_ms(DELAYTIME);
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+[; ;sevenSeg.c: 189: displayDigit(dig2, 2);
 "189
-[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-[; ;sevenSeg.c: 190: displayDigit(dig3, 3);
+[e ( _displayDigit (2 , -> _dig2 `ui -> 2 `i ]
+[; ;sevenSeg.c: 190: genDelay_ms(DELAYTIME);
 "190
-[e ( _displayDigit (2 , -> _dig3 `ui -> 3 `i ]
-[; ;sevenSeg.c: 191: genDelay_ms(DELAYTIME);
-"191
 [e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
-"193
+"192
 }
-[e :U 1390 ]
-"195
-[e :U 1389 ]
-[e :U 1387 ]
-[e :U 1385 ]
-[; ;sevenSeg.c: 193: }
-[; ;sevenSeg.c: 195: displayOFF();
-[e ( _displayOFF ..  ]
-[; ;sevenSeg.c: 196: }
+[; ;sevenSeg.c: 192: }
+[e $U 1436  ]
+"194
+[e :U 1435 ]
+[; ;sevenSeg.c: 194: else if((number > 999) && (number <= 9999)){
+[e $ ! && > _number -> -> 999 `i `ui <= _number -> -> 9999 `i `ui 1437  ]
+{
 "196
-[e :UE 1381 ]
-}
+[v _dig0 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 196: int dig0 = number % 10;
+[e = _dig0 -> % _number -> -> 10 `i `ui `i ]
+"197
+[v _dig1 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 197: int dig1 = number % 1000 % 100 / 10;
+[e = _dig1 -> / % % _number -> -> 1000 `i `ui -> -> 100 `i `ui -> -> 10 `i `ui `i ]
+"198
+[v _dig2 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 198: int dig2 = number % 1000 / 100;
+[e = _dig2 -> / % _number -> -> 1000 `i `ui -> -> 100 `i `ui `i ]
+"199
+[v _dig3 `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 199: int dig3 = number / 1000;
+[e = _dig3 -> / _number -> -> 1000 `i `ui `i ]
 "200
+[v _del `i ~T0 @X0 1 a ]
+[; ;sevenSeg.c: 200: int del = 0;
+[e = _del -> 0 `i ]
+[; ;sevenSeg.c: 202: displayDigit(dig0, 0);
+"202
+[e ( _displayDigit (2 , -> _dig0 `ui -> 0 `i ]
+[; ;sevenSeg.c: 203: genDelay_ms(DELAYTIME);
+"203
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+[; ;sevenSeg.c: 204: displayDigit(dig1, 1);
+"204
+[e ( _displayDigit (2 , -> _dig1 `ui -> 1 `i ]
+[; ;sevenSeg.c: 205: genDelay_ms(DELAYTIME);
+"205
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+[; ;sevenSeg.c: 206: displayDigit(dig2, 2);
+"206
+[e ( _displayDigit (2 , -> _dig2 `ui -> 2 `i ]
+[; ;sevenSeg.c: 207: genDelay_ms(DELAYTIME);
+"207
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+[; ;sevenSeg.c: 208: displayDigit(dig3, 3);
+"208
+[e ( _displayDigit (2 , -> _dig3 `ui -> 3 `i ]
+[; ;sevenSeg.c: 209: genDelay_ms(DELAYTIME);
+"209
+[e ( _genDelay_ms (1 -> _DELAYTIME `ui ]
+"211
+}
+[e :U 1437 ]
+"213
+[e :U 1436 ]
+[e :U 1434 ]
+[e :U 1432 ]
+[; ;sevenSeg.c: 211: }
+[; ;sevenSeg.c: 213: displayOFF();
+[e ( _displayOFF ..  ]
+[; ;sevenSeg.c: 214: }
+"214
+[e :UE 1428 ]
+}
+"218
 [v _displayDigit `(i ~T0 @X0 1 ef2`ui`i ]
 {
-[; ;sevenSeg.c: 200: int displayDigit(unsigned int number, int digit){
+[; ;sevenSeg.c: 218: int displayDigit(unsigned int number, int digit){
 [e :U _displayDigit ]
 [v _number `ui ~T0 @X0 1 r1 ]
 [v _digit `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;sevenSeg.c: 202: if((number > 9) || (number < 0)){
-"202
-[e $ ! || > _number -> -> 9 `i `ui < _number -> -> 0 `i `ui 1392  ]
-{
-[; ;sevenSeg.c: 203: return -1;
-"203
-[e ) -U -> 1 `i ]
-[e $UE 1391  ]
-"204
-}
-[e :U 1392 ]
-[; ;sevenSeg.c: 204: }
-[; ;sevenSeg.c: 210: LATA &= 0xF0;
-"210
-[e =& _LATA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 211: LATD &= 0x80;
-"211
-[e =& _LATD -> -> 128 `i `uc ]
-[; ;sevenSeg.c: 213: LATD |= SEGSINKARRAY[number];
-"213
-[e =| _LATD *U + &U _SEGSINKARRAY * -> _number `ux -> -> # *U &U _SEGSINKARRAY `ui `ux ]
-[; ;sevenSeg.c: 214: PORTA |= SEGDIGARRAY[digit];
-"214
-[e =| _PORTA *U + &U _SEGDIGARRAY * -> -> _digit `ui `ux -> -> # *U &U _SEGDIGARRAY `ui `ux ]
-[; ;sevenSeg.c: 216: return 0;
-"216
-[e ) -> 0 `i ]
-[e $UE 1391  ]
-[; ;sevenSeg.c: 217: }
-"217
-[e :UE 1391 ]
-}
+[; ;sevenSeg.c: 220: if((number > 9) || (number < 0)){
 "220
+[e $ ! || > _number -> -> 9 `i `ui < _number -> -> 0 `i `ui 1439  ]
+{
+[; ;sevenSeg.c: 221: return -1;
+"221
+[e ) -U -> 1 `i ]
+[e $UE 1438  ]
+"222
+}
+[e :U 1439 ]
+[; ;sevenSeg.c: 222: }
+[; ;sevenSeg.c: 228: LATA &= 0xF0;
+"228
+[e =& _LATA -> -> 240 `i `uc ]
+[; ;sevenSeg.c: 229: LATD &= 0x80;
+"229
+[e =& _LATD -> -> 128 `i `uc ]
+[; ;sevenSeg.c: 231: LATD |= SEGSINKARRAY[number];
+"231
+[e =| _LATD *U + &U _SEGSINKARRAY * -> _number `ux -> -> # *U &U _SEGSINKARRAY `ui `ux ]
+[; ;sevenSeg.c: 232: PORTA |= SEGDIGARRAY[digit];
+"232
+[e =| _PORTA *U + &U _SEGDIGARRAY * -> -> _digit `ui `ux -> -> # *U &U _SEGDIGARRAY `ui `ux ]
+[; ;sevenSeg.c: 234: return 0;
+"234
+[e ) -> 0 `i ]
+[e $UE 1438  ]
+[; ;sevenSeg.c: 235: }
+"235
+[e :UE 1438 ]
+}
+"238
 [v _displayOFF `(v ~T0 @X0 1 ef ]
 {
-[; ;sevenSeg.c: 220: void displayOFF(){
+[; ;sevenSeg.c: 238: void displayOFF(){
 [e :U _displayOFF ]
 [f ]
-[; ;sevenSeg.c: 221: PORTB |= 0x7F;
-"221
-[e =| _PORTB -> -> 127 `i `uc ]
-[; ;sevenSeg.c: 222: PORTA &= 0xF0;
-"222
+[; ;sevenSeg.c: 239: PORTD |= 0x7F;
+"239
+[e =| _PORTD -> -> 127 `i `uc ]
+[; ;sevenSeg.c: 240: LATDbits.LD7 = 0;
+"240
+[e = . . _LATDbits 8 1 -> -> 0 `i `uc ]
+[; ;sevenSeg.c: 241: PORTA &= 0xF0;
+"241
 [e =& _PORTA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 223: }
-"223
-[e :UE 1393 ]
+[; ;sevenSeg.c: 242: }
+"242
+[e :UE 1440 ]
 }

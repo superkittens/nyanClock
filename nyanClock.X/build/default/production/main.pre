@@ -12776,10 +12776,20 @@ static int encoderStates[16] = {0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1,
 static unsigned char oldState = 0;
 unsigned char PCTemp = 0x00;
 
+struct{
+int turnFlag;
+
+}REFlags;
+
 int rotEncInit();
 int readEnc();
 int clickEvent();
 int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck );
+void REEnableInterrupts();
+void REDisableInterrupts();
+void RELockout();
+void RERelease();
+int REReadEncoder(unsigned char* collectedStates);
 
 # 40 "led.h"
 int enableLED(){
@@ -12791,25 +12801,76 @@ int enableLED(){
 (TRISAbits.TRISA5 = 0);
 (TRISBbits.TRISB1 = 0);
 (TRISBbits.TRISB2 = 0);
+(TRISBbits.TRISB6 = 0);
 
 (LATEbits.LE0 = 0);
 (LATEbits.LE1 = 0);
 (LATEbits.LE2 = 0);
 
 (LATAbits.LA5 = 0);
-(LATBbits.LB1 = 1);
 (LATBbits.LB2 = 1);
+(LATBbits.LB1 = 1);
 }
 
 int ALL_ALM_LED_ON(){
 (LATEbits.LE0 = 1);
 (LATEbits.LE1 = 1);
 (LATEbits.LE2 = 1);
+
+}
+
+int ALL_ALM_LED_OFF(){
+(LATEbits.LE0 = 0);
+(LATEbits.LE1 = 0);
+(LATEbits.LE2 = 0);
+}
+
+int ALL_IND_LED_OFF(){
+(LATAbits.LA5 = 0);
+(LATBbits.LB2 = 1);
+(LATBbits.LB1 = 1);
+(LATBbits.LB6 = 0);
+}
+
+void toggleLED(unsigned int sequence){
+ALL_ALM_LED_OFF();
+switch(sequence){
+case 0:
+(LATEbits.LE0 = 1);
+break;
+
+case 1:
+(LATEbits.LE1 = 1);
+break;
+
+case 2:
+(LATEbits.LE2 = 1);
+break;
+
+case 3:
+(LATEbits.LE0 = 1);
+(LATEbits.LE1 = 1);
+break;
+
+case 4:
+(LATEbits.LE1 = 1);
+(LATEbits.LE2 = 1);
+break;
+
+case 5:
+ALL_ALM_LED_ON();
+break;
+
+default:
+ALL_ALM_LED_OFF();
+break;
+}
 }
 
 # 13 "time.h"
 int timeInit(rtccTime * pTime, unsigned int hour, unsigned int min);
 int alarmInit(rtccTime *pAlarm, unsigned int hour, unsigned int min);
+int enableTime();
 int getTime(rtccTime *pTime);
 int writeTime(rtccTime *pTime);
 
@@ -12817,31 +12878,204 @@ int writeTime(rtccTime *pTime);
 unsigned char dtobcd(unsigned int);
 unsigned int bcdtod(unsigned char);
 
+# 16 "sound.h"
+int soundInit();
+void enableAmplifier();
+void disableAmplifier();
+void vsHoldRST();
+void vsReleaseRST();
+int setTempo();
+void setVolume(char channel, char volume);
+void setBank(char channel, char bank);
+void setInstrument(char channel, char instrument);
+void playNote(char channel, char note);
+void setupForPlayback();
+void playback();
+void resetPlaybackParams();
+
+static void txMIDI(char cmd, char data1, char data2);
+static unsigned int parseDuration(char duration);
+
+unsigned int numInstruments = 2;
+
+unsigned int whole, half, quarter, eighth, sixteenth;
+char volume = 127;
+int exitAlarmFlag = 0;
+static int scoreIndex = 0;
+
+
+
+unsigned int score1Length = 53;
+unsigned int score1Repeat = 2;
+unsigned int score1Count = 0;
+char score1[53][4] = {
+{78, 'q', 52, 'q'},
+{80, 'q', 64, 'q'},
+{74, 'e', 54, 'q'},
+{75, 'e', 0, 'e'},
+{0, 'e', 66, 'q'},
+{71, 'e', 0, 'e'},
+{74, 'e', 51, 'q'},
+{73, 'e', 0, 'e'},
+{71, 'q', 63, 'q'},
+{71, 'q', 56, 'q'},
+{71, 'e', 68, 'q'},
+{73, 'e', 0, 'q'},
+{74, 'q', 49, 'q'},
+{74, 'e', 61, 'q'},
+{73, 'e', 0, 'e'},
+{71, 'e', 54, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 66, 'q'},
+{78, 'e', 0, 'e'},
+{80, 'e', 47, 'q'},
+{75, 'e', 0, 'e'},
+{78, 'e', 59, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 47, 'q'},
+{71, 'e', 0, 'e'},
+{73, 'e', 59, 'q'},
+{71, 'e', 0, 'e'},
+{75, 'q', 52, 'q'},
+{78, 'q', 64, 'q'},
+{80, 'e', 54, 'q'},
+{75, 'e', 0, 'e'},
+{78, 'e', 66, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 51, 'q'},
+{71, 'e', 0, 'e'},
+{73, 'e', 63, 'q'},
+{75, 'e', 0, 'e'},
+{73, 'e', 56, 'q'},
+{71, 'e', 0, 'e'},
+{68, 'e', 68, 'q'},
+{71, 'e', 0, 'e'},
+{74, 'q', 49, 'q'},
+{71, 'e', 61, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 54, 'q'},
+{78, 'e', 0, 'e'},
+{73, 'e', 66, 'q'},
+{75, 'e', 0, 'e'},
+{73, 'e', 47, 'q'},
+{71, 'e', 0, 'e'},
+{68, 'q', 59, 'q'},
+{71, 'q', 47, 'q'},
+{0, 'q', 59, 'q'}
+};
+
+unsigned int score2Length = 55;
+unsigned int score2Repeat = 2;
+unsigned int score2Count = 0;
+char score2[55][4] = {
+{71, 'q', 52, 'q'},
+{66, 'e', 56, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'q', 59, 'q'},
+{66, 'e', 63, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'e', 51, 'q'},
+{73, 'e', 0, 'e'},
+{75, 'e', 54, 'q'},
+{71, 'e', 0, 'e'},
+{76, 'e', 59 , 'q'},
+{75, 'e', 0, 'e'},
+{76, 'e', 63, 'q'},
+{78, 'e', 0, 'e'},
+{71, 'q', 49, 'q'},
+{66, 'e', 52, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'q', 56, 'q'},
+{66, 'e', 59, 'q'},
+{68, 'e', 0, 'e'},
+{76, 'e', 47, 'q'},
+{75, 'e', 0, 'e'},
+{73, 'e', 51, 'q'},
+{71, 'e', 0, 'e'},
+{66, 'e', 54, 'e'},
+{63, 'e', 0, 'e'},
+{64, 'e', 59, 'q'},
+{66, 'e', 0, 'e'},
+{71, 'q', 52, 'q'},
+{66, 'e', 56, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'q', 59, 'q'},
+{66, 'e', 63, 'q'},
+{68, 'e', 0, 'e'},
+{71, 'e', 51, 'q'},
+{71, 'e', 0, 'e'},
+{73, 'e', 54, 'q'},
+{75, 'e', 0, 'e'},
+{71, 'e', 59, 'q'},
+{66, 'e', 0, 'e'},
+{68, 'e', 63, 'q'},
+{66, 'e', 0, 'e'},
+{71, 'q', 49, 'q'},
+{71, 'e', 52, 'q'},
+{70, 'e', 0, 'e'},
+{71, 'e', 56, 'q'},
+{66, 'e', 0, 'e'},
+{68, 'e', 59, 'q'},
+{70, 'e', 0, 'e'},
+{76, 'e', 47, 'q'},
+{75, 'e', 0, 'e'},
+{76, 'e', 51, 'q'},
+{78, 'e', 0, 'e'},
+{71, 'q', 54, 'q'},
+{70, 'q', 59, 'q'}
+};
+
 
 # 20 "main.c"
 #pragma config WDTEN = OFF, OSC = HS, CPUDIV = OSC1, CFGPLLEN = OFF, PLLDIV =1, XINST = OFF, RTCOSC = T1OSCREF
 
 
-int setTime();
+int state_settingsCycle();
+int state_setTime();
+int state_setAlarm();
+int state_soundAlarm();
+
+volatile unsigned char tmp = 0x00;
+volatile int test = 0;
+volatile int showTime = 0;
+int settingsFlag = 0;
+int isAlarmOn = 0;
+int alarmFlag = 0;
+
+const int MAX_SELECTION = 2;
 
 int main(int argc, char** argv) {
 
 
 RCONbits.IPEN = 1;
 INTCONbits.GIEH = 1;
-INTCONbits.GIEL = 0;
+INTCONbits.GIEL = 1;
 INTCONbits.TMR0IE = 1;
 INTCON2bits.T0IP = 1;
+PIE3bits.RTCCIE = 1;
+IPR3bits.RTCCIP = 1;
+ANCON1bits.PCFG12 = 1;
+TRISBbits.TRISB0 = 1;
+INTCONbits.INT0IE = 1;
+INTCON2bits.INTEDG0 = 0;
+
+RTCCIF = 0;
 
 enableLED();
 initGeneralTimer();
 sevenSegInit();
 rotEncInit();
+soundInit();
 
 rtccTime RTCCTime;
 rtccTime RTCCRead;
+rtccTime RTCCAlarm;
 
 timeInit(&RTCCTime, 0, 0);
+alarmInit(&RTCCAlarm, 0, 1);
+enableTime();
+
+tmp |= ((PORTB & 0x30) >> 4);
 
 (LATEbits.LE0 = 1);
 genDelay_ms(100);
@@ -12851,25 +13085,41 @@ genDelay_ms(100);
 (LATEbits.LE1 = 0);
 (LATEbits.LE2 = 1);
 genDelay_ms(100);
+(LATEbits.LE2 = 0);
+
+
+
+unsigned int count = 0;
 
 
 while(1){
 
-
-getTime(&RTCCRead);
+if(showTime){
+RtccReadTime(&RTCCRead);
 unsigned int RTCHour = bcdtod(RTCCRead.f.hour);
 unsigned int RTCMin = bcdtod(RTCCRead.f.min);
-
+for(count = 0; count < 5000; count++){
 dispTime(RTCHour, RTCMin);
+}
+
+showTime = 0;
+
+}
+
 
 if(!clickEvent()){
 displayOFF();
-
-setTime();
+genDelay_ms(300);
+REEnableInterrupts();
+state_settingsCycle();
 }
 
+if(alarmFlag){
+state_soundAlarm();
+}
 
 }
+
 
 
 return (0);
@@ -12877,121 +13127,147 @@ return (0);
 
 
 
-int settingsCycle(){
+int state_settingsCycle(){
 
-int setting = 0;
-int settingTemp = setting;
-int tmp = 0;
-int i = 0;
-int alarmOnOffColour = 0;
-
-
+int selection = 0;
+int selectionChg = -1;
+settingsFlag = 1;
+int firstTime = 1;
+int test = 0;
 
 while(1){
 
-tmp = readEnc();
-if(tmp == -99){
-return -1;
-}
-
-else if(tmp){
-setting += tmp;
-setting = checkRotEncLimits(0, 2, setting);
-
-if(setting != settingTemp){
-
-switch(setting){
-
-case 0:
-
-break;
-
-
-case 1:
-if(!alarmOnOffColour){
-
-}
-
-if(alarmOnOffColour){
-
-}
-
-break;
-
-case 2:
-
-break;
-}
-
-settingTemp = setting;
-}
-}
-
 if(!clickEvent()){
 
-for(i = 0; i < 5; i++){
 
+if(selection == 0){
+genDelay_ms(300);
+selection = state_setTime();
+selectionChg = -1;
 
 }
 
-switch(setting){
-case 0:
-setting = setTime();
+
+else if(selection == 1){
+genDelay_ms(300);
+
+if(!isAlarmOn){
+(LATBbits.LB1 = 1);
+(LATBbits.LB2 = 0);
+isAlarmOn = 1;
+state_setAlarm();
+}
+
+else if(isAlarmOn){
+(LATBbits.LB1 = 0);
+(LATBbits.LB2 = 1);
+isAlarmOn = 0;
+}
+}
+
+else if(selection == 2){
+ALL_IND_LED_OFF();
+REDisableInterrupts();
+genDelay_ms(300);
 break;
+}
+
+else{
+if(!test){
+ALL_ALM_LED_ON();
+test = 1;
+}
+
+else if(test){
+ALL_ALM_LED_OFF();
+test = 0;
+}
+
+genDelay_ms(300);
+}
+}
+
+if(REFlags.turnFlag){
+selection += REReadEncoder(&tmp);
+if(selection > MAX_SELECTION){
+selection = 0;
+}
+
+else if(selection < 0){
+selection = MAX_SELECTION;
+}
+
+}
+
+
+if(selection != selectionChg){
+selectionChg = selection;
+ALL_IND_LED_OFF();
+switch(selection){
+
+
+case 0:
+(LATAbits.LA5 = 1);
+break;
+
 
 case 1:
-setting = setTime();
+(LATBbits.LB1 = 0);
 break;
 
-}
-}
 
-if((!clickEvent()) && (setting == 2)){
+case 2:
+(LATBbits.LB6 = 1);;
+break;
+
+default:
+(LATEbits.LE1 = 1);
 break;
 }
+
+if(!firstTime){
+int j = 0;
+for(j = 0; j < 500; j++);
+tmp = 0x00;
+tmp |= ((PORTB & 0x30) >> 4);
+RERelease();
 }
 
+firstTime = 0;
+}
+
+}
 return 0;
 }
 
 
-int setTime(){
+int state_setTime(){
 
 int del = 0;
 int counter = 0;
-int tmp = 0;
 int hourMin = 0;
+int j = 0;
 rtccTime RTCCSetTimeDate;
 
-RtccWrOn();
 
-for(del = 0; del < 5; del++){
-
-
-
-}
 
 
 while(1){
-tmp = readEnc();
-if(tmp == -99){
-return -1;
-}
-
-else if(tmp){
-counter += tmp;
-counter = checkRotEncLimits(0, 59, counter);
+if(REFlags.turnFlag){
+counter += REReadEncoder(&tmp);
+for(j = 0; j < 500; j++);
+tmp = 0x00;
+tmp |= ((PORTB & 0x30) >> 4);
+RERelease();
 }
 
 dispSetTime(counter, hourMin);
 
 if(!clickEvent()){
 
+genDelay_ms(300);
+
 displayOFF();
-for(del = 0; del < 5; del++){
-
-
-}
 
 if(hourMin == 0){
 RTCCSetTimeDate.f.min = dtobcd(counter);
@@ -13009,20 +13285,152 @@ break;
 }
 
 RtccWriteTime(&RTCCSetTimeDate, 1);
-(RTCCFGbits.RTCWREN = 0);
 
 
-return 2;
+return 0;
 
+}
+
+int state_setAlarm(){
+int del = 0;
+int counter = 0;
+int hourMin = 0;
+int j = 0;
+rtccTime RTCCSetAlarm;
+
+
+while(1){
+if(REFlags.turnFlag){
+counter += REReadEncoder(&tmp);
+for(j = 0; j < 500; j++);
+tmp = 0x00;
+tmp |= ((PORTB & 0x30) >> 4);
+RERelease();
+}
+
+dispSetTime(counter, hourMin);
+
+if(!clickEvent()){
+
+genDelay_ms(300);
+
+displayOFF();
+
+if(hourMin == 0){
+RTCCSetAlarm.f.min = dtobcd(counter);
+hourMin = 1;
+tmp = 0;
+counter = 0;
+}
+
+else if(hourMin == 1){
+RTCCSetAlarm.f.hour = dtobcd(counter);
+RTCCSetAlarm.f.sec = 0;
+break;
+}
+}
+}
+
+RtccWriteAlrmTime(&RTCCSetAlarm);
+
+
+return 1;
+}
+
+int state_soundAlarm(){
+unsigned int sequence = 0;
+setupForPlayback();
+genDelay_ms(300);
+while(genDelayLockStatus);
+
+while(alarmFlag){
+toggleLED(sequence);
+playback();
+sequence++;
+
+if(sequence > 5){
+sequence = 0;
+}
+}
+
+disableAmplifier();
+alarmFlag = 0;
+return 0;
 }
 
 
 void interrupt high_priority hp_isr(){
+
+
+if(INT0IE && INT0IF){
+
+if(alarmFlag){
+alarmFlag = 0;
+showTime = 1;
+INT0IF = 0;
+return;
+}
+else{
+showTime = 1;
+INT0IF = 0;
+return;
+}
+}
+
 
 if(TMR0IE && TMR0IF){
 genDelayLockStatus = 0;
 TMR0IF = 0;
 return;
 }
+
+
+if(RBIE && RBIF){
+
+if((REFlags.turnFlag)){
+RBIF = 0;
+return;
+}
+
+else{
+
+tmp = tmp << 2;
+tmp |= ((PORTB & 0x30) >> 4);
+
+if(tmp >= 0xD0){
+if((tmp == 0xE1) || (tmp == 0xD2)){
+RELockout();
+RBIF = 0;
+return;
+}
+
+else{
+RBIF = 0;
+return;
+}
+}
+
+else{
+RBIF = 0;
+return;
+}
+
+}
+
+}
+
+
+if(RTCCIE && RTCCIF){
+alarmFlag = 1;
+RTCCIF = 0;
+return;
+}
+
+}
+
+void interrupt low_priority lp_isr(){
+
+
+
 
 }

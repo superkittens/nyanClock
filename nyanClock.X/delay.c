@@ -29,7 +29,11 @@ int genDelay_ms(unsigned int delayTime_ms){
         return 1;
     }
     
-    unsigned int tmrReg = 65536 - (delayTime_ms * 16);
+    if(delayTime_ms == 0){
+        return 2;
+    }
+    
+    unsigned int tmrReg = 65535 - (delayTime_ms * 16);
     unsigned char tmrRegL = tmrReg & 0xFF;
     unsigned char tmrRegH = (tmrReg >> 8) & 0xFF; 
 

@@ -12624,16 +12624,31 @@ static int encoderStates[16] = {0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1,
 static unsigned char oldState = 0;
 unsigned char PCTemp = 0x00;
 
+struct{
+int turnFlag;
+
+}REFlags;
+
 int rotEncInit();
 int readEnc();
 int clickEvent();
 int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck );
+void REEnableInterrupts();
+void REDisableInterrupts();
+void RELockout();
+void RERelease();
+int REReadEncoder(unsigned char* collectedStates);
 
 # 3 "rotEnc.c"
 int rotEncInit(){
 
+ANCON1bits.PCFG9 = 1;
 
-TRISB |= 0x38;
+TRISBbits.TRISB3 = 1;
+TRISBbits.TRISB4 = 1;
+TRISBbits.TRISB5 = 1;
+
+REFlags.turnFlag = 0;
 return 0;
 }
 
@@ -12676,4 +12691,42 @@ return lowerLimit;
 
 return valueToCheck;
 
+}
+
+void REEnableInterrupts(){
+INTCONbits.RBIE = 1;
+INTCON2bits.RBIP = 1;
+return;
+}
+
+void REDisableInterrupts(){
+INTCONbits.RBIE = 0;
+return;
+}
+
+
+
+void RELockout(){
+REFlags.turnFlag = 1;
+}
+
+int REReadEncoder(unsigned char *collectedStates){
+
+if(*collectedStates == 0xE1){
+return 1;
+}
+
+else if(*collectedStates == 0xD2){
+return -1;
+}
+
+else{
+return 0;
+}
+}
+
+
+void RERelease(){
+REFlags.turnFlag = 0;
+return;
 }

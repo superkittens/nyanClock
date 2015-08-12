@@ -21,6 +21,7 @@ int sevenSegInit(){
 //  Used for displaying time.  For general numbers, use the displayNum() function
 int dispTime(unsigned int hour, unsigned int min){
 
+    int del = 0;
     if(genDelayLockStatus){
         return 1;
     }
@@ -30,9 +31,11 @@ int dispTime(unsigned int hour, unsigned int min){
 
     if((hour >= 0) && (hour < 10)){
         displayDigit(hour, DIG2);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayDigit(0, DIG3);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
@@ -41,17 +44,21 @@ int dispTime(unsigned int hour, unsigned int min){
         dig1 = hour / 10;
 
         displayDigit(dig0, DIG2);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG3);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
     if((min >= 0) && (min < 10)){
         displayDigit(min, DIG0);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayDigit(0, DIG1);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
@@ -60,9 +67,11 @@ int dispTime(unsigned int hour, unsigned int min){
         dig1 = min / 10;
 
         displayDigit(dig0, DIG0);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG1);
-        genDelay_ms(DELAYTIME);
+        for(del = 0; del < 50; del++);
+        //genDelay_ms(DELAYTIME);
         displayOFF();
     }
 
@@ -70,10 +79,9 @@ int dispTime(unsigned int hour, unsigned int min){
 
 // Special function to display setting the hour or min depending on the value of hourMin.  hourMin = 0 -> minute, 1 -> hour
 int dispSetTime(unsigned int time, int hourMin){
+    
+    int del = 0;
 
-    if(genDelayLockStatus){
-        return 1;
-    }
     
     switch(hourMin){
 
@@ -81,9 +89,11 @@ int dispSetTime(unsigned int time, int hourMin){
         case 0:
             if((time >= 0) && (time <= 9)){
                 displayDigit(time, DIG0);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayDigit(0, DIG1);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayOFF();
              }
 
@@ -92,9 +102,11 @@ int dispSetTime(unsigned int time, int hourMin){
                 int dig1 = time / 10;
 
                 displayDigit(dig0, DIG0);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayDigit(dig1, DIG1);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayOFF();
             }
 
@@ -104,9 +116,11 @@ int dispSetTime(unsigned int time, int hourMin){
         case 1:
             if((time >= 0) && (time <= 9)){
                 displayDigit(time, DIG2);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayDigit(0, DIG3);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayOFF();
              }
 
@@ -115,9 +129,11 @@ int dispSetTime(unsigned int time, int hourMin){
                 int dig1 = time / 10;
 
                 displayDigit(dig0, DIG2);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayDigit(dig1, DIG3);
-                genDelay_ms(DELAYTIME);
+                for(del = 0; del < 50; del++);
+                //genDelay_ms(DELAYTIME);
                 displayOFF();
             }
 
@@ -151,8 +167,10 @@ int displayNum(unsigned int number){
         int del = 0;
 
         displayDigit(dig0, DIG0);
+        //for(del = 0; del < 50; del++);
         genDelay_ms(DELAYTIME);
         displayDigit(dig1, DIG1);
+        //for(del = 0; del < 50; del++);
         genDelay_ms(DELAYTIME);
         
     }
@@ -218,6 +236,7 @@ int displayDigit(unsigned int number, int digit){
 
 
 void displayOFF(){
-    PORTB |= 0x7F;
+    PORTD |= 0x7F;
+    LATDbits.LD7 = 0;
     PORTA &= 0xF0;
 }

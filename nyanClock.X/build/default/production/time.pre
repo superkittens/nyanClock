@@ -11892,6 +11892,7 @@ unsigned char update_RTCC(void);
 # 13 "time.h"
 int timeInit(rtccTime * pTime, unsigned int hour, unsigned int min);
 int alarmInit(rtccTime *pAlarm, unsigned int hour, unsigned int min);
+int enableTime();
 int getTime(rtccTime *pTime);
 int writeTime(rtccTime *pTime);
 
@@ -11909,15 +11910,30 @@ pTime->f.hour = dtobcd(hour);
 pTime->f.min = dtobcd(min);
 pTime->f.sec = 0;
 
-RtccWriteTime(pTime, 1);
-(RTCCFGbits.RTCEN=1);
-(RTCCFGbits.RTCWREN = 0);
+RtccWriteTime(pTime, 0);
+
+
 
 return 0;
 }
 
 int alarmInit(rtccTime *pAlarm, unsigned int hour, unsigned int min){
 
+pAlarm->f.hour = dtobcd(hour);
+pAlarm->f.min = dtobcd(min);
+pAlarm->f.sec = 0;
+
+RtccSetAlarmRpt(RTCC_RPT_DAY, 1);
+
+RtccWriteAlrmTime(pAlarm);
+
+
+return 0;
+}
+
+int enableTime(){
+(RTCCFGbits.RTCEN=1);
+(ALRMCFGbits.ALRMEN=1);
 return 0;
 }
 
@@ -11961,7 +11977,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 67
+# 82
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){

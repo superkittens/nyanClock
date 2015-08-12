@@ -9814,43 +9814,55 @@ Version 3.2 HI-TECH Software Intermediate Code
 "30
 }
 [e :U 1358 ]
-"32
-[v _tmrReg `ui ~T0 @X0 1 a ]
 [; ;delay.c: 30: }
-[; ;delay.c: 32: unsigned int tmrReg = 65536 - (delayTime_ms * 16);
-[e = _tmrReg -> - -> 65536 `l -> * _delayTime_ms -> -> 16 `i `ui `l `ui ]
+[; ;delay.c: 32: if(delayTime_ms == 0){
+"32
+[e $ ! == _delayTime_ms -> -> 0 `i `ui 1359  ]
+{
+[; ;delay.c: 33: return 2;
 "33
-[v _tmrRegL `uc ~T0 @X0 1 a ]
-[; ;delay.c: 33: unsigned char tmrRegL = tmrReg & 0xFF;
-[e = _tmrRegL -> & _tmrReg -> -> 255 `i `ui `uc ]
+[e ) -> 2 `i ]
+[e $UE 1357  ]
 "34
-[v _tmrRegH `uc ~T0 @X0 1 a ]
-[; ;delay.c: 34: unsigned char tmrRegH = (tmrReg >> 8) & 0xFF;
-[e = _tmrRegH -> & >> _tmrReg -> 8 `i -> -> 255 `i `ui `uc ]
-[; ;delay.c: 36: TMR0H = tmrRegH;
-"36
-[e = _TMR0H _tmrRegH ]
-[; ;delay.c: 37: TMR0L = tmrRegL;
-"37
-[e = _TMR0L _tmrRegL ]
-[; ;delay.c: 39: T0CONbits.TMR0ON = 1;
-"39
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-[; ;delay.c: 42: while(genDelayLockStatus);
-"42
-[e $U 1359  ]
-[e :U 1360 ]
+}
 [e :U 1359 ]
-[e $ != _genDelayLockStatus -> 0 `i 1360  ]
-[e :U 1361 ]
-[; ;delay.c: 44: T0CONbits.TMR0ON = 0;
-"44
-[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
-[; ;delay.c: 46: return 0;
+"36
+[v _tmrReg `ui ~T0 @X0 1 a ]
+[; ;delay.c: 34: }
+[; ;delay.c: 36: unsigned int tmrReg = 65535 - (delayTime_ms * 16);
+[e = _tmrReg -> - -> 65535 `l -> * _delayTime_ms -> -> 16 `i `ui `l `ui ]
+"37
+[v _tmrRegL `uc ~T0 @X0 1 a ]
+[; ;delay.c: 37: unsigned char tmrRegL = tmrReg & 0xFF;
+[e = _tmrRegL -> & _tmrReg -> -> 255 `i `ui `uc ]
+"38
+[v _tmrRegH `uc ~T0 @X0 1 a ]
+[; ;delay.c: 38: unsigned char tmrRegH = (tmrReg >> 8) & 0xFF;
+[e = _tmrRegH -> & >> _tmrReg -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;delay.c: 40: TMR0H = tmrRegH;
+"40
+[e = _TMR0H _tmrRegH ]
+[; ;delay.c: 41: TMR0L = tmrRegL;
+"41
+[e = _TMR0L _tmrRegL ]
+[; ;delay.c: 43: T0CONbits.TMR0ON = 1;
+"43
+[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
+[; ;delay.c: 46: while(genDelayLockStatus);
 "46
+[e $U 1360  ]
+[e :U 1361 ]
+[e :U 1360 ]
+[e $ != _genDelayLockStatus -> 0 `i 1361  ]
+[e :U 1362 ]
+[; ;delay.c: 48: T0CONbits.TMR0ON = 0;
+"48
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;delay.c: 50: return 0;
+"50
 [e ) -> 0 `i ]
 [e $UE 1357  ]
-[; ;delay.c: 47: }
-"47
+[; ;delay.c: 51: }
+"51
 [e :UE 1357 ]
 }

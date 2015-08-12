@@ -9,19 +9,30 @@ int timeInit(rtccTime *pTime, unsigned int hour, unsigned int min){
     pTime->f.min = dtobcd(min);
     pTime->f.sec = 0;
     
-    RtccWriteTime(pTime, 1);
-    mRtccWrOff();
+    RtccWriteTime(pTime, 0);
+    //mRtccWrOff();
+    //mRtccOn();
   
     return 0;
 }
 
 int alarmInit(rtccTime *pAlarm, unsigned int hour, unsigned int min){
     
+    pAlarm->f.hour = dtobcd(hour);
+    pAlarm->f.min = dtobcd(min);
+    pAlarm->f.sec = 0;
+    
+    RtccSetAlarmRpt(RTCC_RPT_DAY, 1);
+    
+    RtccWriteAlrmTime(pAlarm);
+   
+    
     return 0;
 }
 
 int enableTime(){
     mRtccOn();
+    mRtccAlrmEnable();
     return 0;
 }
 
