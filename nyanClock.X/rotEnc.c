@@ -9,6 +9,12 @@ int rotEncInit(){
     TRISBbits.TRISB5 = 1;
     
     REFlags.turnFlag = 0;
+    
+    //  Rotary Encoder switch is connected to external interrupt INT0
+    ANCON1bits.PCFG12 = 1;  //  Set RB0 to DIO instead of AN12
+    TRISBbits.TRISB0 = 1;   //  Set TRIS RB0 to input
+    INTCONbits.INT0IE = 1;  //  Enable External INT0 interrupt
+    INTCON2bits.INTEDG0 = 0;//  Set INT0 interrupt on falling edge
     return 0;
 }
 

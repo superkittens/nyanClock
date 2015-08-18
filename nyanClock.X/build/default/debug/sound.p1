@@ -9910,9 +9910,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "43
 [v _score1Repeat `ui ~T0 @X0 1 e ]
 [i _score1Repeat
--> -> 1 `i `ui
+-> -> 2 `i `ui
 ]
-[; ;sound.h: 43: unsigned int score1Repeat = 1;
+[; ;sound.h: 43: unsigned int score1Repeat = 2;
 "44
 [v _score1Count `ui ~T0 @X0 1 e ]
 [i _score1Count
@@ -10361,9 +10361,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "102
 [v _score2Repeat `ui ~T0 @X0 1 e ]
 [i _score2Repeat
--> -> 1 `i `ui
+-> -> 2 `i `ui
 ]
-[; ;sound.h: 102: unsigned int score2Repeat = 1;
+[; ;sound.h: 102: unsigned int score2Repeat = 2;
 "103
 [v _score2Count `ui ~T0 @X0 1 e ]
 [i _score2Count

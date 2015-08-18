@@ -30,7 +30,8 @@ int sevenSegInit();
 int displayNum(unsigned int number);
 int dispSetTime(unsigned int time, int hourMin);
 int dispTime(unsigned int hour, unsigned int min);
-int displayDigit(unsigned int number, int digit);
+static int displayDigit(unsigned int number, int digit);
+int checkLimits(int numberToCheck, int lowerLimit, int upperLimit);
 void displayOFF();
 
 #endif	/* SEVENSEG_H */

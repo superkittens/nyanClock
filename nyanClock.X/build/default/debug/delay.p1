@@ -1,11 +1,35 @@
 Version 3.2 HI-TECH Software Intermediate Code
+[s S1280 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1280 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+[s S1281 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1281 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+[s S1282 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1282 . . GIEL GIEH ]
+[s S1283 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1283 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+[s S1284 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1284 . . GIEL GIEH ]
+[u S1279 `S1280 1 `S1281 1 `S1282 1 `S1283 1 `S1284 1 ]
+[n S1279 . . . . . . ]
+"19915 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
+[v _INTCONbits `VS1279 ~T0 @X0 0 e@4082 ]
+[s S1276 :7 `uc 1 :1 `uc 1 ]
+[n S1276 . . NOT_RBPU ]
+[s S1277 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1277 . RBIP INT3IP TMR0IP INTEDG3 INTEDG2 INTEDG1 INTEDG0 nRBPU ]
+[s S1278 :1 `uc 1 :1 `uc 1 :1 `uc 1 :4 `uc 1 :1 `uc 1 ]
+[n S1278 . . INT3P T0IP . RBPU ]
+[u S1275 `S1276 1 `S1277 1 `S1278 1 ]
+[n S1275 . . . . ]
+"19804
+[v _INTCON2bits `VS1275 ~T0 @X0 0 e@4081 ]
 [s S1222 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1222 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
 [s S1223 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1223 . T0PS0 T0PS1 T0PS2 ]
 [u S1221 `S1222 1 `S1223 1 ]
 [n S1221 . . . ]
-"19091 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
+"19091
 [v _T0CONbits `VS1221 ~T0 @X0 0 e@4053 ]
 "19165
 [v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
@@ -9767,102 +9791,108 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;delay.c: 5: int initGeneralTimer(){
 [e :U _initGeneralTimer ]
 [f ]
-[; ;delay.c: 14: T0CONbits.TMR0ON = 0;
+[; ;delay.c: 14: INTCONbits.TMR0IE = 1;
 "14
-[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
-[; ;delay.c: 15: T0CONbits.T08BIT = 0;
+[e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
+[; ;delay.c: 15: INTCON2bits.T0IP = 1;
 "15
-[e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
-[; ;delay.c: 16: T0CONbits.T0CS = 0;
-"16
-[e = . . _T0CONbits 0 3 -> -> 0 `i `uc ]
-[; ;delay.c: 17: T0CONbits.T0SE = 0;
+[e = . . _INTCON2bits 2 2 -> -> 1 `i `uc ]
+[; ;delay.c: 17: T0CONbits.TMR0ON = 0;
 "17
-[e = . . _T0CONbits 0 2 -> -> 0 `i `uc ]
-[; ;delay.c: 18: T0CONbits.PSA = 0;
+[e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
+[; ;delay.c: 18: T0CONbits.T08BIT = 0;
 "18
-[e = . . _T0CONbits 0 1 -> -> 0 `i `uc ]
-[; ;delay.c: 19: T0CONbits.T0PS = 0b111;
+[e = . . _T0CONbits 0 4 -> -> 0 `i `uc ]
+[; ;delay.c: 19: T0CONbits.T0CS = 0;
 "19
-[e = . . _T0CONbits 0 0 -> -> 7 `i `uc ]
-[; ;delay.c: 20: return 0;
+[e = . . _T0CONbits 0 3 -> -> 0 `i `uc ]
+[; ;delay.c: 20: T0CONbits.T0SE = 0;
 "20
+[e = . . _T0CONbits 0 2 -> -> 0 `i `uc ]
+[; ;delay.c: 21: T0CONbits.PSA = 0;
+"21
+[e = . . _T0CONbits 0 1 -> -> 0 `i `uc ]
+[; ;delay.c: 22: T0CONbits.T0PS = 0b111;
+"22
+[e = . . _T0CONbits 0 0 -> -> 7 `i `uc ]
+[; ;delay.c: 23: return 0;
+"23
 [e ) -> 0 `i ]
 [e $UE 1356  ]
-[; ;delay.c: 21: }
-"21
+[; ;delay.c: 24: }
+"24
 [e :UE 1356 ]
 }
-"24
+"27
 [v _genDelay_ms `(i ~T0 @X0 1 ef1`ui ]
 {
-[; ;delay.c: 24: int genDelay_ms(unsigned int delayTime_ms){
+[; ;delay.c: 27: int genDelay_ms(unsigned int delayTime_ms){
 [e :U _genDelay_ms ]
 [v _delayTime_ms `ui ~T0 @X0 1 r1 ]
 [f ]
-[; ;delay.c: 26: genDelayLockStatus = 1;
-"26
+[; ;delay.c: 29: genDelayLockStatus = 1;
+"29
 [e = _genDelayLockStatus -> 1 `i ]
-[; ;delay.c: 28: if(delayTime_ms > (4000)){
-"28
+[; ;delay.c: 31: if(delayTime_ms > (4000)){
+"31
 [e $ ! > _delayTime_ms -> -> 4000 `i `ui 1358  ]
 {
-[; ;delay.c: 29: return 1;
-"29
+[; ;delay.c: 32: return 1;
+"32
 [e ) -> 1 `i ]
 [e $UE 1357  ]
-"30
+"33
 }
 [e :U 1358 ]
-[; ;delay.c: 30: }
-[; ;delay.c: 32: if(delayTime_ms == 0){
-"32
+[; ;delay.c: 33: }
+[; ;delay.c: 35: if(delayTime_ms == 0){
+"35
 [e $ ! == _delayTime_ms -> -> 0 `i `ui 1359  ]
 {
-[; ;delay.c: 33: return 2;
-"33
+[; ;delay.c: 36: return 2;
+"36
 [e ) -> 2 `i ]
 [e $UE 1357  ]
-"34
+"37
 }
 [e :U 1359 ]
-"36
+"39
 [v _tmrReg `ui ~T0 @X0 1 a ]
-[; ;delay.c: 34: }
-[; ;delay.c: 36: unsigned int tmrReg = 65535 - (delayTime_ms * 16);
+[; ;delay.c: 37: }
+[; ;delay.c: 39: unsigned int tmrReg = 65535 - (delayTime_ms * 16);
 [e = _tmrReg -> - -> 65535 `l -> * _delayTime_ms -> -> 16 `i `ui `l `ui ]
-"37
-[v _tmrRegL `uc ~T0 @X0 1 a ]
-[; ;delay.c: 37: unsigned char tmrRegL = tmrReg & 0xFF;
-[e = _tmrRegL -> & _tmrReg -> -> 255 `i `ui `uc ]
-"38
-[v _tmrRegH `uc ~T0 @X0 1 a ]
-[; ;delay.c: 38: unsigned char tmrRegH = (tmrReg >> 8) & 0xFF;
-[e = _tmrRegH -> & >> _tmrReg -> 8 `i -> -> 255 `i `ui `uc ]
-[; ;delay.c: 40: TMR0H = tmrRegH;
 "40
-[e = _TMR0H _tmrRegH ]
-[; ;delay.c: 41: TMR0L = tmrRegL;
+[v _tmrRegL `uc ~T0 @X0 1 a ]
+[; ;delay.c: 40: unsigned char tmrRegL = tmrReg & 0xFF;
+[e = _tmrRegL -> & _tmrReg -> -> 255 `i `ui `uc ]
 "41
-[e = _TMR0L _tmrRegL ]
-[; ;delay.c: 43: T0CONbits.TMR0ON = 1;
+[v _tmrRegH `uc ~T0 @X0 1 a ]
+[; ;delay.c: 41: unsigned char tmrRegH = (tmrReg >> 8) & 0xFF;
+[e = _tmrRegH -> & >> _tmrReg -> 8 `i -> -> 255 `i `ui `uc ]
+[; ;delay.c: 43: TMR0H = tmrRegH;
 "43
-[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
-[; ;delay.c: 46: while(genDelayLockStatus);
+[e = _TMR0H _tmrRegH ]
+[; ;delay.c: 44: TMR0L = tmrRegL;
+"44
+[e = _TMR0L _tmrRegL ]
+[; ;delay.c: 46: T0CONbits.TMR0ON = 1;
 "46
+[e = . . _T0CONbits 0 5 -> -> 1 `i `uc ]
+[; ;delay.c: 49: while(genDelayLockStatus);
+"49
 [e $U 1360  ]
 [e :U 1361 ]
 [e :U 1360 ]
 [e $ != _genDelayLockStatus -> 0 `i 1361  ]
 [e :U 1362 ]
-[; ;delay.c: 48: T0CONbits.TMR0ON = 0;
-"48
+[; ;delay.c: 51: T0CONbits.TMR0ON = 0;
+"51
 [e = . . _T0CONbits 0 5 -> -> 0 `i `uc ]
-[; ;delay.c: 50: return 0;
-"50
+[; ;delay.c: 53: return 0;
+"53
 [e ) -> 0 `i ]
 [e $UE 1357  ]
-[; ;delay.c: 51: }
-"51
+[; ;delay.c: 54: }
+"54
 [e :UE 1357 ]
 }

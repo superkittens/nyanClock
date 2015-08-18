@@ -11927,6 +11927,14 @@ RtccSetAlarmRpt(RTCC_RPT_DAY, 1);
 
 RtccWriteAlrmTime(pAlarm);
 
+(ALRMCFGbits.ALRMEN=0);
+
+
+PIE3bits.RTCCIE = 1;
+IPR3bits.RTCCIP = 1;
+
+RTCCIF = 0;
+
 
 return 0;
 }
@@ -11977,7 +11985,7 @@ bcdConv += 0x30;
 return bcdConv;
 }
 
-# 82
+# 90
 unsigned int bcdtod(unsigned char bcd){
 
 if((bcd >= 0x00) && (bcd < 0x10)){

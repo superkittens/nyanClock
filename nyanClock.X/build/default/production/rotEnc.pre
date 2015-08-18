@@ -12649,6 +12649,12 @@ TRISBbits.TRISB4 = 1;
 TRISBbits.TRISB5 = 1;
 
 REFlags.turnFlag = 0;
+
+
+ANCON1bits.PCFG12 = 1;
+TRISBbits.TRISB0 = 1;
+INTCONbits.INT0IE = 1;
+INTCON2bits.INTEDG0 = 0;
 return 0;
 }
 

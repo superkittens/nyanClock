@@ -12629,6 +12629,9 @@ int genDelay_ms(unsigned int);
 int initGeneralTimer(){
 
 # 14
+INTCONbits.TMR0IE = 1;
+INTCON2bits.T0IP = 1;
+
 T0CONbits.TMR0ON = 0;
 T0CONbits.T08BIT = 0;
 T0CONbits.T0CS = 0;

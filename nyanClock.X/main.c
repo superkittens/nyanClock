@@ -26,13 +26,16 @@ int state_setAlarm();
 int state_soundAlarm();
 
 volatile unsigned char tmp = 0x00;
-volatile int test = 0;
 volatile int showTime = 0;
 int settingsFlag = 0;
-int isAlarmOn = 0;
 int alarmFlag = 0;
 
-const int MAX_SELECTION = 2;
+//  Set limits for numbers that can be displayed on the clock
+static unsigned int timeLowerLimit = 0;
+static unsigned int minuteUpperLimit = 59;
+static unsigned int hourUpperLimit = 23;
+
+static const int MAX_SELECTION = 2;
 
 int main(int argc, char** argv) {
 
@@ -40,17 +43,7 @@ int main(int argc, char** argv) {
     RCONbits.IPEN = 1;      //  Enable priorities
     INTCONbits.GIEH = 1;    //  Enable high priority interrupts
     INTCONbits.GIEL = 1;    //  Disable low priority interrupts
-    INTCONbits.TMR0IE = 1;  //  Enable TMR0 overflow interrupt
-    INTCON2bits.T0IP = 1;   //  Set TMR0 int to low priority
-    PIE3bits.RTCCIE = 1;    //  Enable RTCC Alarm interrupt
-    IPR3bits.RTCCIP = 1;    //  Set RTCC Alarm int to high priority
-    ANCON1bits.PCFG12 = 1;  //  Set RB0 to DIO
-    TRISBbits.TRISB0 = 1;
-    INTCONbits.INT0IE = 1;  //  Enable External INT0 interrupt
-    INTCON2bits.INTEDG0 = 0;//  Set INT0 interrupt on falling edge
-    
-    RTCCIF = 0;
-    
+
     enableLED();
     initGeneralTimer();
     sevenSegInit();
@@ -62,7 +55,7 @@ int main(int argc, char** argv) {
     rtccTime RTCCAlarm;
     
     timeInit(&RTCCTime, 0, 0);
-    alarmInit(&RTCCAlarm, 0, 1);
+    alarmInit(&RTCCAlarm, 0, 0);
     enableTime();
     
     tmp |= ((PORTB & 0x30) >> 4);
@@ -76,9 +69,7 @@ int main(int argc, char** argv) {
     ALM_LED_BLUE_ON();
     genDelay_ms(100);
     ALM_LED_BLUE_OFF();
- 
 
-    
     unsigned int count = 0;
 
     //  Idle state
@@ -88,7 +79,7 @@ int main(int argc, char** argv) {
             RtccReadTime(&RTCCRead);
             unsigned int RTCHour = bcdtod(RTCCRead.f.hour);
             unsigned int RTCMin = bcdtod(RTCCRead.f.min);
-            for(count = 0; count < 5000; count++){
+            for(count = 0; count < 2000; count++){
                 dispTime(RTCHour, RTCMin);
             }
             
@@ -123,7 +114,7 @@ int state_settingsCycle(){
     int selectionChg = -1;
     settingsFlag = 1;
     int firstTime = 1;
-    int test = 0;
+    static int isAlarmOn = 0;
     
     while(1){
         
@@ -151,6 +142,7 @@ int state_settingsCycle(){
                 else if(isAlarmOn){
                     IND_LED_ALMOFF_ON();
                     IND_LED_ALMON_OFF();
+                    mRtccAlrmDisable();
                     isAlarmOn = 0;
                 }
             }
@@ -163,17 +155,10 @@ int state_settingsCycle(){
             }
             
             else{
-                if(!test){
-                    ALL_ALM_LED_ON();
-                    test = 1;
-                }
-                
-                else if(test){
-                    ALL_ALM_LED_OFF();
-                    test = 0;
-                }
-                
+                ALL_IND_LED_OFF();
+                REDisableInterrupts();
                 genDelay_ms(300);
+                break;
             }
         }
         
@@ -200,9 +185,17 @@ int state_settingsCycle(){
                     IND_LED_SETTIME_ON();
                     break;
                     
-                //  1 = Set Time    
+                //  1 = Set Alarm    
                 case 1:
-                    IND_LED_ALMOFF_ON();
+                    if(!isAlarmOn){
+                        IND_LED_ALMON_OFF();
+                        IND_LED_ALMOFF_ON();
+                    }
+                    
+                    else if(isAlarmOn){
+                        IND_LED_ALMOFF_OFF();
+                        IND_LED_ALMON_ON();
+                    }
                     break;
                     
                 //  2 = Exit    
@@ -239,7 +232,7 @@ int state_setTime(){
     int j = 0;
     rtccTime RTCCSetTimeDate;
 
-    //RtccWrOn();
+    RtccWrOn();
 
     //  Set Minute
     while(1){
@@ -250,7 +243,15 @@ int state_setTime(){
             tmp |= ((PORTB & 0x30) >> 4);
             RERelease();
         }
-
+        
+        if(hourMin == 0){
+            counter = checkLimits(counter, timeLowerLimit, minuteUpperLimit);
+        }
+        
+        else if(hourMin == 1){
+            counter = checkLimits(counter, timeLowerLimit, hourUpperLimit);
+        }
+        
         dispSetTime(counter, hourMin);
 
         if(!clickEvent()){ 
@@ -282,7 +283,6 @@ int state_setTime(){
 }
 
 int state_setAlarm(){
-    int del = 0;
     int counter = 0;
     int hourMin = 0;
     int j = 0;
@@ -297,7 +297,15 @@ int state_setAlarm(){
             tmp |= ((PORTB & 0x30) >> 4);
             RERelease();
         }
-
+        
+        if(hourMin == 0){
+            counter = checkLimits(counter, timeLowerLimit, minuteUpperLimit);
+        }
+        
+        else if(hourMin == 1){
+            counter = checkLimits(counter, timeLowerLimit, hourUpperLimit);
+        }
+        
         dispSetTime(counter, hourMin);
 
         if(!clickEvent()){ 
@@ -322,6 +330,7 @@ int state_setAlarm(){
     }
   
     RtccWriteAlrmTime(&RTCCSetAlarm);
+    mRtccAlrmEnable();
     //mRtccWrOff();
 
     return 1;
@@ -345,6 +354,7 @@ int state_soundAlarm(){
     
     disableAmplifier();
     alarmFlag = 0;
+    ALL_ALM_LED_OFF();
     return 0;
 }
 

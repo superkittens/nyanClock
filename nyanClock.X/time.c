@@ -25,7 +25,15 @@ int alarmInit(rtccTime *pAlarm, unsigned int hour, unsigned int min){
     RtccSetAlarmRpt(RTCC_RPT_DAY, 1);
     
     RtccWriteAlrmTime(pAlarm);
+    
+    mRtccAlrmDisable();
    
+    //  Set Alarm Interrupts
+    PIE3bits.RTCCIE = 1;    //  Enable RTCC Alarm interrupt
+    IPR3bits.RTCCIP = 1;    //  Set RTCC Alarm int to high priority
+    
+    RTCCIF = 0;
+    
     
     return 0;
 }

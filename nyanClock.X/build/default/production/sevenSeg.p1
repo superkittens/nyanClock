@@ -30,8 +30,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "11355
 [v _LATDbits `VS731 ~T0 @X0 0 e@3980 ]
 "33 sevenSeg.h
-[v _displayDigit `(i ~T0 @X0 0 ef2`ui`i ]
-"34
+[v _displayDigit `(i ~T0 @X0 0 sf2`ui`i ]
+"35
 [v _displayOFF `(v ~T0 @X0 0 ef ]
 "18 delay.h
 [v _genDelay_ms `(i ~T0 @X0 0 ef1`ui ]
@@ -9833,8 +9833,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;sevenSeg.h: 30: int displayNum(unsigned int number);
 [; ;sevenSeg.h: 31: int dispSetTime(unsigned int time, int hourMin);
 [; ;sevenSeg.h: 32: int dispTime(unsigned int hour, unsigned int min);
-[; ;sevenSeg.h: 33: int displayDigit(unsigned int number, int digit);
-[; ;sevenSeg.h: 34: void displayOFF();
+[; ;sevenSeg.h: 33: static int displayDigit(unsigned int number, int digit);
+[; ;sevenSeg.h: 34: int checkLimits(int numberToCheck, int lowerLimit, int upperLimit);
+[; ;sevenSeg.h: 35: void displayOFF();
 [; ;stdlib.h: 27: typedef struct {
 [; ;stdlib.h: 28: int rem;
 [; ;stdlib.h: 29: int quot;
@@ -10519,9 +10520,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 1428 ]
 }
 "218
-[v _displayDigit `(i ~T0 @X0 1 ef2`ui`i ]
+[v _displayDigit `(i ~T0 @X0 1 sf2`ui`i ]
 {
-[; ;sevenSeg.c: 218: int displayDigit(unsigned int number, int digit){
+[; ;sevenSeg.c: 218: static int displayDigit(unsigned int number, int digit){
 [e :U _displayDigit ]
 [v _number `ui ~T0 @X0 1 r1 ]
 [v _digit `i ~T0 @X0 1 r2 ]
@@ -10558,22 +10559,73 @@ Version 3.2 HI-TECH Software Intermediate Code
 "235
 [e :UE 1438 ]
 }
-"238
+"237
+[v _checkLimits `(i ~T0 @X0 1 ef3`i`i`i ]
+{
+[; ;sevenSeg.c: 237: int checkLimits(int numberToCheck, int lowerLimit, int upperLimit){
+[e :U _checkLimits ]
+[v _numberToCheck `i ~T0 @X0 1 r1 ]
+[v _lowerLimit `i ~T0 @X0 1 r2 ]
+[v _upperLimit `i ~T0 @X0 1 r3 ]
+[f ]
+[; ;sevenSeg.c: 239: if(numberToCheck > upperLimit){
+"239
+[e $ ! > _numberToCheck _upperLimit 1441  ]
+{
+[; ;sevenSeg.c: 240: return lowerLimit;
+"240
+[e ) _lowerLimit ]
+[e $UE 1440  ]
+"241
+}
+[; ;sevenSeg.c: 241: }
+[e $U 1442  ]
+"243
+[e :U 1441 ]
+[; ;sevenSeg.c: 243: else if(numberToCheck < lowerLimit){
+[e $ ! < _numberToCheck _lowerLimit 1443  ]
+{
+[; ;sevenSeg.c: 244: return upperLimit;
+"244
+[e ) _upperLimit ]
+[e $UE 1440  ]
+"245
+}
+[; ;sevenSeg.c: 245: }
+[e $U 1444  ]
+"247
+[e :U 1443 ]
+[; ;sevenSeg.c: 247: else{
+{
+[; ;sevenSeg.c: 248: return numberToCheck;
+"248
+[e ) _numberToCheck ]
+[e $UE 1440  ]
+"249
+}
+[e :U 1444 ]
+[e :U 1442 ]
+[; ;sevenSeg.c: 249: }
+[; ;sevenSeg.c: 250: }
+"250
+[e :UE 1440 ]
+}
+"252
 [v _displayOFF `(v ~T0 @X0 1 ef ]
 {
-[; ;sevenSeg.c: 238: void displayOFF(){
+[; ;sevenSeg.c: 252: void displayOFF(){
 [e :U _displayOFF ]
 [f ]
-[; ;sevenSeg.c: 239: PORTD |= 0x7F;
-"239
+[; ;sevenSeg.c: 253: PORTD |= 0x7F;
+"253
 [e =| _PORTD -> -> 127 `i `uc ]
-[; ;sevenSeg.c: 240: LATDbits.LD7 = 0;
-"240
+[; ;sevenSeg.c: 254: LATDbits.LD7 = 0;
+"254
 [e = . . _LATDbits 8 1 -> -> 0 `i `uc ]
-[; ;sevenSeg.c: 241: PORTA &= 0xF0;
-"241
+[; ;sevenSeg.c: 255: PORTA &= 0xF0;
+"255
 [e =& _PORTA -> -> 240 `i `uc ]
-[; ;sevenSeg.c: 242: }
-"242
-[e :UE 1440 ]
+[; ;sevenSeg.c: 256: }
+"256
+[e :UE 1445 ]
 }

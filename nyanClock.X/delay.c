@@ -11,6 +11,9 @@ int initGeneralTimer(){
      *  Prescaler 256
      */
     
+    INTCONbits.TMR0IE = 1;  //  Enable TMR0 overflow interrupt
+    INTCON2bits.T0IP = 1;   //  Set TMR0 int to high priority
+    
     T0CONbits.TMR0ON = 0;
     T0CONbits.T08BIT = 0;
     T0CONbits.T0CS = 0;

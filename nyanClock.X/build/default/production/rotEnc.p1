@@ -15,30 +15,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S762 . . ]
 "11854
 [v _TRISBbits `VS762 ~T0 @X0 0 e@3987 ]
-"9610
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-[s S637 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S637 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-[s S638 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S638 . AN12 AN10 AN8 AN9 PMA1 PMA0 KBI2 KBI3 ]
-[s S639 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S639 . INT0 PMPBE CTED1 CTED2 KBI0 KBI1 PGC PGD ]
-[s S640 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S640 . RP3 RTCC PMA3 PMA2 SCK1 SDI1 RP9 RP10 ]
-[s S641 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S641 . . RP4 VMO VPO SCL1 SDA1 ]
-[s S642 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S642 . . REFO RP6 RP7 RP8 ]
-[s S643 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S643 . . C3INC RP5 C3INA CCP4 CCP5 CCP6 CCP7 ]
-[s S644 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S644 . C3IND PMBE C2INC ]
-[s S645 :3 `uc 1 :1 `uc 1 ]
-[n S645 . . CCP2_PA2 ]
-[u S636 `S637 1 `S638 1 `S639 1 `S640 1 `S641 1 `S642 1 `S643 1 `S644 1 `S645 1 ]
-[n S636 . . . . . . . . . . ]
-"9691
-[v _PORTBbits `VS636 ~T0 @X0 0 e@3969 ]
 [s S1280 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1280 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
 [s S1281 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -63,6 +39,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1275 . . . . ]
 "19804
 [v _INTCON2bits `VS1275 ~T0 @X0 0 e@4081 ]
+"9610
+[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+[s S637 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S637 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+[s S638 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S638 . AN12 AN10 AN8 AN9 PMA1 PMA0 KBI2 KBI3 ]
+[s S639 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S639 . INT0 PMPBE CTED1 CTED2 KBI0 KBI1 PGC PGD ]
+[s S640 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S640 . RP3 RTCC PMA3 PMA2 SCK1 SDI1 RP9 RP10 ]
+[s S641 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S641 . . RP4 VMO VPO SCL1 SDA1 ]
+[s S642 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S642 . . REFO RP6 RP7 RP8 ]
+[s S643 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S643 . . C3INC RP5 C3INA CCP4 CCP5 CCP6 CCP7 ]
+[s S644 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S644 . C3IND PMBE C2INC ]
+[s S645 :3 `uc 1 :1 `uc 1 ]
+[n S645 . . CCP2_PA2 ]
+[u S636 `S637 1 `S638 1 `S639 1 `S640 1 `S641 1 `S642 1 `S643 1 `S644 1 `S645 1 ]
+[n S636 . . . . . . . . . . ]
+"9691
+[v _PORTBbits `VS636 ~T0 @X0 0 e@3969 ]
 [; ;pic18f47j53.h: 44: extern volatile unsigned char ADCTRIG @ 0xEB8;
 "46 /Applications/microchip/xc8/v1.12/include/pic18f47j53.h
 [; ;pic18f47j53.h: 46: asm("ADCTRIG equ 0EB8h");
@@ -9875,250 +9875,262 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;rotEnc.c: 11: REFlags.turnFlag = 0;
 "11
 [e = . _REFlags 0 -> 0 `i ]
-[; ;rotEnc.c: 12: return 0;
-"12
+[; ;rotEnc.c: 14: ANCON1bits.PCFG12 = 1;
+"14
+[e = . . _ANCON1bits 0 4 -> -> 1 `i `uc ]
+[; ;rotEnc.c: 15: TRISBbits.TRISB0 = 1;
+"15
+[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
+[; ;rotEnc.c: 16: INTCONbits.INT0IE = 1;
+"16
+[e = . . _INTCONbits 0 4 -> -> 1 `i `uc ]
+[; ;rotEnc.c: 17: INTCON2bits.INTEDG0 = 0;
+"17
+[e = . . _INTCON2bits 1 6 -> -> 0 `i `uc ]
+[; ;rotEnc.c: 18: return 0;
+"18
 [e ) -> 0 `i ]
 [e $UE 1357  ]
-[; ;rotEnc.c: 13: }
-"13
+[; ;rotEnc.c: 19: }
+"19
 [e :UE 1357 ]
 }
-"15
+"21
 [v _readEnc `(i ~T0 @X0 1 ef ]
 {
-[; ;rotEnc.c: 15: int readEnc(){
+[; ;rotEnc.c: 21: int readEnc(){
 [e :U _readEnc ]
 [f ]
-[; ;rotEnc.c: 17: PCTemp = 0x00;
-"17
+[; ;rotEnc.c: 23: PCTemp = 0x00;
+"23
 [e = _PCTemp -> -> 0 `i `uc ]
-[; ;rotEnc.c: 18: oldState = oldState << 2;
-"18
+[; ;rotEnc.c: 24: oldState = oldState << 2;
+"24
 [e = _oldState -> << -> _oldState `i -> 2 `i `uc ]
-[; ;rotEnc.c: 19: oldState |= (PORTB & 0x30);
-"19
+[; ;rotEnc.c: 25: oldState |= (PORTB & 0x30);
+"25
 [e =| _oldState -> & -> _PORTB `i -> 48 `i `uc ]
-[; ;rotEnc.c: 21: if((oldState < 0x00) || (oldState > 0xFF)){
-"21
+[; ;rotEnc.c: 27: if((oldState < 0x00) || (oldState > 0xFF)){
+"27
 [e $ ! || < -> _oldState `i -> 0 `i > -> _oldState `i -> 255 `i 1359  ]
 {
-[; ;rotEnc.c: 22: return -99;
-"22
+[; ;rotEnc.c: 28: return -99;
+"28
 [e ) -U -> 99 `i ]
 [e $UE 1358  ]
-"23
+"29
 }
 [e :U 1359 ]
-[; ;rotEnc.c: 23: }
-[; ;rotEnc.c: 25: return (encoderStates[( oldState & 0x0F)]);
-"25
+[; ;rotEnc.c: 29: }
+[; ;rotEnc.c: 31: return (encoderStates[( oldState & 0x0F)]);
+"31
 [e ) *U + &U _encoderStates * -> -> & -> _oldState `i -> 15 `i `ui `ux -> -> # *U &U _encoderStates `ui `ux ]
 [e $UE 1358  ]
-[; ;rotEnc.c: 26: }
-"26
+[; ;rotEnc.c: 32: }
+"32
 [e :UE 1358 ]
 }
-"28
+"34
 [v _clickEvent `(i ~T0 @X0 1 ef ]
 {
-[; ;rotEnc.c: 28: int clickEvent(){
+[; ;rotEnc.c: 34: int clickEvent(){
 [e :U _clickEvent ]
 [f ]
-[; ;rotEnc.c: 30: if(PORTBbits.RB3 == 1){
-"30
+[; ;rotEnc.c: 36: if(PORTBbits.RB3 == 1){
+"36
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 1 `i 1361  ]
 {
-[; ;rotEnc.c: 31: return 0;
-"31
+[; ;rotEnc.c: 37: return 0;
+"37
 [e ) -> 0 `i ]
 [e $UE 1360  ]
-"32
+"38
 }
-[; ;rotEnc.c: 32: }
+[; ;rotEnc.c: 38: }
 [e $U 1362  ]
-"33
+"39
 [e :U 1361 ]
-[; ;rotEnc.c: 33: else if(PORTBbits.RB3 == 0){
+[; ;rotEnc.c: 39: else if(PORTBbits.RB3 == 0){
 [e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 1363  ]
 {
-[; ;rotEnc.c: 34: return 1;
-"34
+[; ;rotEnc.c: 40: return 1;
+"40
 [e ) -> 1 `i ]
 [e $UE 1360  ]
-"35
+"41
 }
-[; ;rotEnc.c: 35: }
+[; ;rotEnc.c: 41: }
 [e $U 1364  ]
-"37
+"43
 [e :U 1363 ]
-[; ;rotEnc.c: 37: else{
+[; ;rotEnc.c: 43: else{
 {
-[; ;rotEnc.c: 38: return -2;
-"38
+[; ;rotEnc.c: 44: return -2;
+"44
 [e ) -U -> 2 `i ]
 [e $UE 1360  ]
-"39
+"45
 }
 [e :U 1364 ]
 [e :U 1362 ]
-[; ;rotEnc.c: 39: }
-[; ;rotEnc.c: 40: }
-"40
+[; ;rotEnc.c: 45: }
+[; ;rotEnc.c: 46: }
+"46
 [e :UE 1360 ]
 }
-"42
+"48
 [v _checkRotEncLimits `(i ~T0 @X0 1 ef3`i`i`i ]
 {
-[; ;rotEnc.c: 42: int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck){
+[; ;rotEnc.c: 48: int checkRotEncLimits(int lowerLimit, int upperLimit, int valueToCheck){
 [e :U _checkRotEncLimits ]
 [v _lowerLimit `i ~T0 @X0 1 r1 ]
 [v _upperLimit `i ~T0 @X0 1 r2 ]
 [v _valueToCheck `i ~T0 @X0 1 r3 ]
 [f ]
-[; ;rotEnc.c: 44: if(valueToCheck < lowerLimit){
-"44
+[; ;rotEnc.c: 50: if(valueToCheck < lowerLimit){
+"50
 [e $ ! < _valueToCheck _lowerLimit 1366  ]
 {
-[; ;rotEnc.c: 45: return upperLimit;
-"45
+[; ;rotEnc.c: 51: return upperLimit;
+"51
 [e ) _upperLimit ]
 [e $UE 1365  ]
-"46
+"52
 }
-[; ;rotEnc.c: 46: }
+[; ;rotEnc.c: 52: }
 [e $U 1367  ]
-"48
+"54
 [e :U 1366 ]
-[; ;rotEnc.c: 48: else if(valueToCheck > upperLimit){
+[; ;rotEnc.c: 54: else if(valueToCheck > upperLimit){
 [e $ ! > _valueToCheck _upperLimit 1368  ]
 {
-[; ;rotEnc.c: 49: return lowerLimit;
-"49
+[; ;rotEnc.c: 55: return lowerLimit;
+"55
 [e ) _lowerLimit ]
 [e $UE 1365  ]
-"50
+"56
 }
 [e :U 1368 ]
-"52
+"58
 [e :U 1367 ]
-[; ;rotEnc.c: 50: }
-[; ;rotEnc.c: 52: return valueToCheck;
+[; ;rotEnc.c: 56: }
+[; ;rotEnc.c: 58: return valueToCheck;
 [e ) _valueToCheck ]
 [e $UE 1365  ]
-[; ;rotEnc.c: 54: }
-"54
-[e :UE 1365 ]
-}
-"56
-[v _REEnableInterrupts `(v ~T0 @X0 1 ef ]
-{
-[; ;rotEnc.c: 56: void REEnableInterrupts(){
-[e :U _REEnableInterrupts ]
-[f ]
-[; ;rotEnc.c: 57: INTCONbits.RBIE = 1;
-"57
-[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;rotEnc.c: 58: INTCON2bits.RBIP = 1;
-"58
-[e = . . _INTCON2bits 1 0 -> -> 1 `i `uc ]
-[; ;rotEnc.c: 59: return;
-"59
-[e $UE 1369  ]
 [; ;rotEnc.c: 60: }
 "60
-[e :UE 1369 ]
+[e :UE 1365 ]
 }
 "62
+[v _REEnableInterrupts `(v ~T0 @X0 1 ef ]
+{
+[; ;rotEnc.c: 62: void REEnableInterrupts(){
+[e :U _REEnableInterrupts ]
+[f ]
+[; ;rotEnc.c: 63: INTCONbits.RBIE = 1;
+"63
+[e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
+[; ;rotEnc.c: 64: INTCON2bits.RBIP = 1;
+"64
+[e = . . _INTCON2bits 1 0 -> -> 1 `i `uc ]
+[; ;rotEnc.c: 65: return;
+"65
+[e $UE 1369  ]
+[; ;rotEnc.c: 66: }
+"66
+[e :UE 1369 ]
+}
+"68
 [v _REDisableInterrupts `(v ~T0 @X0 1 ef ]
 {
-[; ;rotEnc.c: 62: void REDisableInterrupts(){
+[; ;rotEnc.c: 68: void REDisableInterrupts(){
 [e :U _REDisableInterrupts ]
 [f ]
-[; ;rotEnc.c: 63: INTCONbits.RBIE = 0;
-"63
-[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
-[; ;rotEnc.c: 64: return;
-"64
-[e $UE 1370  ]
-[; ;rotEnc.c: 65: }
-"65
-[e :UE 1370 ]
-}
+[; ;rotEnc.c: 69: INTCONbits.RBIE = 0;
 "69
-[v _RELockout `(v ~T0 @X0 1 ef ]
-{
-[; ;rotEnc.c: 69: void RELockout(){
-[e :U _RELockout ]
-[f ]
-[; ;rotEnc.c: 70: REFlags.turnFlag = 1;
+[e = . . _INTCONbits 0 3 -> -> 0 `i `uc ]
+[; ;rotEnc.c: 70: return;
 "70
-[e = . _REFlags 0 -> 1 `i ]
+[e $UE 1370  ]
 [; ;rotEnc.c: 71: }
 "71
+[e :UE 1370 ]
+}
+"75
+[v _RELockout `(v ~T0 @X0 1 ef ]
+{
+[; ;rotEnc.c: 75: void RELockout(){
+[e :U _RELockout ]
+[f ]
+[; ;rotEnc.c: 76: REFlags.turnFlag = 1;
+"76
+[e = . _REFlags 0 -> 1 `i ]
+[; ;rotEnc.c: 77: }
+"77
 [e :UE 1371 ]
 }
-"73
+"79
 [v _REReadEncoder `(i ~T0 @X0 1 ef1`*uc ]
 {
-[; ;rotEnc.c: 73: int REReadEncoder(unsigned char *collectedStates){
+[; ;rotEnc.c: 79: int REReadEncoder(unsigned char *collectedStates){
 [e :U _REReadEncoder ]
 [v _collectedStates `*uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;rotEnc.c: 75: if(*collectedStates == 0xE1){
-"75
+[; ;rotEnc.c: 81: if(*collectedStates == 0xE1){
+"81
 [e $ ! == -> *U _collectedStates `i -> 225 `i 1373  ]
 {
-[; ;rotEnc.c: 76: return 1;
-"76
+[; ;rotEnc.c: 82: return 1;
+"82
 [e ) -> 1 `i ]
 [e $UE 1372  ]
-"77
+"83
 }
-[; ;rotEnc.c: 77: }
+[; ;rotEnc.c: 83: }
 [e $U 1374  ]
-"79
+"85
 [e :U 1373 ]
-[; ;rotEnc.c: 79: else if(*collectedStates == 0xD2){
+[; ;rotEnc.c: 85: else if(*collectedStates == 0xD2){
 [e $ ! == -> *U _collectedStates `i -> 210 `i 1375  ]
 {
-[; ;rotEnc.c: 80: return -1;
-"80
+[; ;rotEnc.c: 86: return -1;
+"86
 [e ) -U -> 1 `i ]
 [e $UE 1372  ]
-"81
+"87
 }
-[; ;rotEnc.c: 81: }
+[; ;rotEnc.c: 87: }
 [e $U 1376  ]
-"83
+"89
 [e :U 1375 ]
-[; ;rotEnc.c: 83: else{
+[; ;rotEnc.c: 89: else{
 {
-[; ;rotEnc.c: 84: return 0;
-"84
+[; ;rotEnc.c: 90: return 0;
+"90
 [e ) -> 0 `i ]
 [e $UE 1372  ]
-"85
+"91
 }
 [e :U 1376 ]
 [e :U 1374 ]
-[; ;rotEnc.c: 85: }
-[; ;rotEnc.c: 86: }
-"86
-[e :UE 1372 ]
-}
-"89
-[v _RERelease `(v ~T0 @X0 1 ef ]
-{
-[; ;rotEnc.c: 89: void RERelease(){
-[e :U _RERelease ]
-[f ]
-[; ;rotEnc.c: 90: REFlags.turnFlag = 0;
-"90
-[e = . _REFlags 0 -> 0 `i ]
-[; ;rotEnc.c: 91: return;
-"91
-[e $UE 1377  ]
+[; ;rotEnc.c: 91: }
 [; ;rotEnc.c: 92: }
 "92
+[e :UE 1372 ]
+}
+"95
+[v _RERelease `(v ~T0 @X0 1 ef ]
+{
+[; ;rotEnc.c: 95: void RERelease(){
+[e :U _RERelease ]
+[f ]
+[; ;rotEnc.c: 96: REFlags.turnFlag = 0;
+"96
+[e = . _REFlags 0 -> 0 `i ]
+[; ;rotEnc.c: 97: return;
+"97
+[e $UE 1377  ]
+[; ;rotEnc.c: 98: }
+"98
 [e :UE 1377 ]
 }

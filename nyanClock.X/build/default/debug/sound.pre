@@ -12647,7 +12647,7 @@ static int scoreIndex = 0;
 
 
 unsigned int score1Length = 53;
-unsigned int score1Repeat = 1;
+unsigned int score1Repeat = 2;
 unsigned int score1Count = 0;
 char score1[53][4] = {
 {78, 'q', 52, 'q'},
@@ -12706,7 +12706,7 @@ char score1[53][4] = {
 };
 
 unsigned int score2Length = 55;
-unsigned int score2Repeat = 1;
+unsigned int score2Repeat = 2;
 unsigned int score2Count = 0;
 char score2[55][4] = {
 {71, 'q', 52, 'q'},

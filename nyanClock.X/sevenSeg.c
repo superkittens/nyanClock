@@ -215,7 +215,7 @@ int displayNum(unsigned int number){
 
 
 //  displayDigit actually switches on/off GPIOs to light segment LEDs
-int displayDigit(unsigned int number, int digit){
+static int displayDigit(unsigned int number, int digit){
 
     if((number > 9) || (number < 0)){ 
         return -1;
@@ -234,6 +234,20 @@ int displayDigit(unsigned int number, int digit){
     return 0;
 }
 
+int checkLimits(int numberToCheck, int lowerLimit, int upperLimit){
+    
+    if(numberToCheck > upperLimit){
+        return lowerLimit;
+    }
+    
+    else if(numberToCheck < lowerLimit){
+        return upperLimit;
+    }
+    
+    else{
+        return numberToCheck;
+    }
+}
 
 void displayOFF(){
     PORTD |= 0x7F;
